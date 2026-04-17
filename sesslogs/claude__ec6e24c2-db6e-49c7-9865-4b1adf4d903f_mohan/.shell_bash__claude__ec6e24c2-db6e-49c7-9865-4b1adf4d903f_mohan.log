@@ -1,0 +1,12 @@
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-17 19:38:11  •  Run #1  •  claude
+════════════════════════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-17 19:38:11  •  Run #1  •  claude
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-17 19:38:11]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" }
+[[2026-04-17 19:38:11]] {Read: "/home/mohan/.claude/knowledge-graph/tmpxn54pil4.txt" }
+[[2026-04-17 19:38:11]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" }
+[[2026-04-17 19:38:19]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (100L) }
+[[2026-04-17 19:38:19]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" (100L) }
+[[2026-04-17 19:38:22]] {Bash: cat /home/mohan/.claude/knowledge-graph/entities.jsonl /home/mohan/.claude/knowledge-graph/relationships.jsonl }

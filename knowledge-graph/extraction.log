@@ -15,3 +15,5 @@
 [2026-04-17T23:37:33Z] SUCCESS session d46be832-e923-4d37-9202-9b0cbd35aacd — Knowledge graph updated: 0 entities, 0 relationships
 [2026-04-17T23:38:03Z] Triggered KG extraction for session 0da3fae0-873a-4a0e-8d6b-41b4e0aa4832 (37 lines)
 [2026-04-17T23:38:06Z] SUCCESS web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1
+[2026-04-17T23:38:03Z] SUCCESS session 0da3fae0-873a-4a0e-8d6b-41b4e0aa4832 — Knowledge graph updated: 0 entities, 0 relationships
+[2026-04-17T23:38:39Z] Triggered KG extraction for session ec6e24c2-db6e-49c7-9865-4b1adf4d903f (39 lines)
