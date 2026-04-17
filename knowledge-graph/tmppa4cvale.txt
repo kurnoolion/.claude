@@ -1,0 +1,40 @@
+User: follow this format, except the name is advait duggi, populate the progress portion with some of the user stories in the document assigned to advait duggi, sane with future plans, make it make sense, and make up git hashes as well
+Assistant:  The user wants me to create a weekly individual report in the same format as the image, but for Advait Duggi. Let me look at what user stories are assigned to Advait in the Sprint 2 Planning Doc.
+
+Advait's tasks:
+- US#4 - Stuttering and Hesitation Detection (all tasks)
+- US#6 - Personalized Areas for Improvement (all tasks)
+- US#7 - Targeted Script-Based Suggestions (all tasks)
+
+Let me create a realistic weekly report. Week 1 would be completed work, Week 2 would be planned work. I'll make up git hashes and assign reasonable dates.
+
+
+Now I'm mapping out the specific work items for each week. For Week 1, I'll pull the first few tasks from US#4 like implementing silence detection, adding repetition detection to the Whisper transcript, and computing fluency metrics, then move the remaining work into Week 2's plan. Finishing up the unit tests for that story, then I'm looking at the completed work from Week 1 on US#4 — those five tasks logged across March 14th and 15th add up to 9 hours, so I should probably include the test tasks to round it out to about 10 hours total. That's 8 hours total for Week 1. For the remaining 2 hours during spring break, I'm adding two tasks to finish up US#4—testing the detection accuracy and writing unit tests. Week 2 shifts focus to US#6 with five tasks spread across three days, totaling 9 hours.Here's the formatted report for Advait:
+
+```
+=== Weekly Individual Report (Team 16: StageSense) ===
+Name: Advait Duggi
+
+Week 1 (Summary)
+2026-03-15  |  1.5 hrs  |  a3f812c  |  US#4 task5: fluency feedback UI showing hesitation timeline, repetition list with timestamps, and fluency score (Vibe Coded)
+2026-03-15  |  1.5 hrs  |  d904be1  |  US#4 task3+4: compute fluency summary metrics (hesitation count, total time, repetition count) and store in audio_metrics column of analysis_results
+2026-03-14  |  2.5 hrs  |  7c21a9f  |  US#4 task2: add repetition detection on Whisper transcript flagging consecutive repeated words/phrases
+2026-03-14  |  2.5 hrs  
+User: based on what I gave you, write an individual goal in this format:
+
+1. I plan on making writing tests, fixing bus with user story 2 tasks 4 and 5, and working on user story 8 task of creating profile sections within Spring Break and Week 2 of Sprint 2.
+2.
+Assistant:  The user wants me to write individual goals for Advait Duggi based on the report content, following the numbered format shown. Let me look at what Advait is working on:
+
+Week 1 (done): US#4 tasks 1-5 (Stuttering/Hesitation Detection)
+Spring Break: Testing US#4 and writing unit tests for US#4
+Week 2 Plan: US#6 tasks 1-5 (Personalized Areas for Improvement)
+
+Also Advait is assigned to US#7 (Targeted Script-Based Suggestions) tasks 1-5.
+
+Let me write the goals in the same format.1. I plan on completing the remaining US#4 tasks by writing unit tests for pause detection boundary durations and repetition flagging logic, and testing detection accuracy on sample speeches during Spring Break.
+2. I plan on fully implementing US#6 (Personalized Areas for Improvement) during Week 2 of Sprint 2, including building the rules engine, integrating the Claude API for personalized coaching paragraphs, constructing the Areas for Improvement UI card, and wiring in focus area weighting from Sprint 1 Story #16.
+User: just 1 line sentence
+Assistant:  The user wants a single one-line sentence combining both goals.I plan on completing the remaining US#4 tasks (unit tests and detection accuracy testing) during Spring Break, then fully implementing US#6 across Week 2 of Sprint 2, covering the rules engine, Claude API integration, improvement UI card, and focus area weighting.
+User: not the claude one
+Assistant:  The user wants a single line goal that doesn't mention the Claude API integration specifically. Let me rephrase.I plan on completing the remaining US#4 tasks including unit tests and detection accuracy testing during Spring Break, then fully implementing US#6 across Week 2 of Sprint 2, covering the rules engine, personalized coaching suggestions, areas for improvement UI card, and focus area weighting.
