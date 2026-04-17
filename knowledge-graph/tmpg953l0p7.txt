@@ -1,0 +1,150 @@
+User: I installed Claude Code in my VS Code. When click on Claude icon in right most corner, a powershell is coming up. It runs Claude and gives error no such command found. How do I use Claude Code from this powershell terminal?
+Assistant:  Let me check the product self-knowledge skill for accurate Claude Code information.
+```
+This block is not supported on your current device yet.
+```
+
+Let me fetch the Claude Code docs map to get accurate installation info for Windows/PowerShell.
+```
+This block is not supported on your current device yet.
+```
+
+
+```
+This block is not supported on your current device yet.
+```
+
+
+```
+This block is not supported on your current device yet.
+```
+
+The issue is clear: Claude Code isn't installed on the system, so when the VS Code extension opens a PowerShell terminal and tries to run `claude`, it can't find the command. The fix is to install Claude Code first.
+
+The recommended approach for Windows is the native PowerShell installer.The problem is that the VS Code extension for Claude Code expects the `claude` CLI to already be installed on your system — it just opens a terminal and runs it. Since it's not installed yet, you get the "command not found" error. Here's how to fix it:
+
+## Step 1: Install Claude Code via PowerShell
+
+The recommended native installer requires no Node.js or npm — just run this in PowerShell (no Administrator needed):
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+The installer downloads the Claude Code binary and puts it in `%LOCALAPPDATA%\Programs\ClaudeCode`. The whole process takes 10–30 seconds.
+
+## Step 2: Also install Git for Windows (required)
+
+Claude Code on Windows requires Git for Windows — install it from git-scm.com, then run the installer command above. Claude Code uses Git Bash internally to run commands.
+
+## Step 3: Restart PowerShell / VS Code
+
+After installation, **close and reopen PowerShell** — PATH updates only after a terminal restart. Then type `claude --version` to verify it works.
+
+If it still says "not found" after reopening, your PATH may not have updated yet. Run this in PowerShell to add it manually:
+
+```powershell
+$npmPath = npm config get prefix
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User"
+User: Setup successfully.  How do I make sure all the prompts and responses from the Claude terminal are maintained/stored?
+Assistant:  The user wants to know how to maintain/store conversation history from Claude Code sessions. Let me search for this.
+```
+This block is not supported on your current device yet.
+```
+
+Good info. Let me summarize the key points clearly.Good news — Claude Code automatically saves everything. Here's what you need to know:
+
+## What's Stored Automatically
+
+Claude Code saves your conversation locally as you work. Each message, tool use, and result is stored, which enables rewinding, resuming, and forking sessions. Before Claude makes code changes, it also snapshots the affected files so you can revert if needed.
+
+All conversation logs live in `~/.claude/projects/`. Each project gets its own folder, and inside each project folder are individual conversation files as `.jsonl` files — one per session. On Windows, that path is `C:\Users\YourName\.claude\projects\`.
+
+---
+
+## Resuming Sessions (Most Important)
+
+Use `claude --continue` (or `claude -c`) to resume your last session, or `claude --resume` (or `claude -r`) to open a picker to browse all recent sessions.
+
+When you resume a session, new messages append to the existing conversation and your full conversation history is restored.
+
+---
+
+## Searching Across All Sessions
+
+Every prompt you've ever sent is logged in `~/.claude/history.jsonl`. If you're trying to find something specific you typed two weeks ago but can't remember which session it was in, this is the file to search.
+
+You can grep through it in PowerShell like:
+```powershell
+Select-String "your keyword" "$env:USERPROFILE\.claude\history.jsonl"
+```
+
+---
+
+## Exporting Conversations as Readable Files
+
+Claude Code doesn't have a built-in export button, but you can use the community tool **claude-conversation-extractor**:
+
+```powershell
+pip install claude-conversation-extractor
+claude-extract --all          # export everything
+claude-extract --recent 5     # last 5 sessions
+claude-extract --format html  # pretty HTML output
+```
+
+It converts the JSONL files to clean Mar
+User: How can I access Claude code sessions that I have on my PC from my phone?
+Assistant:  The user wants to access Claude Code sessions from their phone. Let me search for this.
+```
+This block is not supported on your current device yet.
+```
+
+There's a built-in feature called Remote Control that was launched in February 2026. Let me summarize this clearly.There's a built-in feature made exactly for this — **Remote Control**, launched by Anthropic in February 2026. Here's everything you need to know:
+
+## How It Works
+
+Remote Control connects a second screen to a Claude Code session running on your machine. Your files, MCP server configurations, project credentials, and `.claude/` settings all stay on your machine. What travels through Anthropic's servers is limited to two things: the messages you type and the tool results Claude generates.
+
+---
+
+## Setup (3 steps)
+
+**1. Update Claude Code first**
+
+Remote Control requires Claude Code v2.1.51 or later. Check your version with `claude --version`.
+
+```powershell
+claude --version
+```
+
+If needed, update with the native installer: `irm https://claude.ai/install.ps1 | iex`
+
+**2. Start a Remote Control session on your PC**
+
+From an active Claude Code session, type:
+```
+/rc
+```
+
+Or start a new session with it enabled:
+```powershell
+claude --remote-control
+```
+
+This starts a Remote Control session that displays a session URL. You can press spacebar to show a QR code for quick access from your phone.
+
+**3. Connect from your phone**
+
+Open `claude.ai/code` in any browser or the Claude mobile app. Remote Control sessions appear with a computer icon and a green status dot. Tap it to connect to your local session.
+
+Don't have the app yet? Run `/mobile` inside Claude Code to get a download QR code for iOS or Android.
+
+---
+
+## Enable It Automatically for Every Session
+
+To enable Remote Control for every session automatically, run `/config` inside Claude Code and set "Enable Remote Control for all sessions" to true. That way you never need to remember to turn it on before leaving your desk.
+
+---
+
+## Key Limitations to Know
