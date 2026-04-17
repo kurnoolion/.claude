@@ -22,6 +22,16 @@
             "type": "command",
             "command": "$HOME/.claude/hooks/sync-claude-to-git.sh",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/extract-knowledge.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/session-to-markdown.sh",
+            "timeout": 15
           }
         ]
       }
