@@ -1,0 +1,30 @@
+{
+  "model": "claude-opus-4-6",
+  "autoUpdatesChannel": "latest",
+  "enabledPlugins": {
+    "session-logger@dazzle-claude-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "dazzle-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "DazzleML/claude-session-logger"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/sync-claude-to-git.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
