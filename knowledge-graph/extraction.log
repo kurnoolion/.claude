@@ -24,3 +24,5 @@
 [2026-04-17T23:39:09Z] SUCCESS session 71530172-8ba2-4368-a794-90031c370116 — Knowledge graph updated: 0 entities, 0 relationships
 [2026-04-17T23:39:40Z] Triggered KG extraction for session db02de32-d138-43f9-b32f-6a84e7a58941 (34 lines)
 [2026-04-17T23:39:42Z] SUCCESS web-681d5f04-c5fa-49c3-82bf-748e58d9cc51
+[2026-04-17T23:39:40Z] SUCCESS session db02de32-d138-43f9-b32f-6a84e7a58941 — Knowledge graph updated: 0 entities, 0 relationships
+[2026-04-17T23:40:18Z] Triggered KG extraction for session 6b5f7f19-ed15-479c-985b-70d4d7a1350f (35 lines)
