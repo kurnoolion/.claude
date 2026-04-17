@@ -1,0 +1,2 @@
+User: Show me how compound interest works
+Assistant:  The user wants to understand compound interest. This is a great candidate for an interactive visualization. Let me read the frontend design skill first, then create an interactive compound interest calculator/visual
