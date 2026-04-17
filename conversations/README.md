@@ -2,10 +2,11 @@
 
 Readable archive of Claude Code sessions, auto-generated on session end.
 
-**Total conversations:** 48
+**Total conversations:** 49
 
 | Date | Conversation |
 |------|-------------|
+| 2026-04-17 | [You are a knowledge graph extraction agent. Read the conversation transcript ...](2026-04-17_1936_you-are-a-knowledge-graph-extraction-agent-read-the-conversa.md) |
 | 2026-04-17 | [You are a knowledge graph extraction agent. Read the conversation transcript ...](2026-04-17_1935_you-are-a-knowledge-graph-extraction-agent-read-the-conversa.md) |
 | 2026-04-17 | [How do I enable Claude to track everything I'm doing as memories, so that I c...](2026-04-17_1830_how-do-i-enable-claude-to-track-everything-im-doing-as-memor.md) |
 | 2026-04-17 | [NFLX call debit spread setup for post-earnings dip](2026-04-17_1534_web_nflx-call-debit-spread-setup-for-post-earnings-dip.md) |

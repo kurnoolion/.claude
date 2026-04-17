@@ -1,0 +1,8 @@
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-17 19:35:47  •  Run #1  •  claude
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-17 19:35:47]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" }
+[[2026-04-17 19:35:50]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (50L) }
+[[2026-04-17 19:35:53]] {Bash: cat /home/mohan/.claude/knowledge-graph/entities.jsonl 2>/dev/null || echo "File is empty or doesn't exist" }
+[[2026-04-17 19:35:56]] {Bash: cat /home/mohan/.claude/knowledge-graph/relationships.jsonl 2>/dev/null || echo "File is empty or doesn't exist" }
+[[2026-04-17 19:36:07]] {Bash: ls -lh /home/mohan/.claude/knowledge-graph/ 2>/dev/null | head -20 }
