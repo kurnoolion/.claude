@@ -1,0 +1,21 @@
+User: can you create a thoughtful response be polite respectful cordial and proffesional
+Assistant: 
+```
+This block is not supported on your current device yet.
+```
+
+This reply strikes the right tone — grateful, professional, and respectful of Rachel's boundaries while still making a clear, polite ask for prep guidance. Good luck on 3/30!
+User: no em dashes
+Assistant:  
+```
+This block is not supported on your current device yet.
+```
+
+Done! All em dashes removed and replaced with commas or periods for a clean, natural flow.
+User: can you remove the advice part and instead ask for feedback from our conversation for areas to improve, if not thats fine, make it short and sweet
+Assistant:  
+```
+This block is not supported on your current device yet.
+```
+
+Kept it concise and gracious, with the feedback ask framed lightly so there's no pressure on Rachel to respond either way.
