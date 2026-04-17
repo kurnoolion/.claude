@@ -1,0 +1,349 @@
+"""
+app.py — GEX/VEX Dashboard Flask Server (v4 — Instrumented)
+=============================================================
+
+Key changes from v3:
+  - build_matrix_fast(): 4 nearest exps, parallel fetch → first data in ~3-5s
+  - build_matrix(): all 6 months, parallel fetch
+  - /api/debug endpoint for system diagnostics
+  - File logging to gexvex.log
+  - All operations tagged for easy grep
+
+Log tags:
+  [APP]      — Flask route handling
+  [MATRIX]   — Matrix build operations
+  [TRADIER]  — API calls (from tradier_client)
+  [DB]       — SQLite operations (from data_store)
+  [BG]       — Background thread (from data_store)
+"""
+
+import argparse
+import logging
+import os
+import time
+from datetime import datetime, date, timedelta
+from pathlib import Path
+
+from dotenv import load_dotenv
+from flask import Flask, jsonify, render_template, request
+
+from greeks import compute_gex_for_chain, compute_vex_for_chain
+from tradier_client import TradierClient
+from data_store import (
+    init_db, subscribe, unsubscribe, get_subscriptions,
+    read_cached, write_cached, BackgroundFetcher, get_debug_info,
+)
+
+load_dotenv()
+
+# ---------------------------------------------------------------------------
+# Logging — both console AND file
+# ---------------------------------------------------------------------------
+
+LOG_PATH = Path(__file__).parent / "gexvex.log"
+
+log_formatter = logging.Formatter(
+    "%(asctime)s.%(msecs)03d [%(name)s] %(levelname)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
+# Console handler
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+console_handler.setLevel(logging.INFO)
+
+# File handler (append mode, keeps history)
+file_handler = logging.FileHandler(str(LOG_PATH), mode="a", encoding="utf-8")
+file_handler.setFormatter(log_formatter)
+file_handler.setLevel(logging.DEBUG)
+
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
+root_logger.addHandler(console_handler)
+root_logger.addHandler(file_handler)
+
+logger = logging.getLogger("app")
+
+# ---------------------------------------------------------------------------
+# Flask + Tradier Client
+# ---------------------------------------------------------------------------
+
+app = Flask(__name__)
+client = TradierClient(cache_ttl=25)
+
+DEFAULT_STRIKES_ABOVE = 50
+DEFAULT_STRIKES_BELOW = 50
+DEFAULT_EXP_MONTHS = 6
+FAST_EXP_MONTHS = 1       # for fast initial fetch (~4 expirations)
+RISK_FREE_RATE = 0.05
+DIVIDEND_YIELD = 0.0
+BG_FETCH_INTERVAL = 55
+PARALLEL_WORKERS = 4
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def filter_expirations(expirations: list[str], months: int) -> list[str]:
+    today = date.today()
+    cutoff = today + timedelta(days=months * 31)
+    future = [e for e in expirations
+              if today <= datetime.strptime(e, "%Y-%m-%d").date() <= cutoff]
+    return sorted(future)
+
+
+def build_strike_grid_centered(all_strikes: set[float], spot: float,
+                                above: int, below: int) -> list[float]:
+    sorted_all = sorted(all_strikes)
+    if not sorted_all:
+        return []
+    below_list = [s for s in sorted_all if s <= spot]
+    above_list = [s for s in sorted_all if s > spot]
+    selected_below = below_list[-below:] if below_list else []
+    selected_above = above_list[:above] if above_list else []
+    return sorted(set(selected_below + selected_above))
+
+
+# ---------------------------------------------------------------------------
+# Matrix Builders
+# ---------------------------------------------------------------------------
+
+def _build_matrix_core(symbol: str, mode: str, exp_months: int,
+                       strikes_above: int = DEFAULT_STRIKES_ABOVE,
+                       strikes_below: int = DEFAULT_STRIKES_BELOW,
+                       use_parallel: bool = True) -> dict:
+    """
+    Core matrix builder. Used by both fast and full fetch paths.
+    """
+    tag = "FAST" if exp_months <= FAST_EXP_MONTHS else "FULL"
+    t_total = time.time()
+
+    compute_fn = compute_gex_for_chain if mode == "gex" else compute_vex_for_chain
+
+    # 1. Quote
+    t0 = time.time()
+    quote = client.get_quote(symbol)
+    spot = quote["last"]
+    logger.info("[MATRIX:%s] %s/%s quote=$%.2f (%.0fms)", tag, symbol, mode.upper(), spot, (time.time()-t0)*1000)
+
+    if not spot or spot <= 0:
+        return {"error": f"Invalid quote for {symbol}", "quote": quote}
+
+    # 2. Expirations
+    t0 = time.time()
+    all_exps = client.get_expirations(symbol)
+    expirations = filter_expirations(all_exps, months=exp_months)
+    logger.info("[MATRIX:%s] %s/%s expirations=%d (of %d total) for %d months (%.0fms)",
+                tag, symbol, mode.upper(), len(expirations), len(all_exps), exp_months, (time.time()-t0)*1000)
+
+    if not expirations:
+        return {"error": "No future expirations found", "quote": quote}
+
+    # 3. Fetch chains (parallel or sequential)
+    t0 = time.time()
+    if use_parallel and len(expirations) > 2:
+        chains = client.get_chains_parallel(symbol, expirations, max_workers=PARALLEL_WORKERS)
+    else:
+        chains = client.get_chains_multi(symbol, expirations)
+    chain_ms = (time.time() - t0) * 1000
+    total_contracts = sum(len(v) for v in chains.values())
+    logger.info("[MATRIX:%s] %s/%s chains fetched → %d contracts across %d exps (%.0fms, parallel=%s)",
+                tag, symbol, mode.upper(), total_contracts, len(expirations), chain_ms, use_parallel)
+
+    # 4. Compute GEX/VEX
+    t0 = time.time()
+    all_strikes: set[float] = set()
+    exp_data: dict[str, dict[float, float]] = {}
+
+    for exp, chain in chains.items():
+        values = compute_fn(chain, spot, r=RISK_FREE_RATE, q=DIVIDEND_YIELD)
+        exp_data[exp] = values
+        all_strikes.update(values.keys())
+        for c in chain:
+            s = c.get("strike")
+            if s is not None:
+                all_strikes.add(s)
+
+    compute_ms = (time.time() - t0) * 1000
+    logger.info("[MATRIX:%s] %s/%s computed %s for %d unique strikes (%.0fms)",
+                tag, symbol, mode.upper(), mode.upper(), len(all_strikes), compute_ms)
+
+    # 5. Build grid
+    strikes = build_strike_grid_centered(all_strikes, spot, strikes_above, strikes_below)
+    if not strikes:
+        return {"error": "No strikes in range", "quote": quote}
+
+    # 6. Build matrix
+    matrix = {}
+    pin_strike = None
+    pin_value = 0
+
+    for strike in strikes:
+        row = {}
+        row_total = 0.0
+        for exp in expirations:
+            val = exp_data.get(exp, {}).get(strike, 0.0)
+            row[exp] = round(val, 2)
+            row_total += val
+
+            # Pin = highest individual cell value
+            if abs(val) > abs(pin_value):
+                pin_value = val
+                pin_strike = strike
+
+        row["total"] = round(row_total, 2)
+        matrix[f"{strike:g}"] = row
+
+    # 7. Totals
+    exp_totals = {}
+    grand_total = 0.0
+    for exp in expirations:
+        col_sum = sum(exp_data.get(exp, {}).get(s, 0.0) for s in strikes)
+        exp_totals[exp] = round(col_sum, 2)
+        grand_total += col_sum
+    exp_totals["total"] = round(grand_total, 2)
+
+    total_ms = (time.time() - t_total) * 1000
+    logger.info("[MATRIX:%s] %s/%s COMPLETE → %d strikes, %d exps, pin=%s ($%.0f), total=%.0fms",
+                tag, symbol, mode.upper(), len(strikes), len(expirations),
+                pin_strike, pin_value, total_ms)
+
+    return {
+        "quote": quote,
+        "mode": mode,
+        "expirations": expirations,
+        "strikes": strikes,
+        "matrix": matrix,
+        "exp_totals": exp_totals,
+        "pin_strike": pin_strike,
+        "api_calls": client.call_count,
+    }
+
+
+def build_matrix(symbol: str, mode: str = "gex") -> dict:
+    """Full matrix — all expirations within 6 months, parallel fetch."""
+    return _build_matrix_core(symbol, mode, exp_months=DEFAULT_EXP_MONTHS, use_parallel=True)
+
+
+def build_matrix_fast(symbol: str, mode: str = "gex") -> dict:
+    """Fast matrix — nearest ~4 expirations only, for quick first load."""
+    return _build_matrix_core(symbol, mode, exp_months=FAST_EXP_MONTHS, use_parallel=False)
+
+
+# ---------------------------------------------------------------------------
+# Background Fetcher
+# ---------------------------------------------------------------------------
+
+fetcher = BackgroundFetcher(build_matrix_fn=build_matrix, interval=BG_FETCH_INTERVAL)
+
+
+# ---------------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------------
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/api/matrix/<symbol>")
+def api_matrix(symbol):
+    t0 = time.time()
+    mode = request.args.get("mode", "gex").lower()
+    if mode not in ("gex", "vex"):
+        return jsonify({"error": "mode must be 'gex' or 'vex'"}), 400
+
+    symbol = symbol.upper()
+    cached = read_cached(symbol, mode)
+    elapsed_ms = (time.time() - t0) * 1000
+
+    if cached:
+        logger.info("[APP] GET /api/matrix/%s?mode=%s → cache HIT (%.1fms) fetched_at=%s",
+                    symbol, mode, elapsed_ms, cached.get("fetched_at"))
+        cached["api_calls"] = client.call_count
+        return jsonify(cached)
+    else:
+        logger.info("[APP] GET /api/matrix/%s?mode=%s → cache MISS (%.1fms), returning 202",
+                    symbol, mode, elapsed_ms)
+        return jsonify({
+            "pending": True, "symbol": symbol, "mode": mode,
+            "message": f"Background fetch in progress for {symbol}/{mode.upper()}...",
+            "api_calls": client.call_count,
+        }), 202
+
+
+@app.route("/api/subscribe", methods=["POST"])
+def api_subscribe():
+    body = request.get_json(silent=True) or {}
+    symbol = (body.get("symbol") or "").strip().upper()
+    if not symbol:
+        return jsonify({"error": "symbol required"}), 400
+
+    subscribe(symbol)
+
+    if not read_cached(symbol, "gex"):
+        logger.info("[APP] No cache for %s → triggering fast+full fetch", symbol)
+        fetcher.trigger_now(symbol, build_matrix_fast=build_matrix_fast)
+    else:
+        logger.info("[APP] %s already cached, no immediate fetch needed", symbol)
+
+    return jsonify({"subscribed": symbol})
+
+
+@app.route("/api/subscribe/<symbol>", methods=["DELETE"])
+def api_unsubscribe(symbol):
+    unsubscribe(symbol.upper())
+    return jsonify({"unsubscribed": symbol.upper()})
+
+
+@app.route("/api/subscriptions")
+def api_subscriptions():
+    return jsonify({"symbols": get_subscriptions()})
+
+
+@app.route("/api/quote/<symbol>")
+def api_quote(symbol):
+    try:
+        return jsonify(client.get_quote(symbol.upper()))
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/debug")
+def api_debug():
+    """System diagnostics: subscriptions, cache state, fetch thread status, recent logs."""
+    info = get_debug_info()
+    info["fetcher"] = fetcher.status
+    info["tradier"] = {
+        "api_calls_total": client.call_count,
+        "total_api_time_s": round(client.total_api_time, 1),
+        "cache_entries": client.cache.size,
+    }
+    info["log_file"] = str(LOG_PATH)
+    return jsonify(info)
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="GEX/VEX Dashboard")
+    parser.add_argument("--port", type=int, default=5050)
+    parser.add_argument("--debug", action="store_true")
+    parser.add_argument("--bg-interval", type=int, default=BG_FETCH_INTERVAL)
+    args = parser.parse_args()
+
+    logger.info("=" * 70)
+    logger.info("[APP] GEX/VEX Dashboard starting")
+    logger.info("[APP] Port: %d | BG interval: %ds | Parallel workers: %d",
+                args.port, args.bg_interval, PARALLEL_WORKERS)
+    logger.info("[APP] Log file: %s", LOG_PATH)
+    logger.info("=" * 70)
+
+    init_db()
+    fetcher.interval = args.bg_interval
+    fetcher.start()
+
+    app.run(host="0.0.0.0", port=args.port, debug=args.debug, use_reloader=False)

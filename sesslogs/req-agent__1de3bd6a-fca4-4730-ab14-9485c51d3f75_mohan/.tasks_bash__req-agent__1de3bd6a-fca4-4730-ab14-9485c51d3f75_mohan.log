@@ -1,0 +1,17 @@
+[[2026-04-14 15:57:42]] {CREATE #1: Install Ollama on WSL2 | Check if Ollama is installed, install if needed, and pull gemma4:e4b model }
+[[2026-04-14 15:57:44]] {CREATE #2: Implement OllamaProvider (LLMProvider) | Create src/llm/ollama_provider.py implementing the LLMProvider Protocol, talking to local Ollama HTTP API. Support thinking mode, configurable model name, temperature, max_tokens. }
+[[2026-04-14 15:57:46]] {CREATE #3: Wire real LLM into query pipeline and eval CLI | Update pipeline, query CLI, and eval CLI to accept an LLM provider option (mock vs ollama). Default to ollama when available. }
+[[2026-04-14 15:57:47]] {CREATE #4: Test end-to-end with real LLM | Run a few queries with Gemma 4 E4B through the full pipeline, verify answers are coherent and citations work. }
+[[2026-04-14 15:57:50]] {UPDATE: #2 }
+[[2026-04-14 15:57:51]] {UPDATE: #3 }
+[[2026-04-14 15:57:51]] {UPDATE: #4 }
+[[2026-04-14 15:57:54]] {UPDATE: #1: pending -> in_progress }
+
+[[2026-04-14 17:13:55]] {UPDATE: #2: pending -> in_progress }
+[[2026-04-14 17:16:20]] {UPDATE: #3: pending -> in_progress }
+[[2026-04-14 17:21:58]] {UPDATE: #2: in_progress -> completed }
+[[2026-04-14 17:21:59]] {UPDATE: #3: in_progress -> completed }
+[[2026-04-14 17:45:49]] {UPDATE: #4: pending -> in_progress }
+[[2026-04-14 17:45:49]] {UPDATE: #1: in_progress -> completed }
+
+[[2026-04-14 18:27:42]] {UPDATE: #4: in_progress -> completed }

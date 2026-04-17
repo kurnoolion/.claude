@@ -1,0 +1,10 @@
+# Credentials (NEVER sync)
+.credentials.json
+mcp-needs-auth-cache.json
+
+# Plugins (contain nested git repos)
+plugins/
+
+# Lock files
+**/.lock
+**/.highwatermark

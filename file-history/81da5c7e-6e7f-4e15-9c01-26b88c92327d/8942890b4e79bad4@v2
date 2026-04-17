@@ -1,0 +1,17 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Repository Overview
+
+This repository contains Verizon (VZW) Open Alliance (OA) specification documents for February 2026. It is a document-only repository with no source code.
+
+## Contents
+
+The PDFs cover LTE feature specifications:
+
+- `LTESMS.pdf` — LTE SMS specification
+- `LTEAT.pdf` — LTE AT commands specification
+- `LTEB13NAC.pdf` — LTE Band 13 NAC specification
+- `LTEDATARETRY.pdf` — LTE data retry specification
+- `LTEOTADM.pdf` — LTE Over-The-Air Device Management (OTA DM) specification

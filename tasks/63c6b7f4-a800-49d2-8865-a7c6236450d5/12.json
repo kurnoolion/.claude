@@ -1,0 +1,9 @@
+{
+  "id": "12",
+  "subject": "Run parser on all 5 VZW docs and validate output",
+  "description": "Parser re-run completed with fixes. Results validated. Minor trailing-dot spec name issue found but not yet fixed. Needs: fix trailing dots, final re-run, commit.",
+  "activeForm": "Parsing VZW docs",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

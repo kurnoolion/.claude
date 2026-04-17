@@ -1,0 +1,36 @@
+[[2026-04-12 22:31:45]] {CREATE #1: Update TDD with DocumentProfiler design | Update TDD_Telecom_Requirements_AI_System.md to replace hard-coded per-MNO parsers with the DocumentProfiler + GenericStructuralParser architecture. Key changes: (1) New Section for DocumentProfiler as standalone module, (2) Revise Section 5.2 for GenericStructuralParser, (3) Add DOC format support, (4) Update design decisions #3, #10, #13, (5) Update PoC steps. }
+[[2026-04-12 22:32:46]] {UPDATE: #1: pending -> in_progress }
+[[2026-04-12 22:46:42]] {UPDATE: #1: in_progress -> completed }
+[[2026-04-12 23:01:47]] {CREATE #2: Set up Python environment and project structure | Create folder structure per TDD 4.3, virtual environment, requirements.txt, and install dependencies (pymupdf, pdfplumber, python-docx, openpyxl, xlrd, olefile, Pillow). }
+[[2026-04-12 23:01:49]] {CREATE #3: Build normalized IR data model | Create Python data classes/models for the normalized intermediate representation (TDD 5.1.7): ContentBlock types (heading, paragraph, table, image, embedded_object), DocumentIR container. }
+[[2026-04-12 23:01:50]] {CREATE #4: Build PDF extractor | PDF extraction using pymupdf for text blocks with font metadata + pdfplumber for tables + image extraction. Handle table region deduplication, header/footer stripping, content block ordering. }
+[[2026-04-12 23:01:51]] {CREATE #5: Build extractor registry and CLI entry point | Extractor registry mapping file extensions to extractors. CLI entry point to extract a single doc or batch of docs. }
+[[2026-04-12 23:01:54]] {CREATE #6: Extract all 5 VZW PDFs and validate output | Run extraction on all 5 VZW PDFs. Validate output JSONs: check block counts, table detection, image extraction, content ordering. }
+[[2026-04-12 23:01:57]] {UPDATE: #2: pending -> in_progress }
+[[2026-04-12 23:05:54]] {UPDATE: #2: in_progress -> completed }
+[[2026-04-12 23:05:55]] {UPDATE: #3: pending -> in_progress }
+[[2026-04-12 23:06:47]] {UPDATE: #4: pending -> in_progress }
+[[2026-04-12 23:06:47]] {UPDATE: #3: in_progress -> completed }
+[[2026-04-12 23:13:16]] {UPDATE: #5: pending -> in_progress }
+[[2026-04-12 23:13:16]] {UPDATE: #4: in_progress -> completed }
+[[2026-04-12 23:13:51]] {UPDATE: #6: pending -> in_progress }
+[[2026-04-12 23:15:29]] {UPDATE: #6: in_progress -> completed }
+[[2026-04-12 23:23:57]] {CREATE #7: Build DocumentProfiler data model and profile schema | Create the document profile data model matching TDD 5.2.3: heading_detection, requirement_id, plan_metadata, document_zones, header_footer, cross_reference_patterns, body_text. JSON serializable and human-editable. }
+[[2026-04-12 23:24:00]] {CREATE #8: Build DocumentProfiler heuristic analysis engine | Implement the core profiling algorithms: font size clustering for heading detection, regex mining for requirement IDs and cross-references, plan metadata extraction, document zone classification, header/footer pattern detection. All heuristic — no LLM. }
+[[2026-04-12 23:24:02]] {CREATE #9: Build DocumentProfiler CLI with create/update/validate commands | CLI entry point: --create (profile from representative docs), --update (refine with more docs), --validate (check profile against a doc). Output human-editable JSON. }
+[[2026-04-12 23:24:03]] {CREATE #10: Run profiler on LTEDATARETRY + LTEB13NAC and validate output | Generate vzw_oa_profile.json from the two representative docs. Review the profile for accuracy: heading levels, VZ_REQ pattern, section numbering, document zones, header/footer patterns. Iterate if needed. }
+[[2026-04-12 23:24:14]] {UPDATE: #7: pending -> in_progress }
+[[2026-04-12 23:25:31]] {UPDATE: #8: pending -> in_progress }
+
+[[2026-04-13 07:53:07]] {UPDATE: #9: pending -> in_progress }
+[[2026-04-13 07:53:07]] {UPDATE: #8: in_progress -> completed }
+[[2026-04-13 07:53:34]] {UPDATE: #9: in_progress -> completed }
+[[2026-04-13 07:53:34]] {UPDATE: #10: pending -> in_progress }
+[[2026-04-13 07:55:02]] {UPDATE: #10: in_progress -> completed }
+[[2026-04-13 07:58:31]] {CREATE #11: Build GenericStructuralParser | Profile-driven parser (TDD 5.3) that takes normalized IR + document profile → structured requirement tree JSON. Classify blocks as headings using profile rules, build section hierarchy from numbering depth, attach requirement IDs, extract plan metadata, tag document zones. }
+[[2026-04-13 07:58:34]] {CREATE #12: Run parser on all 5 VZW docs and validate output | Parse all 5 VZW PDFs with the VZW OA profile. Validate: requirement tree structure, ID extraction, hierarchy correctness, section zone tagging. Check against known VZW doc structure (from TDD Appendix A). }
+[[2026-04-13 07:58:38]] {UPDATE: #11: pending -> in_progress }
+[[2026-04-13 08:00:29]] {UPDATE: #12: pending -> in_progress }
+[[2026-04-13 08:00:29]] {UPDATE: #11: in_progress -> completed }
+
+[[2026-04-13 08:49:37]] {UPDATE: #12 }

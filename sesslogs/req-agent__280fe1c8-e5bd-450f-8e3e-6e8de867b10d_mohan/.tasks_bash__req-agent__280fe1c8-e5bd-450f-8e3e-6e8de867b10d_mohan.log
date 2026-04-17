@@ -1,0 +1,12 @@
+[[2026-04-14 20:24:37]] {CREATE #1: Add few-shot citation example to context builder | Add a short few-shot example in the formatted context showing the LLM exactly what a well-cited answer looks like (VZ_REQ IDs + 3GPP TS refs inline). Small models respond better to demonstration than instruction. }
+[[2026-04-14 20:24:38]] {CREATE #2: Add context-based citation fallback in synthesizer | After LLM synthesis, if the answer has fewer than a threshold of req ID citations, supplement with citations from the retrieved context chunks. These are legitimate — the chunks generated the answer. }
+[[2026-04-14 20:24:40]] {CREATE #3: Update tests for citation improvements | Add/update tests for: few-shot example in context output, citation fallback logic in synthesizer. Ensure all 378 existing tests still pass. }
+[[2026-04-14 20:24:41]] {CREATE #4: Run single LLM query to verify citation improvement | Test with the SMS query that previously got 0 VZ_REQ citations to verify the improvement works end-to-end before committing to the full A/B eval run. }
+[[2026-04-14 20:24:45]] {UPDATE: #1: pending -> in_progress }
+[[2026-04-14 20:25:40]] {UPDATE: #1: in_progress -> completed }
+[[2026-04-14 20:25:40]] {UPDATE: #2: pending -> in_progress }
+[[2026-04-14 20:26:08]] {UPDATE: #3: pending -> in_progress }
+[[2026-04-14 20:26:08]] {UPDATE: #2: in_progress -> completed }
+[[2026-04-14 20:29:16]] {UPDATE: #3: in_progress -> completed }
+[[2026-04-14 20:29:16]] {UPDATE: #4: pending -> in_progress }
+[[2026-04-14 20:34:44]] {UPDATE: #4: in_progress -> completed }

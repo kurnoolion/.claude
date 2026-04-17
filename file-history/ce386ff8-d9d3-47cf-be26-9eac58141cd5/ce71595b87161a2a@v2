@@ -1,0 +1,203 @@
+# GEX / VEX Dashboard
+
+Real-time Gamma Exposure (GEX) and Vanna Exposure (VEX) heatmap dashboard powered by the Tradier API. Displays a NetGEX/NetVEX-style strike × expiration matrix with color-coded heatmap, auto-refresh, and multi-widget support.
+
+## Quick Start
+
+```bash
+# 1. Clone / navigate to the project
+cd gex-vex-dashboard
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Set up your Tradier API token
+cp .env.example .env
+# Edit .env and paste your token:
+#   TRADIER_API_TOKEN=your_actual_token
+
+# 4. Run
+python app.py
+# → http://localhost:5050
+```
+
+### Custom port
+```bash
+python app.py --port 8080
+```
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **Heatmap table** | Strikes (rows) × Expirations (columns), color-coded by value magnitude |
+| **GEX / VEX toggle** | Switch between Gamma Exposure and Vanna Exposure views per widget |
+| **Live quote** | Spot price, $ change, % change in the widget header |
+| **Per-column pin ★** | Highest-magnitude cell in each expiration column annotated with ★ |
+| **Spot price row ►** | Row closest to spot price marked with ►, subtle gray row highlight |
+| **Totals** | Row totals (right column) + column totals (bottom row) |
+| **Progressive load** | Fast first render (~3s) using nearest expirations; full matrix replaces it silently |
+| **Auto-refresh** | Configurable interval (default 60s) with pause/resume per widget |
+| **Multi-widget** | Open multiple independent widgets, each tracking a different ticker/mode |
+| **Zero-flicker updates** | Table never clears mid-render; re-renders only when backend data changes |
+| **Keyboard shortcuts** | `N` = new widget, `Esc` = close settings |
+| **API call logging** | Running count in header; detailed tagged log in `gexvex.log` |
+| **TTL cache** | 25-second cache on API responses to minimize rate limit usage |
+
+## How the Math Works
+
+### GEX (Gamma Exposure)
+```
+GEX_call =  gamma × OI × 100 × spot² × 0.01
+GEX_put  = −gamma × OI × 100 × spot² × 0.01
+Net GEX  =  GEX_call + GEX_put
+```
+The put sign flip reflects dealer hedging direction (dealers are net short gamma via calls, net long via puts). The `0.01` factor expresses exposure in dollars per 1% move in spot.
+
+**Gamma source priority:**
+1. Tradier `greeks.gamma` (if non-null)
+2. Black-Scholes fallback: `e^(-qT) · N'(d1) / (S · σ · √T)`
+
+### VEX (Vanna Exposure)
+```
+vanna = −e^(−qT) · N'(d1) · d2 / σ  × 0.01   (BS analytical, per 1% IV move)
+VEX   =  vanna × OI × 100
+```
+When Tradier doesn't return Greeks, the app computes them from Black-Scholes using the contract's implied volatility.
+
+### Pin Strike (★)
+The ★ symbol marks the **highest absolute value in each individual expiration column** (not a row total or global max). Each column independently identifies its own maximum-magnitude strike.
+
+## Configuration
+
+All operational parameters are set via environment variables in `.env`. Code-level constants remain as documented defaults.
+
+| Variable | Default | Description |
+|---|---|---|
+| `TRADIER_API_TOKEN` | *(required)* | Tradier brokerage or sandbox API token |
+| `TRADIER_BASE_URL` | `https://api.tradier.com/v1` | Override for sandbox testing |
+| `STRIKES_PER_SIDE` | `50` | Strikes above **and** below spot price (total = 2N+1, centered on ATM) |
+| `EXP_MONTHS` | `6` | How many months of expirations to include in the full matrix |
+
+**Example `.env`:**
+```
+TRADIER_API_TOKEN=your_actual_token
+STRIKES_PER_SIDE=30    # → 61-strike matrix
+EXP_MONTHS=3           # → ~3 months of expirations
+```
+
+Other constants hardcoded in `app.py`:
+
+| Constant | Value | Description |
+|---|---|---|
+| `FAST_EXP_MONTHS` | `1` | Expiry window for the fast first-load phase |
+| `RISK_FREE_RATE` | `0.05` | Risk-free rate for Black-Scholes |
+| `DIVIDEND_YIELD` | `0.0` | Continuous dividend yield |
+| `BG_FETCH_INTERVAL` | `55` | Background refresh cycle in seconds |
+| `PARALLEL_WORKERS` | `4` | Thread pool size for parallel chain fetches |
+
+## Color System
+
+The heatmap uses a **viridis-inspired 4-tier color scheme** by default:
+
+| Tier | Fill | Text | Meaning |
+|---|---|---|---|
+| Extreme Positive | `#fde725` bright yellow | Dark | Highest positive GEX/VEX |
+| Medium Positive | `#21908c` teal | Light | Moderate positive |
+| Medium Negative | `#3b528b` medium blue | Light | Moderate negative |
+| Extreme Negative | `#440154` deep purple | Light | Highest negative |
+
+The **Threshold** slider in Settings controls the boundary between "medium" and "extreme" tiers. All colors are fully customizable via the Settings modal and persist to `localStorage`.
+
+## Architecture
+
+### Backend
+- **Flask** HTTP server with SQLite (WAL mode) cache
+- **Background daemon thread** refreshes subscribed tickers every 55 seconds
+- **Progressive fetch**: Phase 1 fetches the nearest ~4 expirations in ~3s; Phase 2 fetches the full window (up to 6 months) and replaces the cached data silently
+- **Parallel chain fetch**: up to 4 worker threads fetch option chains concurrently
+
+### Frontend
+- Vanilla JavaScript (no framework), single-page multi-widget layout
+- Each widget polls `/api/matrix` independently; re-renders only when `fetched_at` timestamp changes (zero flicker)
+- Strike grid is always ATM-centered: the strike nearest to spot is the center row, with exactly `STRIKES_PER_SIDE` rows above and below
+
+## Project Structure
+
+```
+gex-vex-dashboard/
+├── .env                  # Your API token (not committed)
+├── .env.example          # Token + config template
+├── requirements.txt      # Python dependencies
+├── app.py                # Flask server, matrix builders, API endpoints
+├── greeks.py             # Black-Scholes Greeks engine + GEX/VEX computation
+├── tradier_client.py     # Tradier API wrapper with TTL cache + parallel fetch
+├── data_store.py         # SQLite cache, BackgroundFetcher, fetch_log table
+├── verify_gex.py         # CLI audit tool to cross-check GEX/VEX calculations
+├── gexvex.log            # Append-mode diagnostic log
+├── templates/
+│   └── index.html        # Dashboard shell
+└── static/
+    ├── style.css          # Dark theme, 4-tier heatmap row/cell styles
+    └── app.js             # Multi-widget frontend, color engine, heatmap renderer
+```
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `GET /` | GET | Dashboard UI |
+| `GET /api/matrix/<symbol>?mode=gex` | GET | Full GEX or VEX matrix (from cache) |
+| `POST /api/subscribe` | POST | Subscribe a ticker for background fetching |
+| `DELETE /api/subscribe/<symbol>` | DELETE | Unsubscribe a ticker |
+| `GET /api/debug` | GET | System snapshot: subscriptions, cache state, recent fetch log |
+
+## Log Tags
+
+All log lines are tagged for easy `grep`:
+
+| Tag | Source | Meaning |
+|---|---|---|
+| `[APP]` | app.py | Flask route handling |
+| `[MATRIX:FAST]` | app.py | Fast first-load matrix build |
+| `[MATRIX:FULL]` | app.py | Full matrix build |
+| `[TRADIER]` | tradier_client.py | Individual API calls |
+| `[DB]` | data_store.py | SQLite read/write |
+| `[BG]` | data_store.py | Background thread lifecycle |
+| `[BG:CYCLE]` | data_store.py | Start/end of each 55s fetch cycle |
+| `[BG:FETCH]` | data_store.py | Per-symbol fetch within a cycle |
+| `[BG:FAST]` | data_store.py | Phase 1 trigger_now fetch |
+| `[BG:FULL]` | data_store.py | Phase 2 trigger_now fetch |
+| `[SUB]` | data_store.py | Subscription add/remove |
+
+## Audit Tool
+
+To cross-check GEX/VEX calculations against manual math or a reference like SpotGamma:
+
+```bash
+# Detailed audit of a specific strike
+python verify_gex.py NVDA 580 2026-06-02
+
+# VEX mode
+python verify_gex.py NVDA 580 2026-06-02 --mode vex
+
+# Summary table for all strikes at nearest expiration
+python verify_gex.py NVDA --all-strikes
+```
+
+Output shows raw Tradier data, Black-Scholes recalculation, gamma comparison, and step-by-step GEX/VEX formula for each contract.
+
+## Troubleshooting
+
+- **"Invalid quote"**: Check that your Tradier token is valid and the symbol exists
+- **Empty table / "Fetching..."**: The background thread hasn't completed the first cycle yet — wait a few seconds; the UI polls every 2s on pending state
+- **Rate limits**: Tradier allows 120 requests/minute on brokerage accounts. The app caches aggressively and fetches chains in parallel. Watch the API call counter in the header.
+- **Missing Greeks**: If Tradier returns `null` for Greeks, the app falls back to Black-Scholes. Contracts with zero IV will show `$0.0K`.
+- **Stale colors after update**: Settings are saved to `localStorage` keyed by version. If defaults changed, open Settings → Reset to apply the new defaults.
+
+## Sandbox Mode
+
+To use Tradier's sandbox (delayed data, but free):
+```
+TRADIER_BASE_URL=https://sandbox.tradier.com/v1
+```

@@ -1,0 +1,729 @@
+/* ==========================================================================
+   app.js — GEX/VEX Multi-Widget Dashboard v3
+   ==========================================================================
+   Key change: ZERO-FLICKER updates.
+     - fetchWidgetData() never clears the table
+     - Compares fetched_at timestamps; only re-renders if data is newer
+     - Shows "Loading..." only on first load when no data exists yet
+     - Handles 202 (pending) gracefully with a subtle indicator
+   ========================================================================== */
+
+(function () {
+    "use strict";
+
+    // ======================================================================
+    // Global State
+    // ======================================================================
+
+    let widgetCounter = 0;
+    const widgets = {};
+    let globalApiCalls = 0;
+    let colorSettings = loadColorSettings();
+
+    function defaultColorSettings() {
+        return {
+            extremePosFill:  "#fde725",   // viridis: bright yellow
+            mediumPosFill:   "#21908c",   // viridis: teal
+            mediumNegFill:   "#3b528b",   // viridis: medium blue
+            extremeNegFill:  "#440154",   // viridis: deep purple
+            neutralFill:     "#0d0d20",
+            extremePosText:  "#1a1a0a",   // dark text on bright yellow
+            mediumPosText:   "#e0faf8",   // light on teal
+            mediumNegText:   "#c8d4f8",   // light on blue
+            extremeNegText:  "#e8c4ff",   // light on purple
+            neutralText:     "#475569",
+            threshold: 65,
+            refreshInterval: 60,
+        };
+    }
+
+    function loadColorSettings() {
+        try {
+            const saved = localStorage.getItem("gexvex_colors_v3");
+            if (saved) return { ...defaultColorSettings(), ...JSON.parse(saved) };
+        } catch {}
+        return defaultColorSettings();
+    }
+
+    function saveColorSettings() {
+        try { localStorage.setItem("gexvex_colors_v3", JSON.stringify(colorSettings)); } catch {}
+    }
+
+    // ======================================================================
+    // 4-Tier Color Engine
+    // ======================================================================
+
+    function hexToRgb(hex) {
+        hex = hex.replace("#", "");
+        if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+        return {
+            r: parseInt(hex.slice(0, 2), 16),
+            g: parseInt(hex.slice(2, 4), 16),
+            b: parseInt(hex.slice(4, 6), 16),
+        };
+    }
+
+    function lerpColor(hexA, hexB, t, alpha = 1) {
+        const a = hexToRgb(hexA);
+        const b = hexToRgb(hexB);
+        const r = Math.round(a.r + (b.r - a.r) * t);
+        const g = Math.round(a.g + (b.g - a.g) * t);
+        const bl = Math.round(a.b + (b.b - a.b) * t);
+        return `rgba(${r}, ${g}, ${bl}, ${alpha})`;
+    }
+
+    function valueToColors(value, maxAbs) {
+        const cs = colorSettings;
+        const neutral = cs.neutralFill;
+
+        if (maxAbs === 0 || value === 0) {
+            return { bg: neutral, fg: cs.neutralText };
+        }
+
+        const ratio = Math.max(-1, Math.min(1, value / maxAbs));
+        const absRatio = Math.abs(ratio);
+        const thr = cs.threshold / 100;
+
+        let tierFill, tierText, intensity;
+
+        if (ratio > 0) {
+            if (absRatio >= thr) {
+                tierFill = cs.extremePosFill;
+                tierText = cs.extremePosText;
+                intensity = thr < 1 ? (absRatio - thr) / (1 - thr) : 1;
+            } else {
+                tierFill = cs.mediumPosFill;
+                tierText = cs.mediumPosText;
+                intensity = thr > 0 ? absRatio / thr : 1;
+            }
+        } else {
+            if (absRatio >= thr) {
+                tierFill = cs.extremeNegFill;
+                tierText = cs.extremeNegText;
+                intensity = thr < 1 ? (absRatio - thr) / (1 - thr) : 1;
+            } else {
+                tierFill = cs.mediumNegFill;
+                tierText = cs.mediumNegText;
+                intensity = thr > 0 ? absRatio / thr : 1;
+            }
+        }
+
+        intensity = Math.pow(intensity, 0.7);
+        const alpha = 0.35 + intensity * 0.65;
+        const bg = lerpColor(neutral, tierFill, intensity, alpha);
+        const fg = intensity < 0.08 ? cs.neutralText : tierText;
+        return { bg, fg };
+    }
+
+    // ======================================================================
+    // Formatters
+    // ======================================================================
+
+    function fmtDollarK(v) {
+        const a = Math.abs(v);
+        let s;
+        if (a >= 1e6)      s = (a / 1e6).toFixed(1) + "M";
+        else if (a >= 1e3)  s = (a / 1e3).toFixed(1) + "K";
+        else                s = a.toFixed(1);
+        return (v > 0 ? "$" : v < 0 ? "-$" : "$") + s;
+    }
+
+    function fmtExp(d) {
+        const p = d.split("-");
+        return p[1] + "/" + p[2];
+    }
+
+    function fmtTimestamp(isoStr) {
+        // "2026-04-01T14:32:05" → "14:32:05"
+        if (!isoStr) return "--:--:--";
+        try {
+            const d = new Date(isoStr);
+            return d.toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        } catch { return isoStr; }
+    }
+
+    function getRow(matrix, s) {
+        return matrix[String(s)] || matrix[Number(s).toFixed(1)] || matrix[Number(s).toFixed(2)] || {};
+    }
+
+    // ======================================================================
+    // Subscription API Helpers
+    // ======================================================================
+
+    async function apiSubscribe(symbol) {
+        try {
+            await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ symbol: symbol.toUpperCase() }),
+            });
+        } catch (e) {
+            console.warn("Subscribe failed:", e);
+        }
+    }
+
+    async function apiUnsubscribe(symbol) {
+        // Only unsubscribe if no other widget is watching this symbol
+        const othersWatching = Object.values(widgets).some(
+            (w) => w.symbol === symbol.toUpperCase() && w.el  // alive widget
+        );
+        if (othersWatching) return;
+
+        try {
+            await fetch(`/api/subscribe/${symbol.toUpperCase()}`, { method: "DELETE" });
+        } catch (e) {
+            console.warn("Unsubscribe failed:", e);
+        }
+    }
+
+    // ======================================================================
+    // Widget Lifecycle
+    // ======================================================================
+
+    function createWidget(symbol = "NVDA") {
+        const id = ++widgetCounter;
+        const state = {
+            id,
+            symbol: symbol.toUpperCase(),
+            mode: "gex",
+            data: null,                 // last rendered data
+            lastFetchedAt: null,        // timestamp of last rendered data
+            countdown: colorSettings.refreshInterval,
+            paused: false,
+            timer: null,
+            el: null,
+            hasTable: false,            // true once first table is rendered
+        };
+        widgets[id] = state;
+        buildWidgetDOM(state);
+        apiSubscribe(state.symbol);
+        fetchWidgetData(state);
+        startWidgetTimer(state);
+        return state;
+    }
+
+    function destroyWidget(id) {
+        const w = widgets[id];
+        if (!w) return;
+        clearInterval(w.timer);
+        if (w._pendingRetry) clearTimeout(w._pendingRetry);
+        const sym = w.symbol;
+        w.el.remove();
+        delete widgets[id];
+        // Unsubscribe after deletion so the "othersWatching" check works
+        apiUnsubscribe(sym);
+    }
+
+    // ======================================================================
+    // Widget DOM
+    // ======================================================================
+
+    function buildWidgetDOM(w) {
+        const el = document.createElement("div");
+        el.className = "widget";
+        el.dataset.wid = w.id;
+
+        el.innerHTML = `
+        <div class="widget__head">
+            <form class="wform" data-wid="${w.id}">
+                <input type="text" class="widget__ticker-input" value="${w.symbol}"
+                       maxlength="6" spellcheck="false" autocomplete="off">
+                <button type="submit" class="btn-sm">Go</button>
+            </form>
+            <div class="wquote" data-wid="${w.id}"></div>
+            <div class="mode-tabs" data-wid="${w.id}">
+                <button class="mode-tab active" data-mode="gex">GEX</button>
+                <button class="mode-tab" data-mode="vex">VEX</button>
+            </div>
+            <span class="widget__spacer"></span>
+            <span class="widget__fetched-at" data-wid="${w.id}" title="Data timestamp">--:--:--</span>
+            <span class="widget__fetch-indicator" data-wid="${w.id}"></span>
+            <span class="widget__timer" data-wid="${w.id}">${w.countdown}s</span>
+            <button class="btn-sm wpause" data-wid="${w.id}" title="Pause">⏸</button>
+            <button class="btn-sm wrefresh" data-wid="${w.id}" title="Refresh">↻</button>
+            <button class="widget__close" data-wid="${w.id}" title="Close widget">✕</button>
+        </div>
+        <div class="widget__body" data-wid="${w.id}">
+            <div class="status-msg"><span class="spinner"></span>Waiting for data...</div>
+        </div>`;
+
+        // --- Events ---
+        const form = el.querySelector(".wform");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const val = form.querySelector("input").value.trim().toUpperCase();
+            if (val && val !== w.symbol) {
+                const oldSym = w.symbol;
+                w.symbol = val;
+                w.data = null;
+                w.lastFetchedAt = null;
+                w.hasTable = false;
+                // Show loading for new symbol
+                el.querySelector(".widget__body").innerHTML =
+                    `<div class="status-msg"><span class="spinner"></span>Waiting for data...</div>`;
+                apiUnsubscribe(oldSym);
+                apiSubscribe(val);
+                fetchWidgetData(w);
+                restartWidgetTimer(w);
+            }
+        });
+
+        el.querySelector(".widget__close").addEventListener("click", () => destroyWidget(w.id));
+
+        el.querySelectorAll(".mode-tab").forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const mode = tab.dataset.mode;
+                if (mode === w.mode) return;
+                w.mode = mode;
+                w.lastFetchedAt = null;  // force re-render on mode switch
+                el.querySelectorAll(".mode-tab").forEach((t) =>
+                    t.classList.toggle("active", t.dataset.mode === mode));
+                fetchWidgetData(w);
+                restartWidgetTimer(w);
+            });
+        });
+
+        el.querySelector(".wpause").addEventListener("click", () => {
+            w.paused = !w.paused;
+            el.querySelector(".wpause").textContent = w.paused ? "▶" : "⏸";
+            updateWidgetTimerDisplay(w);
+        });
+
+        el.querySelector(".wrefresh").addEventListener("click", () => {
+            fetchWidgetData(w);
+            restartWidgetTimer(w);
+        });
+
+        w.el = el;
+        document.getElementById("workspace").appendChild(el);
+    }
+
+    // ======================================================================
+    // Data Fetching (FLICKER-FREE)
+    // ======================================================================
+
+    async function fetchWidgetData(w) {
+        // Show a subtle spinner indicator in the header — NOT in the table body
+        const indicator = w.el.querySelector(".widget__fetch-indicator");
+        indicator.innerHTML = '<span class="spinner-sm"></span>';
+
+        try {
+            const resp = await fetch(`/api/matrix/${w.symbol}?mode=${w.mode}`);
+            const data = await resp.json();
+
+            // Handle 202 (pending — background thread hasn't cached this yet)
+            if (resp.status === 202 || data.pending) {
+                if (!w.hasTable) {
+                    w.el.querySelector(".widget__body").innerHTML =
+                        `<div class="status-msg"><span class="spinner"></span>${data.message || "Fetching..."}</div>`;
+                }
+                indicator.innerHTML = '<span class="pending-dot" title="Waiting for background data">●</span>';
+
+                // FAST RETRY: poll again in 2s instead of waiting for the full timer
+                if (!w._pendingRetry) {
+                    w._pendingRetry = setTimeout(() => {
+                        w._pendingRetry = null;
+                        fetchWidgetData(w);
+                    }, 2000);
+                }
+                return;
+            }
+
+            // Clear any pending retry since we got real data
+            if (w._pendingRetry) {
+                clearTimeout(w._pendingRetry);
+                w._pendingRetry = null;
+            }
+
+            // Handle error responses
+            if (data.error) {
+                if (!w.hasTable) {
+                    w.el.querySelector(".widget__body").innerHTML =
+                        `<div class="status-msg error">${data.error}</div>`;
+                }
+                indicator.innerHTML = "";
+                return;
+            }
+
+            // --- KEY: Only re-render if fetched_at changed ---
+            const newTimestamp = data.fetched_at || null;
+            if (newTimestamp && newTimestamp === w.lastFetchedAt && w.hasTable) {
+                // Data hasn't changed — skip re-render entirely
+                indicator.innerHTML = "";
+                updateQuoteFromData(w, data);
+                updateFetchedAtDisplay(w, newTimestamp);
+                return;
+            }
+
+            // New data — render
+            w.data = data;
+            w.lastFetchedAt = newTimestamp;
+
+            renderQuoteChip(w, data.quote);
+            renderHeatmap(w, data);
+            updateFetchedAtDisplay(w, newTimestamp);
+
+            if (data.api_calls !== undefined) {
+                globalApiCalls = data.api_calls;
+                document.getElementById("global-api").textContent = `API calls: ${globalApiCalls}`;
+            }
+        } catch (err) {
+            // Network error — keep existing table, show error in indicator only
+            if (!w.hasTable) {
+                w.el.querySelector(".widget__body").innerHTML =
+                    `<div class="status-msg error">Error: ${err.message}</div>`;
+            }
+            console.error("Fetch error:", err);
+        }
+
+        indicator.innerHTML = "";
+    }
+
+    function updateFetchedAtDisplay(w, isoStr) {
+        const el = w.el.querySelector(".widget__fetched-at");
+        if (el) el.textContent = fmtTimestamp(isoStr);
+    }
+
+    function updateQuoteFromData(w, data) {
+        // Light update — just quote chip, no table re-render
+        if (data.quote) renderQuoteChip(w, data.quote);
+    }
+
+    // ======================================================================
+    // Rendering (unchanged core, but sets w.hasTable flag)
+    // ======================================================================
+
+    function renderQuoteChip(w, quote) {
+        const chip = w.el.querySelector(".wquote");
+        if (!quote || !quote.last) { chip.innerHTML = ""; return; }
+        const cls = quote.change >= 0 ? "up" : "down";
+        const sign = quote.change >= 0 ? "+" : "";
+        chip.innerHTML = `
+            <span class="wquote__sym">${quote.symbol}</span>
+            <span class="wquote__dot"></span>
+            <span class="wquote__price">$${quote.last.toFixed(2)}</span>
+            <span class="wquote__chg ${cls}">${sign}${quote.change.toFixed(2)} (${sign}${quote.change_pct.toFixed(2)}%)</span>
+        `;
+    }
+
+    function renderHeatmap(w, data) {
+        const body = w.el.querySelector(".widget__body");
+        const { expirations, strikes, matrix, exp_totals, pin_strike, quote } = data;
+        const spot = quote.last;
+
+        let maxAbs = 0;
+        for (const s of strikes) {
+            const row = getRow(matrix, s);
+            for (const exp of expirations) {
+                const v = Math.abs(row[exp] || 0);
+                if (v > maxAbs) maxAbs = v;
+            }
+        }
+
+        let closestStrike = strikes[0], closestDist = Infinity;
+        for (const s of strikes) {
+            const d = Math.abs(s - spot);
+            if (d < closestDist) { closestDist = d; closestStrike = s; }
+        }
+
+        // Per-column (per-expiration) max strike for ★ annotation
+        const colPinStrike = {};
+        for (const exp of expirations) {
+            let maxVal = -Infinity, maxStrike = null;
+            for (const s of strikes) {
+                const v = Math.abs(getRow(matrix, s)[exp] || 0);
+                if (v > maxVal) { maxVal = v; maxStrike = s; }
+            }
+            if (maxStrike !== null && maxVal > 0) colPinStrike[exp] = maxStrike;
+        }
+
+        const sortedStrikes = [...strikes].sort((a, b) => b - a);
+
+        let html = '<table class="heatmap"><thead><tr>';
+        html += '<th><span>Strike</span><div class="col-resize"></div></th>';
+        for (const exp of expirations) {
+            html += `<th><span>${fmtExp(exp)}</span><div class="col-resize"></div></th>`;
+        }
+        html += '<th><span>Total</span></th></tr></thead><tbody>';
+
+        for (const strike of sortedStrikes) {
+            const row = getRow(matrix, strike);
+            const isCurrent = strike === closestStrike;
+            const isPin = strike === pin_strike;
+            let cls = "";
+            if (isCurrent) cls += " row--current";
+            if (isPin) cls += " row--pin";
+
+            html += `<tr class="${cls}" data-strike="${strike}">`;
+            html += `<td>${strike.toFixed(1)}</td>`;
+
+            for (const exp of expirations) {
+                const val = row[exp] || 0;
+                const { bg, fg } = valueToColors(val, maxAbs);
+                const star = colPinStrike[exp] === strike ? ' ★' : '';
+                html += `<td style="background:${bg};color:${fg}">${fmtDollarK(val)}${star}</td>`;
+            }
+
+            const total = row.total || 0;
+            const totalMax = maxAbs * Math.max(1, expirations.length * 0.35);
+            const { bg: tbg, fg: tfg } = valueToColors(total, totalMax);
+            html += `<td style="background:${tbg};color:${tfg}">${fmtDollarK(total)}</td>`;
+            html += '</tr>';
+        }
+
+        html += '</tbody><tfoot><tr><td>TOTAL</td>';
+        for (const exp of expirations) {
+            const val = exp_totals[exp] || 0;
+            const { fg } = valueToColors(val, maxAbs);
+            html += `<td style="color:${fg}">${fmtDollarK(val)}</td>`;
+        }
+        const gt = exp_totals.total || 0;
+        const { fg: gtFg } = valueToColors(gt, maxAbs);
+        html += `<td style="color:${gtFg}">${fmtDollarK(gt)}</td>`;
+        html += '</tr></tfoot></table>';
+
+        body.innerHTML = html;
+        w.hasTable = true;
+
+        // Scroll to current price row (only on first render or symbol change)
+        if (!w._scrolledOnce || !w._lastScrollSymbol || w._lastScrollSymbol !== w.symbol) {
+            requestAnimationFrame(() => {
+                const row = body.querySelector("tr.row--current");
+                if (row) row.scrollIntoView({ block: "center", behavior: "instant" });
+            });
+            w._scrolledOnce = true;
+            w._lastScrollSymbol = w.symbol;
+        }
+
+        initColumnResize(body);
+    }
+
+    // ======================================================================
+    // Column Resizing
+    // ======================================================================
+
+    function initColumnResize(container) {
+        container.querySelectorAll(".col-resize").forEach((handle) => {
+            handle.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                const th = handle.parentElement;
+                const table = container.querySelector("table");
+                const startX = e.clientX;
+                const startWidth = th.offsetWidth;
+                handle.classList.add("active");
+
+                if (!table.dataset.colsFixed) {
+                    table.querySelectorAll("thead th").forEach((t) => { t.style.width = t.offsetWidth + "px"; });
+                    table.style.tableLayout = "fixed";
+                    table.dataset.colsFixed = "1";
+                }
+
+                function onMove(ev) {
+                    const newW = Math.max(50, startWidth + (ev.clientX - startX));
+                    th.style.width = newW + "px";
+                    th.style.minWidth = newW + "px";
+                }
+                function onUp() {
+                    handle.classList.remove("active");
+                    document.removeEventListener("mousemove", onMove);
+                    document.removeEventListener("mouseup", onUp);
+                }
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", onUp);
+            });
+        });
+    }
+
+    // ======================================================================
+    // Widget Timers
+    // ======================================================================
+
+    function startWidgetTimer(w) {
+        w.countdown = colorSettings.refreshInterval;
+        w.timer = setInterval(() => {
+            if (w.paused) return;
+            w.countdown--;
+            updateWidgetTimerDisplay(w);
+            if (w.countdown <= 0) {
+                fetchWidgetData(w);
+                w.countdown = colorSettings.refreshInterval;
+            }
+        }, 1000);
+    }
+
+    function restartWidgetTimer(w) {
+        clearInterval(w.timer);
+        w.countdown = colorSettings.refreshInterval;
+        updateWidgetTimerDisplay(w);
+        startWidgetTimer(w);
+    }
+
+    function updateWidgetTimerDisplay(w) {
+        const el = w.el.querySelector(".widget__timer");
+        if (el) el.textContent = w.paused ? "PAUSED" : `${w.countdown}s`;
+    }
+
+    // ======================================================================
+    // Settings Modal (unchanged from v2.1)
+    // ======================================================================
+
+    function openSettings() {
+        document.getElementById("modal-overlay").classList.add("open");
+        populateSettingsForm();
+    }
+
+    function closeSettings() {
+        document.getElementById("modal-overlay").classList.remove("open");
+    }
+
+    function populateSettingsForm() {
+        const cs = colorSettings;
+        document.getElementById("s-ext-pos-fill").value = cs.extremePosFill;
+        document.getElementById("s-ext-pos-text").value = cs.extremePosText;
+        document.getElementById("s-med-pos-fill").value = cs.mediumPosFill;
+        document.getElementById("s-med-pos-text").value = cs.mediumPosText;
+        document.getElementById("s-med-neg-fill").value = cs.mediumNegFill;
+        document.getElementById("s-med-neg-text").value = cs.mediumNegText;
+        document.getElementById("s-ext-neg-fill").value = cs.extremeNegFill;
+        document.getElementById("s-ext-neg-text").value = cs.extremeNegText;
+        document.getElementById("s-neutral-fill").value = cs.neutralFill;
+        document.getElementById("s-neutral-text").value = cs.neutralText;
+        document.getElementById("s-threshold").value = cs.threshold;
+        document.getElementById("s-threshold-val").textContent = cs.threshold + "%";
+        document.getElementById("s-refresh").value = cs.refreshInterval;
+        document.getElementById("s-refresh-val").textContent = cs.refreshInterval + "s";
+        updateSettingsPreview();
+    }
+
+    function updateSettingsPreview() {
+        const preview = document.getElementById("color-preview");
+        if (!preview) return;
+        preview.innerHTML = "";
+
+        const formCS = {
+            extremePosFill:  document.getElementById("s-ext-pos-fill").value,
+            mediumPosFill:   document.getElementById("s-med-pos-fill").value,
+            mediumNegFill:   document.getElementById("s-med-neg-fill").value,
+            extremeNegFill:  document.getElementById("s-ext-neg-fill").value,
+            neutralFill:     document.getElementById("s-neutral-fill").value,
+            extremePosText:  document.getElementById("s-ext-pos-text").value,
+            mediumPosText:   document.getElementById("s-med-pos-text").value,
+            mediumNegText:   document.getElementById("s-med-neg-text").value,
+            extremeNegText:  document.getElementById("s-ext-neg-text").value,
+            neutralText:     document.getElementById("s-neutral-text").value,
+            threshold:       parseInt(document.getElementById("s-threshold").value),
+        };
+
+        const thr = formCS.threshold / 100;
+        const steps = 15;
+        const midIndex = Math.floor(steps / 2);
+
+        for (let i = 0; i < steps; i++) {
+            const ratio = (i / (steps - 1)) * 2 - 1;
+            const absRatio = Math.abs(ratio);
+            const swatch = document.createElement("div");
+            swatch.className = "modal__preview-swatch";
+
+            let fillColor, textColor;
+            if (Math.abs(ratio) < 0.02) {
+                fillColor = formCS.neutralFill; textColor = formCS.neutralText;
+            } else if (ratio > 0) {
+                if (absRatio >= thr) {
+                    const t = thr < 1 ? Math.pow((absRatio - thr) / (1 - thr), 0.7) : 1;
+                    fillColor = lerpColor(formCS.neutralFill, formCS.extremePosFill, t, 0.35 + t * 0.65);
+                    textColor = formCS.extremePosText;
+                } else {
+                    const t = thr > 0 ? Math.pow(absRatio / thr, 0.7) : 1;
+                    fillColor = lerpColor(formCS.neutralFill, formCS.mediumPosFill, t, 0.35 + t * 0.65);
+                    textColor = formCS.mediumPosText;
+                }
+            } else {
+                if (absRatio >= thr) {
+                    const t = thr < 1 ? Math.pow((absRatio - thr) / (1 - thr), 0.7) : 1;
+                    fillColor = lerpColor(formCS.neutralFill, formCS.extremeNegFill, t, 0.35 + t * 0.65);
+                    textColor = formCS.extremeNegText;
+                } else {
+                    const t = thr > 0 ? Math.pow(absRatio / thr, 0.7) : 1;
+                    fillColor = lerpColor(formCS.neutralFill, formCS.mediumNegFill, t, 0.35 + t * 0.65);
+                    textColor = formCS.mediumNegText;
+                }
+            }
+
+            swatch.style.background = fillColor;
+            const labelText = i === 0 ? "−Max" : i === midIndex ? "0" : i === steps - 1 ? "+Max" : "";
+            if (labelText) {
+                const sp = document.createElement("span");
+                sp.textContent = labelText;
+                sp.style.color = textColor;
+                swatch.appendChild(sp);
+            }
+            preview.appendChild(swatch);
+        }
+    }
+
+    function applySettings() {
+        colorSettings.extremePosFill  = document.getElementById("s-ext-pos-fill").value;
+        colorSettings.extremePosText  = document.getElementById("s-ext-pos-text").value;
+        colorSettings.mediumPosFill   = document.getElementById("s-med-pos-fill").value;
+        colorSettings.mediumPosText   = document.getElementById("s-med-pos-text").value;
+        colorSettings.mediumNegFill   = document.getElementById("s-med-neg-fill").value;
+        colorSettings.mediumNegText   = document.getElementById("s-med-neg-text").value;
+        colorSettings.extremeNegFill  = document.getElementById("s-ext-neg-fill").value;
+        colorSettings.extremeNegText  = document.getElementById("s-ext-neg-text").value;
+        colorSettings.neutralFill     = document.getElementById("s-neutral-fill").value;
+        colorSettings.neutralText     = document.getElementById("s-neutral-text").value;
+        colorSettings.threshold       = parseInt(document.getElementById("s-threshold").value);
+        colorSettings.refreshInterval = parseInt(document.getElementById("s-refresh").value);
+        saveColorSettings();
+        for (const w of Object.values(widgets)) {
+            if (w.data && !w.data.error) renderHeatmap(w, w.data);
+        }
+        closeSettings();
+    }
+
+    function resetSettings() {
+        colorSettings = defaultColorSettings();
+        saveColorSettings();
+        populateSettingsForm();
+        for (const w of Object.values(widgets)) {
+            if (w.data && !w.data.error) renderHeatmap(w, w.data);
+        }
+    }
+
+    // ======================================================================
+    // Init
+    // ======================================================================
+
+    function init() {
+        document.getElementById("btn-add-widget").addEventListener("click", () => createWidget("SPY"));
+        document.getElementById("btn-settings").addEventListener("click", openSettings);
+        document.getElementById("modal-overlay").addEventListener("click", (e) => {
+            if (e.target === e.currentTarget) closeSettings();
+        });
+        document.getElementById("btn-apply-settings").addEventListener("click", applySettings);
+        document.getElementById("btn-reset-settings").addEventListener("click", resetSettings);
+        document.getElementById("btn-cancel-settings").addEventListener("click", closeSettings);
+
+        document.querySelectorAll(".modal .color-input, .modal input[type=range]").forEach((el) => {
+            el.addEventListener("input", () => {
+                const thrEl = document.getElementById("s-threshold");
+                const thrVal = document.getElementById("s-threshold-val");
+                if (thrEl && thrVal) thrVal.textContent = thrEl.value + "%";
+                const refEl = document.getElementById("s-refresh");
+                const refVal = document.getElementById("s-refresh-val");
+                if (refEl && refVal) refVal.textContent = refEl.value + "s";
+                updateSettingsPreview();
+            });
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+            if (e.key === "n" || e.key === "N") createWidget("SPY");
+            else if (e.key === "Escape") closeSettings();
+        });
+
+        createWidget("NVDA");
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+})();

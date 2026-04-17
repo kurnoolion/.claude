@@ -1,0 +1,12 @@
+[[2026-04-16 12:05:18]] {CREATE #1: Write Phase 1 prompt — Requirement Gathering & Key Design Decisions | Create 01-requirement-gathering.md with EIP principles: strong P3 (curiosity), P5 (collaborate), P4 (transparency), P1 (permission to fail), P6 (difficulty), strong P7 (energy) }
+[[2026-04-16 12:05:20]] {CREATE #2: Write Phase 2 prompt — Software Architecture & Design | Create 02-architecture-design.md with EIP principles: P2 (decompose), P4 (transparency), P6 (difficulty), moderate P7, P1 (permission), P5 (collaborate) }
+[[2026-04-16 12:05:21]] {CREATE #3: Write Phase 3 prompt — Development, Testing, & Debugging | Create 03-development-testing-debugging.md with EIP principles: P1 (permission), P2 (decompose), P5 (collaborate), P4 (transparency), P6 (difficulty), selective P7 }
+[[2026-04-16 12:05:22]] {CREATE #4: Write Phase 0 meta-prompt — Project Customizer | Create 00-project-customizer.md — interviews user about project specifics and generates domain-tailored versions of all 3 phase prompts }
+[[2026-04-16 12:05:26]] {UPDATE: #1: pending -> in_progress }
+[[2026-04-16 12:09:18]] {UPDATE: #1: in_progress -> completed }
+[[2026-04-16 12:09:18]] {UPDATE: #2: pending -> in_progress }
+[[2026-04-16 12:09:41]] {UPDATE: #2: in_progress -> completed }
+[[2026-04-16 12:09:42]] {UPDATE: #3: pending -> in_progress }
+[[2026-04-16 12:10:06]] {UPDATE: #3: in_progress -> completed }
+[[2026-04-16 12:10:06]] {UPDATE: #4: pending -> in_progress }
+[[2026-04-16 12:10:39]] {UPDATE: #4: in_progress -> completed }

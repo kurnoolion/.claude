@@ -1,0 +1,92 @@
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-16 11:29:58  •  Run #1  •  prompts
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-16 11:29:58]] {ToolSearch: select:WebFetch }
+[[2026-04-16 11:30:33]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/tree/main }
+[[2026-04-16 11:30:45]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/examples/system-prompts/coding-partner.md }
+[[2026-04-16 11:30:47]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/examples/system-prompts/code-review.md }
+[[2026-04-16 11:30:54]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/docs/RESEARCH_SUMMARY.md }
+[[2026-04-16 11:30:55]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/docs/ANTI_PATTERNS.md }
+[[2026-04-16 11:31:03]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/docs/PRINCIPLES.md }
+[[2026-04-16 11:31:16]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/examples/system-prompts/research-assistant.md }
+[[2026-04-16 11:31:16]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/examples/system-prompts/general-purpose.md }
+[[2026-04-16 11:31:21]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/docs/INTEGRATION_GUIDE.md }
+[[2026-04-16 11:31:26]] {WebFetch: https://github.com/OuterSpacee/claude-emotion-prompting/blob/main/templates/system-prompt-builder.md }
+[[2026-04-16 11:31:44]] {Bash: ls -la /mnt/d/work/prompts/ }
+[[2026-04-16 11:32:35]] {WebFetch: https://www.anthropic.com/research/emotion-concepts-function }
+
+[[2026-04-16 12:05:12]] {ToolSearch: select:TaskCreate,TaskUpdate }
+[[2026-04-16 12:05:18]] {TaskCreate: CREATE #1: Write Phase 1 prompt — Requirement Gathering & Key Design Decisions | Create 01-requirement-gathering.md with EIP principles: strong P3 (curiosity), P5 (collaborate), P4 (transparency), P1 (permission to fail), P6 (difficulty), strong P7 (energy) }
+[[2026-04-16 12:05:20]] {TaskCreate: CREATE #2: Write Phase 2 prompt — Software Architecture & Design | Create 02-architecture-design.md with EIP principles: P2 (decompose), P4 (transparency), P6 (difficulty), moderate P7, P1 (permission), P5 (collaborate) }
+[[2026-04-16 12:05:21]] {TaskCreate: CREATE #3: Write Phase 3 prompt — Development, Testing, & Debugging | Create 03-development-testing-debugging.md with EIP principles: P1 (permission), P2 (decompose), P5 (collaborate), P4 (transparency), P6 (difficulty), selective P7 }
+[[2026-04-16 12:05:22]] {TaskCreate: CREATE #4: Write Phase 0 meta-prompt — Project Customizer | Create 00-project-customizer.md — interviews user about project specifics and generates domain-tailored versions of all 3 phase prompts }
+[[2026-04-16 12:05:26]] {TaskUpdate: UPDATE: #1: pending -> in_progress }
+[[2026-04-16 12:09:14]] {Write: "/mnt/d/work/prompts/01-requirement-gathering.md" ← "# Phase 1: Requireme..." (38L) }
+[[2026-04-16 12:09:18]] {TaskUpdate: UPDATE: #1: in_progress -> completed }
+[[2026-04-16 12:09:18]] {TaskUpdate: UPDATE: #2: pending -> in_progress }
+[[2026-04-16 12:09:38]] {Write: "/mnt/d/work/prompts/02-architecture-design.md" ← "# Phase 2: Software ..." (36L) }
+[[2026-04-16 12:09:41]] {TaskUpdate: UPDATE: #2: in_progress -> completed }
+[[2026-04-16 12:09:42]] {TaskUpdate: UPDATE: #3: pending -> in_progress }
+[[2026-04-16 12:10:00]] {Write: "/mnt/d/work/prompts/03-development-testing-debugging.md" ← "# Phase 3: Developme..." (38L) }
+[[2026-04-16 12:10:06]] {TaskUpdate: UPDATE: #3: in_progress -> completed }
+[[2026-04-16 12:10:06]] {TaskUpdate: UPDATE: #4: pending -> in_progress }
+[[2026-04-16 12:10:33]] {Write: "/mnt/d/work/prompts/00-project-customizer.md" ← "# Project Prompt Cus..." (70L) }
+[[2026-04-16 12:10:39]] {TaskUpdate: UPDATE: #4: in_progress -> completed }
+[[2026-04-16 12:10:51]] {Bash: ls -la /mnt/d/work/prompts/*.md && echo "---" && wc -w /mnt/d/work/prompts/*.md }
+
+[[2026-04-16 17:15:01]] {Read: "/mnt/d/work/prompts/01-requirement-gathering.md" }
+[[2026-04-16 17:15:01]] {Read: "/mnt/d/work/prompts/02-architecture-design.md" }
+[[2026-04-16 17:15:01]] {Read: "/mnt/d/work/prompts/03-development-testing-debugging.md" }
+[[2026-04-16 17:15:01]] {Read: "/mnt/d/work/prompts/00-project-customizer.md" }
+[[2026-04-16 17:15:13]] {Write: "/mnt/d/work/prompts/01-requirement-gathering.md" ← "# Phase 1: Requireme..." (44L) }
+[[2026-04-16 17:15:28]] {Write: "/mnt/d/work/prompts/02-architecture-design.md" ← "# Phase 2: Software ..." (47L) }
+[[2026-04-16 17:15:41]] {Write: "/mnt/d/work/prompts/03-development-testing-debugging.md" ← "# Phase 3: Developme..." (48L) }
+[[2026-04-16 17:16:01]] {Write: "/mnt/d/work/prompts/00-project-customizer.md" ← "# Project Prompt Cus..." (99L) }
+[[2026-04-16 17:16:05]] {Bash: wc -w /mnt/d/work/prompts/*.md }
+[[2026-04-16 17:23:52]] {Edit: "/mnt/d/work/prompts/00-project-customizer.md:8" ← "2. **How we're build..." (1L) }
+[[2026-04-16 17:31:16]] {Bash: git init }
+[[2026-04-16 17:31:27]] {Bash: git branch -m main }
+[[2026-04-16 17:31:37]] {Bash: git remote -v 2>&1; echo "---"; git config user.name 2>&1; echo "---"; git config user.email 2>&1 }
+[[2026-04-16 17:31:43]] {Bash: which curl && which git }
+[[2026-04-16 17:32:00]] {Bash: git add 00-project-customizer.md 01-requirement-gathering.md 02-architecture-design.md 03-development-testing-debugging.md }
+[[2026-04-16 17:32:04]] {Bash: git status }
+[[2026-04-16 17:32:22]] {Bash: git commit -m "$(cat <<'EOF'
+Add EIP-based SW development prompt library
+
+Four prompts covering the full software development lifecycle,
+built on Emotional Intelligence Prompting (EIP) principles:
+- Phase 0: Project customizer meta-prompt
+- Phase 1: Requirement gathering & key design decisions
+- Phase 2: Software architecture & design
+- Phase 3: Development, testing, & debugging
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" }
+[[2026-04-16 17:34:15]] {Bash: git remote add origin https://github.com/kurnoolion/prompts-lib.git }
+[[2026-04-16 17:34:51]] {Bash: git remote set-url origin git@github.com:kurnoolion/prompts-lib.git }
+[[2026-04-16 17:36:14]] {Bash: git push -u origin main }
+[[2026-04-16 17:40:03]] {Bash: git mv 00-project-customizer.md 00-swdev-project-customizer.md && git mv 01-requirement-gathering.md 01-swdev-requirement-gathering.md && git mv 02-architecture-design.md 02-swdev-architecture-design.md && git mv 03-development-testing-debugging.md 03-swdev-development-testing-debugging.md }
+[[2026-04-16 17:40:07]] {Bash: git status }
+[[2026-04-16 17:40:13]] {Bash: git commit -m "$(cat <<'EOF'
+Rename prompt files with swdev prefix for clarity
+
+Prepares for other prompt categories beyond software development.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git push }
+[[2026-04-16 17:42:21]] {Write: "/mnt/d/work/prompts/README.md" ← "# Prompt Library\n\n..." (54L) }
+[[2026-04-16 17:42:28]] {Bash: git add README.md && git commit -m "$(cat <<'EOF'
+Add README with usage guide and EIP foundation
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git push }
+[[2026-04-16 18:03:07]] {Write: "/mnt/d/work/prompts/SESSION_SUMMARY.md" ← "# Session Summary — ..." (116L) }
+[[2026-04-16 18:03:13]] {Bash: git add SESSION_SUMMARY.md && git commit -m "$(cat <<'EOF'
+Add session summary documenting design decisions and iteration history
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git push }

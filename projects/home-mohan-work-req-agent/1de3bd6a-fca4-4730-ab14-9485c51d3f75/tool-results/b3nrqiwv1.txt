@@ -1,0 +1,338 @@
+15:41:24 src.query.pipeline INFO Loaded graph: 1078 nodes, 11732 edges
+15:42:18 src.vectorstore.embedding_st INFO Loading sentence-transformers model 'all-MiniLM-L6-v2' on cpu
+15:42:18 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+15:42:18 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+15:42:18 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+15:42:19 sentence_transformers.base.model INFO Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+15:42:19 huggingface_hub.utils._http WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:19 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 1849.47it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+15:42:20 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:21 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+15:42:22 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+15:42:22 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+15:42:22 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+15:42:22 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+15:42:22 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+/mnt/d/work/req-agent/src/vectorstore/embedding_st.py:47: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  self._dimension = self._model.get_sentence_embedding_dimension()
+15:42:22 src.vectorstore.embedding_st INFO Model loaded: all-MiniLM-L6-v2 (384d, device=cpu, normalize=True)
+15:42:25 src.vectorstore.store_chroma INFO ChromaDB store: collection='requirements', metric='cosine', persist='data/vectorstore', existing docs=705
+15:42:25 src.eval.runner INFO A/B comparison: 18 questions
+15:42:25 src.eval.runner INFO ── Mode A: Graph-scoped retrieval ──
+15:42:25 src.query.resolver INFO Available MNOs/releases: {'VZW': ['2026_feb']}
+15:42:25 src.eval.runner INFO Running evaluation: 18 questions, mode=graph_scoped
+15:42:25 src.eval.runner INFO Running [single_01] (single_doc): What is the T3402 timer behavior in VZW data retry?...
+15:42:25 src.query.analyzer INFO Query analysis: type=single_doc, mnos=['VZW'], features=['DATA_RETRY', 'TIMER_MANAGEMENT'], plans=['LTEDATARETRY'], entities=['T3402']
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 705 seeds → 766 candidates (705 reqs, 61 stds, 0 features) depth=1
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~7975 chars, type=single_doc
+15:42:25 src.eval.runner INFO   [single_01] overall=0.625 completeness=1.000 accuracy=0.500 citations=0.500 (0.15s)
+15:42:25 src.eval.runner INFO Running [single_02] (single_doc): What is the generic throttling algorithm for data retry?...
+15:42:25 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 705 seeds → 766 candidates (705 reqs, 61 stds, 0 features) depth=1
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~23781 chars, type=single_doc
+15:42:25 src.eval.runner INFO   [single_02] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.04s)
+15:42:25 src.eval.runner INFO Running [single_03] (single_doc): What AT commands must VZW LTE devices support?...
+15:42:25 src.query.analyzer INFO Query analysis: type=cross_doc, mnos=['VZW'], features=['AT_COMMANDS'], plans=['LTEAT'], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 443 seeds → 569 candidates (509 reqs, 60 stds, 0 features) depth=2
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 509 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~6931 chars, type=cross_doc
+15:42:25 src.eval.runner INFO   [single_03] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.03s)
+15:42:25 src.eval.runner INFO Running [single_04] (single_doc): What are the FOTA requirements for VZW OTA device management...
+15:42:25 src.query.analyzer INFO Query analysis: type=cross_doc, mnos=['VZW'], features=['OTA_DM'], plans=['LTEOTADM'], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 575 seeds → 683 candidates (623 reqs, 60 stds, 0 features) depth=2
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 623 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~8146 chars, type=cross_doc
+15:42:25 src.eval.runner INFO   [single_04] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.03s)
+15:42:25 src.eval.runner INFO Running [cross_01] (cross_doc): What are all the SMS over IMS requirements?...
+15:42:25 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['SMS', 'IMS_REGISTRATION'], plans=['LTESMS'], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 705 seeds → 766 candidates (705 reqs, 61 stds, 0 features) depth=1
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~16819 chars, type=single_doc
+15:42:25 src.eval.runner INFO   [cross_01] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.03s)
+15:42:25 src.eval.runner INFO Running [cross_02] (cross_doc): What are the PDN connectivity requirements across all VZW pl...
+15:42:25 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['BEARER_MANAGEMENT'], plans=[], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 690 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:25 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:25 src.query.context_builder INFO Context assembled: 10 chunks, ~18293 chars, type=general
+15:42:25 src.eval.runner INFO   [cross_02] overall=0.600 completeness=0.500 accuracy=0.000 citations=1.000 (0.04s)
+15:42:25 src.eval.runner INFO Running [cross_03] (cross_doc): What are the IMS registration requirements and how do they r...
+15:42:25 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['SMS', 'IMS_REGISTRATION'], plans=['LTESMS'], entities=[]
+15:42:25 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:25 src.query.graph_scope INFO Graph scoping: 705 seeds → 766 candidates (705 reqs, 61 stds, 0 features) depth=1
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~10861 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [cross_03] overall=0.875 completeness=1.000 accuracy=0.500 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [cross_04] (cross_doc): What requirements exist for network detach handling across a...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['EPS_MOBILITY'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 612 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~10294 chars, type=general
+15:42:26 src.eval.runner INFO   [cross_04] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.04s)
+15:42:26 src.eval.runner INFO Running [feature_01] (feature_level): What are all the requirements related to data retry?...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~4610 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [feature_01] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.04s)
+15:42:26 src.eval.runner INFO Running [feature_02] (feature_level): What are all the requirements related to error handling?...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['ERROR_HANDLING'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6725 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [feature_02] overall=0.850 completeness=0.500 accuracy=1.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [feature_03] (feature_level): What are all the bearer management requirements?...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=[], features=['BEARER_MANAGEMENT'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 690 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~14812 chars, type=general
+15:42:26 src.eval.runner INFO   [feature_03] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.04s)
+15:42:26 src.eval.runner INFO Running [feature_04] (feature_level): What are all the PLMN selection requirements?...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=[], features=['PLMN_SELECTION'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 543 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~13754 chars, type=general
+15:42:26 src.eval.runner INFO   [feature_04] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.04s)
+15:42:26 src.eval.runner INFO Running [standards_01] (standards_comparison): How does VZW T3402 differ from 3GPP TS 24.301?...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['VZW'], features=['TIMER_MANAGEMENT'], plans=[], entities=['T3402']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 1034 candidates (705 reqs, 329 stds, 0 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~30021 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_01] overall=0.650 completeness=1.000 accuracy=0.000 citations=0.500 (0.04s)
+15:42:26 src.eval.runner INFO Running [standards_02] (standards_comparison): What 3GPP TS 24.301 sections are referenced in the attach re...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['ATT'], features=['EPS_MOBILITY', 'ERROR_HANDLING'], plans=[], entities=[]
+15:42:26 src.query.resolver WARNING MNO 'ATT' not in graph — skipping
+15:42:26 src.query.resolver WARNING No MNO resolved — using all available
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 1034 candidates (705 reqs, 329 stds, 0 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~30021 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_02] overall=0.750 completeness=1.000 accuracy=1.000 citations=0.500 (0.03s)
+15:42:26 src.eval.runner INFO Running [standards_03] (standards_comparison): Which VZW requirements reference 3GPP TS 36.331?...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['VZW'], features=[], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 0 seeds → 0 candidates (0 reqs, 0 stds, 0 features) depth=2
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6863 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_03] overall=0.750 completeness=1.000 accuracy=1.000 citations=0.500 (0.04s)
+15:42:26 src.eval.runner INFO Running [trace_01] (traceability): What is requirement VZ_REQ_LTEDATARETRY_7754?...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=['VZW'], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=['VZ_REQ_LTEDATARETRY_7754']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 766 candidates (705 reqs, 61 stds, 0 features) depth=1
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~5144 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [trace_01] overall=0.750 completeness=1.000 accuracy=0.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [trace_02] (traceability): What are the requirements related to IMS registration thrott...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['DATA_RETRY', 'IMS_REGISTRATION'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~28691 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [trace_02] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [trace_03] (traceability): What requirements mention cause code 22 in VZW specification...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['ERROR_HANDLING'], plans=[], entities=['cause_code_22']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.graph_scope INFO Graph scoping: 705 seeds → 782 candidates (705 reqs, 61 stds, 16 features) depth=2
+15:42:26 src.query.rag_retriever INFO Scoped retrieval: 705 candidates → 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6194 chars, type=general
+15:42:26 src.eval.runner INFO   [trace_03] overall=0.750 completeness=1.000 accuracy=0.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Evaluation complete (graph_scoped): overall=0.853, completeness=0.944, accuracy=0.667
+15:42:26 src.eval.runner INFO ── Mode B: Pure RAG retrieval ──
+15:42:26 src.query.resolver INFO Available MNOs/releases: {'VZW': ['2026_feb']}
+15:42:26 src.eval.runner INFO Running evaluation: 18 questions, mode=pure_rag
+15:42:26 src.eval.runner INFO Running [single_01] (single_doc): What is the T3402 timer behavior in VZW data retry?...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=['VZW'], features=['DATA_RETRY', 'TIMER_MANAGEMENT'], plans=['LTEDATARETRY'], entities=['T3402']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~7975 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [single_01] overall=0.625 completeness=1.000 accuracy=0.500 citations=0.500 (0.04s)
+15:42:26 src.eval.runner INFO Running [single_02] (single_doc): What is the generic throttling algorithm for data retry?...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~23781 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [single_02] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [single_03] (single_doc): What AT commands must VZW LTE devices support?...
+15:42:26 src.query.analyzer INFO Query analysis: type=cross_doc, mnos=['VZW'], features=['AT_COMMANDS'], plans=['LTEAT'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6526 chars, type=cross_doc
+15:42:26 src.eval.runner INFO   [single_03] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [single_04] (single_doc): What are the FOTA requirements for VZW OTA device management...
+15:42:26 src.query.analyzer INFO Query analysis: type=cross_doc, mnos=['VZW'], features=['OTA_DM'], plans=['LTEOTADM'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~8146 chars, type=cross_doc
+15:42:26 src.eval.runner INFO   [single_04] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [cross_01] (cross_doc): What are all the SMS over IMS requirements?...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['SMS', 'IMS_REGISTRATION'], plans=['LTESMS'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~16819 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [cross_01] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [cross_02] (cross_doc): What are the PDN connectivity requirements across all VZW pl...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['BEARER_MANAGEMENT'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~18293 chars, type=general
+15:42:26 src.eval.runner INFO   [cross_02] overall=0.600 completeness=0.500 accuracy=0.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [cross_03] (cross_doc): What are the IMS registration requirements and how do they r...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=[], features=['SMS', 'IMS_REGISTRATION'], plans=['LTESMS'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~10861 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [cross_03] overall=0.875 completeness=1.000 accuracy=0.500 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [cross_04] (cross_doc): What requirements exist for network detach handling across a...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['EPS_MOBILITY'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~10294 chars, type=general
+15:42:26 src.eval.runner INFO   [cross_04] overall=0.917 completeness=1.000 accuracy=0.667 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [feature_01] (feature_level): What are all the requirements related to data retry?...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~4610 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [feature_01] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [feature_02] (feature_level): What are all the requirements related to error handling?...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['ERROR_HANDLING'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6725 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [feature_02] overall=0.850 completeness=0.500 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [feature_03] (feature_level): What are all the bearer management requirements?...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=[], features=['BEARER_MANAGEMENT'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~14812 chars, type=general
+15:42:26 src.eval.runner INFO   [feature_03] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [feature_04] (feature_level): What are all the PLMN selection requirements?...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=[], features=['PLMN_SELECTION'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~13754 chars, type=general
+15:42:26 src.eval.runner INFO   [feature_04] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.02s)
+15:42:26 src.eval.runner INFO Running [standards_01] (standards_comparison): How does VZW T3402 differ from 3GPP TS 24.301?...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['VZW'], features=['TIMER_MANAGEMENT'], plans=[], entities=['T3402']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~30021 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_01] overall=0.650 completeness=1.000 accuracy=0.000 citations=0.500 (0.03s)
+15:42:26 src.eval.runner INFO Running [standards_02] (standards_comparison): What 3GPP TS 24.301 sections are referenced in the attach re...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['ATT'], features=['EPS_MOBILITY', 'ERROR_HANDLING'], plans=[], entities=[]
+15:42:26 src.query.resolver WARNING MNO 'ATT' not in graph — skipping
+15:42:26 src.query.resolver WARNING No MNO resolved — using all available
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~30021 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_02] overall=0.750 completeness=1.000 accuracy=1.000 citations=0.500 (0.03s)
+15:42:26 src.eval.runner INFO Running [standards_03] (standards_comparison): Which VZW requirements reference 3GPP TS 36.331?...
+15:42:26 src.query.analyzer INFO Query analysis: type=standards_comparison, mnos=['VZW'], features=[], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6863 chars, type=standards_comparison
+15:42:26 src.eval.runner INFO   [standards_03] overall=0.750 completeness=1.000 accuracy=1.000 citations=0.500 (0.03s)
+15:42:26 src.eval.runner INFO Running [trace_01] (traceability): What is requirement VZ_REQ_LTEDATARETRY_7754?...
+15:42:26 src.query.analyzer INFO Query analysis: type=single_doc, mnos=['VZW'], features=['DATA_RETRY'], plans=['LTEDATARETRY'], entities=['VZ_REQ_LTEDATARETRY_7754']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~5144 chars, type=single_doc
+15:42:26 src.eval.runner INFO   [trace_01] overall=0.750 completeness=1.000 accuracy=0.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [trace_02] (traceability): What are the requirements related to IMS registration thrott...
+15:42:26 src.query.analyzer INFO Query analysis: type=feature_level, mnos=[], features=['DATA_RETRY', 'IMS_REGISTRATION'], plans=[], entities=[]
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~28691 chars, type=feature_level
+15:42:26 src.eval.runner INFO   [trace_02] overall=1.000 completeness=1.000 accuracy=1.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Running [trace_03] (traceability): What requirements mention cause code 22 in VZW specification...
+15:42:26 src.query.analyzer INFO Query analysis: type=general, mnos=['VZW'], features=['ERROR_HANDLING'], plans=[], entities=['cause_code_22']
+15:42:26 src.query.resolver INFO Resolved scope: [('VZW', '2026_feb')]
+15:42:26 src.query.rag_retriever INFO Metadata retrieval (no graph candidates): 10 retrieved
+15:42:26 src.query.context_builder INFO Context assembled: 10 chunks, ~6194 chars, type=general
+15:42:26 src.eval.runner INFO   [trace_03] overall=0.750 completeness=1.000 accuracy=0.000 citations=1.000 (0.03s)
+15:42:26 src.eval.runner INFO Evaluation complete (pure_rag): overall=0.853, completeness=0.944, accuracy=0.667
+15:42:26 src.eval.runner INFO A/B result: graph wins=0, rag wins=0, ties=18
+
+======================================================================
+A/B COMPARISON: Graph-Scoped vs Pure RAG
+======================================================================
+
+Graph-scoped overall: 85.3%
+Pure RAG overall:     85.3%
+Delta:                +0.0% (graph is same)
+
+Wins: graph=0, rag=0, ties=18
+
+──────────────────────────────────────────────────────────────────────
+By category:
+  single_doc                 graph=88.5%  rag=88.5%  delta=+0.0%  (tie)
+  cross_doc                  graph=82.7%  rag=82.7%  delta=+0.0%  (tie)
+  feature_level              graph=96.3%  rag=96.3%  delta=+0.0%  (tie)
+  standards_comparison       graph=71.7%  rag=71.7%  delta=+0.0%  (tie)
+  traceability               graph=83.3%  rag=83.3%  delta=+0.0%  (tie)
+
+──────────────────────────────────────────────────────────────────────
+Per question:
+  single_01        graph=62%  rag=62%  delta=+0%  (tie)
+  single_02        graph=92%  rag=92%  delta=+0%  (tie)
+  single_03        graph=100%  rag=100%  delta=+0%  (tie)
+  single_04        graph=100%  rag=100%  delta=+0%  (tie)
+  cross_01         graph=92%  rag=92%  delta=+0%  (tie)
+  cross_02         graph=60%  rag=60%  delta=+0%  (tie)
+  cross_03         graph=88%  rag=88%  delta=+0%  (tie)
+  cross_04         graph=92%  rag=92%  delta=+0%  (tie)
+  feature_01       graph=100%  rag=100%  delta=+0%  (tie)
+  feature_02       graph=85%  rag=85%  delta=+0%  (tie)
+  feature_03       graph=100%  rag=100%  delta=+0%  (tie)
+  feature_04       graph=100%  rag=100%  delta=+0%  (tie)
+  standards_01     graph=65%  rag=65%  delta=+0%  (tie)
+  standards_02     graph=75%  rag=75%  delta=+0%  (tie)
+  standards_03     graph=75%  rag=75%  delta=+0%  (tie)
+  trace_01         graph=75%  rag=75%  delta=+0%  (tie)
+  trace_02         graph=100%  rag=100%  delta=+0%  (tie)
+  trace_03         graph=75%  rag=75%  delta=+0%  (tie)
+
+Report saved to data/eval/report.json

@@ -1,0 +1,29 @@
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Local Databases (SQLite WAL mode)
+*.db
+*.db-wal
+*.db-shm
+
+# Logs
+gexvex.log
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# PDF files (source docs — large binaries, not tracked)
+*.pdf
+
+# Data directory (raw docs and extracted output)
+data/
+

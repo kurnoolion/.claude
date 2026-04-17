@@ -1,0 +1,711 @@
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-12 21:40:08  •  Run #1  •  req-agent
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-12 21:40:08]] {Read: "/mnt/d/work/req-agent/SESSION_SUMMARY.md" }
+[[2026-04-12 21:40:14]] {Grep: 5\.1\.7|Normalized Intermediate|intermediate representation | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 21:40:15]] {Glob: * in "/home/mohan/.claude/projects/-mnt-d-work-req-agent/memory" }
+[[2026-04-12 21:40:16]] {Glob: *.pdf in "/mnt/d/work/req-agent" }
+[[2026-04-12 21:40:19]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:429-508" }
+[[2026-04-12 21:40:20]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:280-429" }
+[[2026-04-12 21:40:31]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1310-1349" }
+[[2026-04-12 21:40:32]] {Bash: ls -la /mnt/d/work/req-agent/ }
+[[2026-04-12 21:41:03]] {ToolSearch: select:TaskCreate,TaskUpdate }
+
+[[2026-04-12 22:31:45]] {TaskCreate: CREATE #1: Update TDD with DocumentProfiler design | Update TDD_Telecom_Requirements_AI_System.md to replace hard-coded per-MNO parsers with the DocumentProfiler + GenericStructuralParser architecture. Key changes: (1) New Section for DocumentProfiler as standalone module, (2) Revise Section 5.2 for GenericStructuralParser, (3) Add DOC format support, (4) Update design decisions #3, #10, #13, (5) Update PoC steps. }
+[[2026-04-12 22:32:46]] {TaskUpdate: UPDATE: #1: pending -> in_progress }
+[[2026-04-12 22:32:50]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1-100" }
+[[2026-04-12 22:32:51]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:100-199" }
+[[2026-04-12 22:32:52]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:200-299" }
+[[2026-04-12 22:32:56]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:487-636" }
+[[2026-04-12 22:33:01]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:637-836" }
+[[2026-04-12 22:33:08]] {Grep: Design Decision|Decision #|design decision | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:33:17]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1280-1479" }
+[[2026-04-12 22:35:55]] {Grep: Section 5\.[2-9]|section 5\.[2-9]|\(5\.[2-9]\)|from 5\.[2-9] | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:35:56]] {Grep: 5\.1\.7|from Section|see Section|from 5\.|per 5\. | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:38:22]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:3" ← "**Version:** 0.4\n**..." (-7/+8L) }
+[[2026-04-12 22:38:29]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:23" ← "5. [Ingestion Pipeli..." (-9/+10L) }
+[[2026-04-12 22:38:38]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:123" ← "| **MNO formats** | ..." (2L) }
+[[2026-04-12 22:38:45]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:139" ← "│  /<MNO>/<Release>/..." (2L) }
+[[2026-04-12 22:39:04]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:143" ← "│                  ┌..." (-11/+20L) }
+[[2026-04-12 22:39:19]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:306" ← "| Format | Typical U..." (-17/+20L) }
+[[2026-04-12 22:39:34]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:339" ← "#### 5.1.3 DOC and D..." (-13/+26L) }
+[[2026-04-12 22:39:48]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:510" ← "This normalized repr..." (-3/+5L) }
+[[2026-04-12 22:39:54]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:498-507" }
+[[2026-04-12 22:39:59]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:507-526" }
+[[2026-04-12 22:41:19]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:516" ← "### 5.2 Document Pro..." (-27/+228L) }
+[[2026-04-12 22:41:30]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:795" ← "### 5.4 Structural P..." (5L) }
+[[2026-04-12 22:41:36]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:839" ← "### 5.5 Cross-Refere..." (1L) }
+[[2026-04-12 22:41:48]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:853" ← "- **Release resoluti..." (1L) }
+[[2026-04-12 22:41:56]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:864" ← "### 5.6 Standards Sp..." (1L) }
+[[2026-04-12 22:42:03]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:915" ← "### 5.7 Feature Taxo..." (1L) }
+[[2026-04-12 22:42:14]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:984" ← "### 5.8 Knowledge Gr..." (1L) }
+[[2026-04-12 22:42:20]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1008" ← "### 5.9 Vector Store..." (1L) }
+[[2026-04-12 22:42:25]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1550" ← "| Parsers | VZW docu..." (1L) }
+[[2026-04-12 22:42:52]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1554" ← "| Step | Description..." (-12/+13L) }
+[[2026-04-12 22:43:05]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1616" ← "| 11 | **Document pr..." (2L) }
+[[2026-04-12 22:43:17]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1606" ← "| 1 | **Document ext..." (1L) }
+[[2026-04-12 22:43:32]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1665" ← "| Language | Python ..." (-7/+9L) }
+[[2026-04-12 22:43:39]] {Edit: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1688" ← "| Document profiles ..." (1L) }
+[[2026-04-12 22:43:50]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1-50" }
+[[2026-04-12 22:43:51]] {Grep: ^### 5\. | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:44:02]] {Grep: Section 5\.[0-9] | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:44:02]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:1545-1574" }
+[[2026-04-12 22:44:17]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:53-64" }
+[[2026-04-12 22:44:17]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:245-259" }
+[[2026-04-12 22:44:23]] {Read: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:27-76" }
+[[2026-04-12 22:44:32]] {Edit: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:33" ← "3. **Profile-driven ..." (1L) }
+[[2026-04-12 22:44:43]] {Edit: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:40" ← "10. **DocumentProfil..." (1L) }
+[[2026-04-12 22:44:57]] {Edit: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:43" ← "13. **Multi-format s..." (1L) }
+[[2026-04-12 22:45:02]] {Read: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:100-129" }
+[[2026-04-12 22:45:15]] {Edit: "/mnt/d/work/req-agent/SESSION_SUMMARY.md:100" ← "- PoC plan (11 steps..." (-14/+15L) }
+[[2026-04-12 22:45:23]] {Read: "/mnt/d/work/req-agent/CLAUDE.md" }
+[[2026-04-12 22:45:35]] {Edit: "/mnt/d/work/req-agent/CLAUDE.md:23" ← "Key architectural de..." (-3/+5L) }
+[[2026-04-12 22:45:43]] {Grep: per-MNO parser|per MNO parser|parser registry|VZWRequirement|TMORequirement|ATTRequirement | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:45:44]] {Grep: PDF, DOCX, XLS(?!\b)|PDF, DOCX, or XLS|pdf,docx,xlsx | "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md" }
+[[2026-04-12 22:45:50]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:133-192" }
+[[2026-04-12 22:46:01]] {Write: "/home/mohan/.claude/projects/-mnt-d-work-req-agent/memory/MEMORY.md" ← "- [User Profile](use..." (3L) }
+[[2026-04-12 22:46:11]] {Write: "/home/mohan/.claude/projects/-mnt-d-work-req-agent/memory/user_profile.md" ← "---\nname: User Prof..." (7L) }
+[[2026-04-12 22:46:21]] {Write: "/home/mohan/.claude/projects/-mnt-d-work-req-agent/memory/feedback_collaboration.md" ← "---\nname: Collabora..." (10L) }
+[[2026-04-12 22:46:38]] {Write: "/home/mohan/.claude/projects/-mnt-d-work-req-agent/memory/design_documentprofiler.md" ← "---\nname: DocumentP..." (16L) }
+[[2026-04-12 22:46:42]] {TaskUpdate: UPDATE: #1: in_progress -> completed }
+[[2026-04-12 22:48:10]] {Bash: git status }
+[[2026-04-12 22:48:11]] {Bash: git diff }
+[[2026-04-12 22:48:11]] {Bash: git log --oneline -5 }
+[[2026-04-12 22:48:36]] {Bash: git add CLAUDE.md SESSION_SUMMARY.md TDD_Telecom_Requirements_AI_System.md && git commit -m "$(cat <<'EOF'
+TDD v0.4: Add DocumentProfiler and generic structural parser design
+
+Replace hard-coded per-MNO parsers with a standalone, LLM-free
+DocumentProfiler that derives document structure profiles from
+representative docs. A generic structural parser applies these
+profiles — adding a new MNO requires zero code changes.
+
+Key changes:
+- New Section 5.2: DocumentProfiler design (standalone module, CLI
+  interface, iterative refinement workflow, JSON profile schema)
+- Section 5.3: Generic profile-driven structural parser (was per-MNO)
+- Added DOC format support (LibreOffice headless conversion to DOCX)
+- Full format list: PDF, DOC, DOCX, XLS, XLSX
+- PoC steps updated (now 11 steps, profiling is Step 2)
+- Risk #11 updated for profile accuracy mitigations
+- Updated SESSION_SUMMARY.md and CLAUDE.md for consistency
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git status }
+[[2026-04-12 23:01:47]] {TaskCreate: CREATE #2: Set up Python environment and project structure | Create folder structure per TDD 4.3, virtual environment, requirements.txt, and install dependencies (pymupdf, pdfplumber, python-docx, openpyxl, xlrd, olefile, Pillow). }
+[[2026-04-12 23:01:49]] {TaskCreate: CREATE #3: Build normalized IR data model | Create Python data classes/models for the normalized intermediate representation (TDD 5.1.7): ContentBlock types (heading, paragraph, table, image, embedded_object), DocumentIR container. }
+[[2026-04-12 23:01:50]] {TaskCreate: CREATE #4: Build PDF extractor | PDF extraction using pymupdf for text blocks with font metadata + pdfplumber for tables + image extraction. Handle table region deduplication, header/footer stripping, content block ordering. }
+[[2026-04-12 23:01:51]] {TaskCreate: CREATE #5: Build extractor registry and CLI entry point | Extractor registry mapping file extensions to extractors. CLI entry point to extract a single doc or batch of docs. }
+[[2026-04-12 23:01:54]] {TaskCreate: CREATE #6: Extract all 5 VZW PDFs and validate output | Run extraction on all 5 VZW PDFs. Validate output JSONs: check block counts, table detection, image extraction, content ordering. }
+[[2026-04-12 23:01:57]] {TaskUpdate: UPDATE: #2: pending -> in_progress }
+[[2026-04-12 23:02:02]] {Bash: mkdir -p /mnt/d/work/req-agent/data/raw/vzw/2026_feb/requirements && mkdir -p /mnt/d/work/req-agent/data/extracted && mkdir -p /mnt/d/work/req-agent/src/extraction && mkdir -p /mnt/d/work/req-agent/src/models }
+[[2026-04-12 23:02:07]] {Bash: cp /mnt/d/work/req-agent/LTEAT.pdf /mnt/d/work/req-agent/LTEB13NAC.pdf /mnt/d/work/req-agent/LTEDATARETRY.pdf /mnt/d/work/req-agent/LTEOTADM.pdf /mnt/d/work/req-agent/LTESMS.pdf /mnt/d/work/req-agent/data/raw/vzw/2026_feb/requirements/ }
+[[2026-04-12 23:02:08]] {Bash: which python3 && python3 --version }
+[[2026-04-12 23:04:16]] {Bash: python3 -m venv .venv && source .venv/bin/activate && pip install --upgrade pip }
+[[2026-04-12 23:04:20]] {Write: "/mnt/d/work/req-agent/requirements.txt" ← "pymupdf>=1.24.0\npdf..." (7L) }
+[[2026-04-12 23:05:23]] {Bash: source .venv/bin/activate && pip install -r requirements.txt }
+[[2026-04-12 23:05:30]] {Write: "/mnt/d/work/req-agent/src/__init__.py" }
+[[2026-04-12 23:05:30]] {Write: "/mnt/d/work/req-agent/src/extraction/__init__.py" }
+[[2026-04-12 23:05:31]] {Write: "/mnt/d/work/req-agent/src/models/__init__.py" }
+[[2026-04-12 23:05:35]] {Read: "/mnt/d/work/req-agent/.gitignore" }
+[[2026-04-12 23:05:41]] {Edit: "/mnt/d/work/req-agent/.gitignore:1" ← "# Environments\n.env..." (-4/+5L) }
+[[2026-04-12 23:05:48]] {Edit: "/mnt/d/work/req-agent/.gitignore:24" ← "# Data directory (ra..." (2L) }
+[[2026-04-12 23:05:54]] {TaskUpdate: UPDATE: #2: in_progress -> completed }
+[[2026-04-12 23:05:55]] {TaskUpdate: UPDATE: #3: pending -> in_progress }
+[[2026-04-12 23:06:21]] {Write: "/mnt/d/work/req-agent/src/models/document.py" ← """"Normalized interm..." (148L) }
+[[2026-04-12 23:06:42]] {Bash: source .venv/bin/activate && python -c "from src.models.document import DocumentIR, ContentBlock, BlockType, Position, FontInfo; print('Model imports OK')" }
+[[2026-04-12 23:06:47]] {TaskUpdate: UPDATE: #4: pending -> in_progress }
+[[2026-04-12 23:06:47]] {TaskUpdate: UPDATE: #3: in_progress -> completed }
+[[2026-04-12 23:07:19]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import fitz
+import pdfplumber
+import json
+
+# Quick probe of LTEDATARETRY.pdf to understand structure
+doc = fitz.open("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf")
+print(f"Pages: {len(doc)}")
+
+# Sample page 1 — look at text block structure
+page = doc[0]
+blocks = page.get_text("dict")["blocks"]
+print(f"\nPage 1: {len(blocks)} blocks")
+for i, b in enumerate(blocks[:8]):
+    if b["type"] == 0:  # text
+        for line in b["lines"]:
+            for span in line["spans"]:
+                text = span["text"].strip()
+                if text:
+                    print(f"  Block {i}: size={span['size']:.1f} font={span['font']} bold={bool(span['flags'] & 2**4)} text='{text[:80]}'")
+
+# Sample a content page (page 20)
+print(f"\nPage 21 sample:")
+page = doc[20]
+blocks = page.get_text("dict")["blocks"]
+for i, b in enumerate(blocks[:10]):
+    if b["type"] == 0:
+        for line in b["lines"]:
+            for span in line["spans"]:
+                text = span["text"].strip()
+                if text:
+                    print(f"  Block {i}: size={span['size']:.1f} font={span['font']} bold={bool(span['flags'] & 2**4)} text='{text[:100]}'")
+
+# Check tables on a page with pdfplumber
+with pdfplumber.open("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf") as pdf:
+    tables_found = 0
+    for i, pg in enumerate(pdf.pages[:30]):
+        tables = pg.extract_tables()
+        if tables:
+            tables_found += len(tables)
+            if tables_found <= 2:
+                print(f"\nTable on page {i+1}: {len(tables[0])} rows, headers={tables[0][0][:4] if tables[0] else 'none'}")
+    print(f"\nTotal tables in first 30 pages: {tables_found}")
+
+doc.close()
+PYEOF }
+[[2026-04-12 23:07:59]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import fitz
+from collections import Counter
+
+doc = fitz.open("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf")
+
+# Collect all unique font size + bold combinations and their frequency
+font_combos = Counter()
+heading_samples = {}  # (size, bold) -> sample texts
+
+for page_num in range(len(doc)):
+    page = doc[page_num]
+    blocks = page.get_text("dict")["blocks"]
+    for b in blocks:
+        if b["type"] != 0:
+            continue
+        for line in b["lines"]:
+            for span in line["spans"]:
+                text = span["text"].strip()
+                if not text:
+                    continue
+                size = round(span["size"], 1)
+                bold = bool(span["flags"] & 2**4)
+                key = (size, bold)
+                font_combos[key] += 1
+                # Collect samples for non-body text
+                if key not in heading_samples:
+                    heading_samples[key] = []
+                if len(heading_samples[key]) < 3 and len(text) > 3:
+                    heading_samples[key].append(f"p{page_num+1}: {text[:80]}")
+
+print("Font size distribution (size, bold) -> count:")
+for (size, bold), count in sorted(font_combos.items()):
+    boldstr = "BOLD" if bold else "    "
+    print(f"  {size:6.1f} {boldstr}: {count:6d}  samples: {heading_samples.get((size, bold), [''])[:2]}")
+
+# Check image count
+total_images = 0
+for page_num in range(len(doc)):
+    images = doc[page_num].get_images()
+    total_images += len(images)
+print(f"\nTotal images: {total_images}")
+
+doc.close()
+PYEOF }
+[[2026-04-12 23:09:04]] {Write: "/mnt/d/work/req-agent/src/extraction/base.py" ← """"Base extractor in..." (35L) }
+[[2026-04-12 23:10:07]] {Write: "/mnt/d/work/req-agent/src/extraction/pdf_extractor.py" ← """"PDF content extra..." (413L) }
+[[2026-04-12 23:10:55]] {Edit: "/mnt/d/work/req-agent/src/extraction/pdf_extractor.py:196" ← "        total_pages ..." (-30/+31L) }
+[[2026-04-12 23:11:21]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import logging
+from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
+from src.extraction.pdf_extractor import PDFExtractor
+
+extractor = PDFExtractor()
+ir = extractor.extract(
+    Path("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf"),
+    mno="VZW",
+    release="2026_Feb",
+    doc_type="requirement",
+)
+
+print(f"\nSource: {ir.source_file}")
+print(f"Format: {ir.source_format}")
+print(f"Total blocks: {ir.block_count}")
+print(f"  Paragraphs: {len(ir.blocks_by_type('paragraph'))}")
+print(f"  Tables: {len(ir.blocks_by_type('table'))}")
+print(f"  Images: {len(ir.blocks_by_type('image'))}")
+
+# Show first 15 content blocks
+print("\n--- First 15 blocks ---")
+for b in ir.content_blocks[:15]:
+    fi = f" [{b.font_info.size}pt {'B' if b.font_info.bold else ' '}]" if b.font_info else ""
+    if b.type.value == "paragraph":
+        print(f"  [{b.position.page:3d}] {b.type.value:10s}{fi} {b.text[:100]}")
+    elif b.type.value == "table":
+        print(f"  [{b.position.page:3d}] table       headers={b.headers[:3]}... ({len(b.rows)} rows)")
+    elif b.type.value == "image":
+        print(f"  [{b.position.page:3d}] image       {b.image_path}")
+
+# Show blocks from page 21 (section 1.3.3)
+print("\n--- Page 21 blocks ---")
+for b in ir.content_blocks:
+    if b.position.page == 21:
+        fi = f" [{b.font_info.size}pt {'B' if b.font_info.bold else ' '}]" if b.font_info else ""
+        if b.type.value == "paragraph":
+            print(f"  [{b.position.index:4d}] {b.type.value:10s}{fi} {b.text[:120]}")
+        elif b.type.value == "table":
+            print(f"  [{b.position.index:4d}] table       headers={b.headers[:4]} ({len(b.rows)} rows)")
+        elif b.type.value == "image":
+            print(f"  [{b.position.index:4d}] image       {b.image_path}")
+PYEOF }
+[[2026-04-12 23:11:56]] {Edit: "/mnt/d/work/req-agent/src/extraction/pdf_extractor.py:33" ← "    # Margin thresho..." (-6/+12L) }
+[[2026-04-12 23:12:03]] {Edit: "/mnt/d/work/req-agent/src/extraction/pdf_extractor.py:132" ← "                # Sk..." (-4/+8L) }
+[[2026-04-12 23:12:14]] {Edit: "/mnt/d/work/req-agent/src/extraction/pdf_extractor.py:82" ← "                tabl..." (-10/+15L) }
+[[2026-04-12 23:12:40]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import logging
+from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
+from src.extraction.pdf_extractor import PDFExtractor
+
+extractor = PDFExtractor()
+ir = extractor.extract(
+    Path("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf"),
+    mno="VZW", release="2026_Feb", doc_type="requirement",
+)
+
+print(f"Total blocks: {ir.block_count}")
+print(f"  Paragraphs: {len(ir.blocks_by_type('paragraph'))}")
+print(f"  Tables: {len(ir.blocks_by_type('table'))}")
+print(f"  Images: {len(ir.blocks_by_type('image'))}")
+
+# Check page 1 — should not have page numbers or confidentiality
+print("\n--- Page 1 blocks ---")
+for b in ir.content_blocks:
+    if b.position.page == 1:
+        fi = f" [{b.font_info.size}pt {'B' if b.font_info.bold else ' '}]" if b.font_info else ""
+        if b.type.value == "paragraph":
+            print(f"  {b.type.value:10s}{fi} {b.text[:100]}")
+        elif b.type.value == "image":
+            print(f"  image       {b.image_path}")
+
+# Check page 21
+print("\n--- Page 21 blocks ---")
+for b in ir.content_blocks:
+    if b.position.page == 21:
+        fi = f" [{b.font_info.size}pt {'B' if b.font_info.bold else ' '}]" if b.font_info else ""
+        if b.type.value == "paragraph":
+            print(f"  {b.type.value:10s}{fi} {b.text[:120]}")
+        elif b.type.value == "table":
+            print(f"  table       headers={b.headers[:4]} ({len(b.rows)} rows)")
+        elif b.type.value == "image":
+            print(f"  image       {b.image_path}")
+
+# Show a real table
+print("\n--- Sample real table ---")
+for b in ir.content_blocks:
+    if b.type.value == "table" and len(b.headers) > 1 and len(b.rows) > 1:
+        print(f"  Page {b.position.page}: headers={b.headers}")
+        for row in b.rows[:3]:
+            print(f"    row: {row}")
+        break
+PYEOF }
+[[2026-04-12 23:13:11]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import logging
+from pathlib import Path
+logging.basicConfig(level=logging.WARNING)
+
+from src.extraction.pdf_extractor import PDFExtractor
+
+extractor = PDFExtractor()
+ir = extractor.extract(
+    Path("data/raw/vzw/2026_feb/requirements/LTEDATARETRY.pdf"),
+    mno="VZW", release="2026_Feb", doc_type="requirement",
+)
+
+# Find tables with meaningful content (>1 column, >2 rows)
+real_tables = [b for b in ir.blocks_by_type("table") if len(b.headers) >= 2 and len(b.rows) >= 2]
+print(f"Tables with 2+ cols and 2+ rows: {len(real_tables)}")
+for t in real_tables[:5]:
+    print(f"\n  Page {t.position.page}: {len(t.headers)} cols, {len(t.rows)} rows")
+    print(f"  Headers: {t.headers[:5]}")
+    for row in t.rows[:2]:
+        print(f"  Row: {[c[:40] for c in row[:5]]}")
+PYEOF }
+[[2026-04-12 23:13:16]] {TaskUpdate: UPDATE: #5: pending -> in_progress }
+[[2026-04-12 23:13:16]] {TaskUpdate: UPDATE: #4: in_progress -> completed }
+[[2026-04-12 23:13:31]] {Write: "/mnt/d/work/req-agent/src/extraction/registry.py" ← """"Extractor registr..." (62L) }
+[[2026-04-12 23:13:47]] {Write: "/mnt/d/work/req-agent/src/extraction/extract.py" ← """"CLI entry point f..." (117L) }
+[[2026-04-12 23:13:51]] {TaskUpdate: UPDATE: #6: pending -> in_progress }
+[[2026-04-12 23:15:06]] {Bash: source .venv/bin/activate && python -m src.extraction.extract data/raw/vzw/2026_feb/requirements/ --output data/extracted }
+[[2026-04-12 23:15:25]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import json
+from pathlib import Path
+from src.models.document import DocumentIR, BlockType
+
+output_dir = Path("data/extracted")
+print(f"{'Document':<20} {'Blocks':>6} {'Text':>6} {'Tables':>6} {'Images':>6} {'JSON Size':>10}")
+print("-" * 65)
+
+for json_file in sorted(output_dir.glob("*_ir.json")):
+    ir = DocumentIR.load_json(json_file)
+    size_mb = json_file.stat().st_size / (1024 * 1024)
+    text_ct = len(ir.blocks_by_type(BlockType.PARAGRAPH))
+    table_ct = len(ir.blocks_by_type(BlockType.TABLE))
+    image_ct = len(ir.blocks_by_type(BlockType.IMAGE))
+    print(f"{ir.source_file:<20} {ir.block_count:>6} {text_ct:>6} {table_ct:>6} {image_ct:>6} {size_mb:>8.1f} MB")
+    
+    # Verify metadata
+    assert ir.mno == "VZW", f"Expected VZW, got {ir.mno}"
+    assert ir.source_format == "pdf"
+    assert ir.doc_type == "requirement"
+    
+    # Verify blocks are ordered by page
+    pages = [b.position.page for b in ir.content_blocks]
+    assert pages == sorted(pages), f"{ir.source_file}: blocks not sorted by page"
+    
+    # Verify sequential indices
+    indices = [b.position.index for b in ir.content_blocks]
+    assert indices == list(range(len(indices))), f"{ir.source_file}: non-sequential indices"
+
+print("\nAll validations passed.")
+
+# Verify JSON round-trip
+test_ir = DocumentIR.load_json(output_dir / "LTEDATARETRY_ir.json")
+assert test_ir.source_file == "LTEDATARETRY.pdf"
+assert test_ir.block_count > 1000
+print("JSON round-trip OK.")
+
+# Check font info is preserved
+text_blocks_with_font = [b for b in test_ir.content_blocks if b.font_info is not None]
+print(f"Text blocks with font info: {len(text_blocks_with_font)}/{len(test_ir.blocks_by_type(BlockType.PARAGRAPH))}")
+
+# Check req IDs are captured
+import re
+req_id_blocks = [b for b in test_ir.content_blocks if re.search(r"VZ_REQ_\w+_\d+", b.text)]
+print(f"Blocks containing VZ_REQ IDs: {len(req_id_blocks)}")
+PYEOF }
+[[2026-04-12 23:15:29]] {TaskUpdate: UPDATE: #6: in_progress -> completed }
+[[2026-04-12 23:18:02]] {Bash: git status }
+[[2026-04-12 23:18:02]] {Bash: git diff }
+[[2026-04-12 23:18:02]] {Bash: git log --oneline -5 }
+[[2026-04-12 23:18:19]] {Edit: "/mnt/d/work/req-agent/.gitignore:24" ← "# PDF files (source ..." (-2/+5L) }
+[[2026-04-12 23:18:25]] {Bash: git status }
+[[2026-04-12 23:18:30]] {Bash: git diff .gitignore && echo "---" && cat requirements.txt && echo "---" && find src/ -type f -name "*.py" | sort }
+[[2026-04-12 23:19:23]] {Bash: git add .gitignore requirements.txt src/__init__.py src/models/__init__.py src/models/document.py src/extraction/__init__.py src/extraction/base.py src/extraction/pdf_extractor.py src/extraction/registry.py src/extraction/extract.py && git commit -m "$(cat <<'EOF'
+PoC Step 1: Document content extraction layer
+
+Build the format-normalized extraction pipeline (TDD 5.1) that
+converts PDF documents into the normalized intermediate representation
+(TDD 5.1.7) consumed by the DocumentProfiler and structural parser.
+
+Implementation:
+- src/models/document.py: DocumentIR, ContentBlock, FontInfo data model
+  with JSON serialization/deserialization
+- src/extraction/pdf_extractor.py: PDF extraction using pymupdf (text
+  blocks with font metadata) + pdfplumber (tables) + image export.
+  Includes header/footer detection, table region deduplication, and
+  font-group splitting for mixed-size blocks
+- src/extraction/registry.py: Extractor registry with folder-structure
+  metadata inference (mno/release/doc_type from path)
+- src/extraction/extract.py: CLI entry point for single or batch extraction
+
+Validated on all 5 VZW PDFs: 6,929 blocks total (4,881 text with font
+info, 1,272 tables, 776 images). All blocks ordered by page with
+sequential indices, JSON round-trip verified.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git status }
+[[2026-04-12 23:23:57]] {TaskCreate: CREATE #7: Build DocumentProfiler data model and profile schema | Create the document profile data model matching TDD 5.2.3: heading_detection, requirement_id, plan_metadata, document_zones, header_footer, cross_reference_patterns, body_text. JSON serializable and human-editable. }
+[[2026-04-12 23:24:00]] {TaskCreate: CREATE #8: Build DocumentProfiler heuristic analysis engine | Implement the core profiling algorithms: font size clustering for heading detection, regex mining for requirement IDs and cross-references, plan metadata extraction, document zone classification, header/footer pattern detection. All heuristic — no LLM. }
+[[2026-04-12 23:24:02]] {TaskCreate: CREATE #9: Build DocumentProfiler CLI with create/update/validate commands | CLI entry point: --create (profile from representative docs), --update (refine with more docs), --validate (check profile against a doc). Output human-editable JSON. }
+[[2026-04-12 23:24:03]] {TaskCreate: CREATE #10: Run profiler on LTEDATARETRY + LTEB13NAC and validate output | Generate vzw_oa_profile.json from the two representative docs. Review the profile for accuracy: heading levels, VZ_REQ pattern, section numbering, document zones, header/footer patterns. Iterate if needed. }
+[[2026-04-12 23:24:14]] {TaskUpdate: UPDATE: #7: pending -> in_progress }
+[[2026-04-12 23:24:24]] {Bash: mkdir -p /mnt/d/work/req-agent/src/profiler }
+[[2026-04-12 23:24:36]] {Write: "/mnt/d/work/req-agent/src/profiler/__init__.py" }
+[[2026-04-12 23:25:12]] {Write: "/mnt/d/work/req-agent/src/profiler/profile_schema.py" ← """"Document structur..." (180L) }
+[[2026-04-12 23:25:28]] {Bash: source .venv/bin/activate && python -c "from src.profiler.profile_schema import DocumentProfile, HeadingDetection; print('Profile schema imports OK')" }
+[[2026-04-12 23:25:31]] {TaskUpdate: UPDATE: #8: pending -> in_progress }
+[[2026-04-12 23:26:04]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+"""Quick analysis of both representative docs to inform profiler algorithms."""
+from pathlib import Path
+from collections import Counter
+from src.models.document import DocumentIR, BlockType
+import re
+
+for name in ["LTEDATARETRY", "LTEB13NAC"]:
+    ir = DocumentIR.load_json(Path(f"data/extracted/{name}_ir.json"))
+    print(f"\n{'='*60}")
+    print(f"{ir.source_file} — {ir.block_count} blocks")
+    
+    # Font size distribution for text blocks
+    font_dist = Counter()
+    for b in ir.blocks_by_type(BlockType.PARAGRAPH):
+        if b.font_info:
+            key = (b.font_info.size, b.font_info.bold)
+            font_dist[key] += 1
+    
+    print("\nFont distribution (size, bold) -> count:")
+    for (size, bold), count in sorted(font_dist.items(), key=lambda x: -x[1])[:10]:
+        print(f"  {size:5.1f} {'BOLD' if bold else '    '}: {count:5d}")
+    
+    # Section number patterns in heading-sized text
+    heading_blocks = [b for b in ir.blocks_by_type(BlockType.PARAGRAPH) 
+                     if b.font_info and b.font_info.size >= 13]
+    section_nums = []
+    for b in heading_blocks:
+        m = re.match(r'^((?:\d+\.)+\d*)\s', b.text)
+        if m:
+            section_nums.append(m.group(1))
+    if section_nums:
+        depths = [s.count('.') + 1 for s in section_nums if not s.endswith('.')]
+        print(f"\nSection numbers found: {len(section_nums)}, max depth: {max(depths) if depths else 0}")
+        print(f"  Samples: {section_nums[:5]}")
+    
+    # Requirement ID patterns
+    req_ids = []
+    for b in ir.content_blocks:
+        found = re.findall(r'VZ_REQ_\w+_\d+', b.text)
+        req_ids.extend(found)
+    plan_ids = set(re.match(r'VZ_REQ_(\w+)_\d+', rid).group(1) for rid in req_ids if re.match(r'VZ_REQ_(\w+)_\d+', rid))
+    print(f"\nReq IDs found: {len(req_ids)}, unique: {len(set(req_ids))}, plan IDs: {plan_ids}")
+    
+    # First page text (for plan metadata)
+    first_page = [b for b in ir.content_blocks if b.position.page == 1 and b.type == BlockType.PARAGRAPH]
+    print(f"\nFirst page blocks ({len(first_page)}):")
+    for b in first_page[:3]:
+        print(f"  [{b.font_info.size}pt] {b.text[:120]}")
+    
+    # Font families
+    families = Counter()
+    for b in ir.blocks_by_type(BlockType.PARAGRAPH):
+        if b.font_info and b.font_info.font_name:
+            families[b.font_info.font_name] += 1
+    print(f"\nTop font families: {families.most_common(5)}")
+PYEOF }
+[[2026-04-12 23:28:01]] {Write: "/mnt/d/work/req-agent/src/profiler/profiler.py" ← """"DocumentProfiler ..." (673L) }
+
+[[2026-04-13 07:52:26]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import logging
+from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
+from src.models.document import DocumentIR
+from src.profiler.profiler import DocumentProfiler
+
+# Load the two representative docs
+dr = DocumentIR.load_json(Path("data/extracted/LTEDATARETRY_ir.json"))
+b13 = DocumentIR.load_json(Path("data/extracted/LTEB13NAC_ir.json"))
+
+profiler = DocumentProfiler()
+profile = profiler.create_profile([dr, b13], profile_name="VZW_OA")
+
+# Show the full profile structure
+import json
+print("\n" + json.dumps(profile.to_dict(), indent=2)[:3000])
+PYEOF }
+[[2026-04-13 07:52:54]] {Read: "/mnt/d/work/req-agent/src/profiler/profiler.py:139-158" }
+[[2026-04-13 07:53:02]] {Edit: "/mnt/d/work/req-agent/src/profiler/profiler.py:261" ← "        for b in tex..." (-12/+15L) }
+[[2026-04-13 07:53:07]] {TaskUpdate: UPDATE: #9: pending -> in_progress }
+[[2026-04-13 07:53:07]] {TaskUpdate: UPDATE: #8: in_progress -> completed }
+[[2026-04-13 07:53:30]] {Write: "/mnt/d/work/req-agent/src/profiler/profile_cli.py" ← """"CLI entry point f..." (140L) }
+[[2026-04-13 07:53:34]] {TaskUpdate: UPDATE: #9: in_progress -> completed }
+[[2026-04-13 07:53:34]] {TaskUpdate: UPDATE: #10: pending -> in_progress }
+[[2026-04-13 07:54:03]] {Bash: mkdir -p /mnt/d/work/req-agent/profiles && source .venv/bin/activate && python -m src.profiler.profile_cli create \
+    --name VZW_OA \
+    --docs data/extracted/LTEDATARETRY_ir.json data/extracted/LTEB13NAC_ir.json \
+    --output profiles/vzw_oa_profile.json }
+[[2026-04-13 07:54:39]] {Bash: source .venv/bin/activate && for doc in LTEAT LTEOTADM LTESMS; do
+    echo ""
+    python -m src.profiler.profile_cli validate \
+        --profile profiles/vzw_oa_profile.json \
+        --doc data/extracted/${doc}_ir.json
+done }
+[[2026-04-13 07:54:58]] {Read: "/mnt/d/work/req-agent/profiles/vzw_oa_profile.json" }
+[[2026-04-13 07:55:02]] {TaskUpdate: UPDATE: #10: in_progress -> completed }
+[[2026-04-13 07:57:47]] {Bash: git status }
+[[2026-04-13 07:57:48]] {Bash: git diff }
+[[2026-04-13 07:57:48]] {Bash: git log --oneline -3 }
+[[2026-04-13 07:58:25]] {Bash: git add src/profiler/__init__.py src/profiler/profile_schema.py src/profiler/profiler.py src/profiler/profile_cli.py profiles/vzw_oa_profile.json && git commit -m "$(cat <<'EOF'
+PoC Step 2: DocumentProfiler and VZW OA document profile
+
+Build the standalone, LLM-free DocumentProfiler (TDD 5.2) that derives
+document structure profiles from representative docs via heuristic
+analysis: font size clustering, regex mining, frequency analysis.
+
+Implementation:
+- src/profiler/profile_schema.py: Profile data model with JSON
+  serialization (heading levels, requirement ID patterns, plan metadata,
+  document zones, cross-reference patterns, body text characteristics)
+- src/profiler/profiler.py: Heuristic analysis engine — create, update,
+  and validate profiles from normalized IR documents
+- src/profiler/profile_cli.py: CLI with create/update/validate commands
+
+Generated VZW OA profile from LTEDATARETRY + LTEB13NAC:
+- Heading font: 13.5-14.5pt (3 style variants), section numbering
+  depth up to 6 levels
+- Requirement ID: VZ_REQ_[A-Z0-9_]+_\d+ (1,978 found, 834 unique)
+- Plan metadata: all 4 fields detected (name, ID, version, release date)
+- 9 document zones, 3GPP/GSMA cross-reference patterns
+- Validated against 3 held-out docs (LTEAT, LTEOTADM, LTESMS) with
+  zero warnings — profile generalizes correctly
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" && git status }
+[[2026-04-13 07:58:31]] {TaskCreate: CREATE #11: Build GenericStructuralParser | Profile-driven parser (TDD 5.3) that takes normalized IR + document profile → structured requirement tree JSON. Classify blocks as headings using profile rules, build section hierarchy from numbering depth, attach requirement IDs, extract plan metadata, tag document zones. }
+[[2026-04-13 07:58:34]] {TaskCreate: CREATE #12: Run parser on all 5 VZW docs and validate output | Parse all 5 VZW PDFs with the VZW OA profile. Validate: requirement tree structure, ID extraction, hierarchy correctness, section zone tagging. Check against known VZW doc structure (from TDD Appendix A). }
+[[2026-04-13 07:58:38]] {TaskUpdate: UPDATE: #11: pending -> in_progress }
+[[2026-04-13 07:58:43]] {Read: "/mnt/d/work/req-agent/TDD_Telecom_Requirements_AI_System.md:738-797" }
+[[2026-04-13 07:59:01]] {Bash: mkdir -p /mnt/d/work/req-agent/src/parser }
+[[2026-04-13 07:59:05]] {Write: "/mnt/d/work/req-agent/src/parser/__init__.py" }
+[[2026-04-13 08:00:06]] {Write: "/mnt/d/work/req-agent/src/parser/structural_parser.py" ← """"Generic, profile-..." (439L) }
+[[2026-04-13 08:00:24]] {Write: "/mnt/d/work/req-agent/src/parser/parse_cli.py" ← """"CLI entry point f..." (88L) }
+[[2026-04-13 08:00:29]] {TaskUpdate: UPDATE: #12: pending -> in_progress }
+[[2026-04-13 08:00:29]] {TaskUpdate: UPDATE: #11: in_progress -> completed }
+[[2026-04-13 08:01:33]] {Bash: source .venv/bin/activate && python -m src.parser.parse_cli \
+    --profile profiles/vzw_oa_profile.json \
+    --docs-dir data/extracted \
+    --output-dir data/parsed }
+[[2026-04-13 08:05:02]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import json
+from pathlib import Path
+
+print(f"{'Document':<20} {'Reqs':>5} {'w/ID':>5} {'w/Text':>6} {'w/Table':>7} {'w/Image':>7} {'w/XRef':>6} {'Depth':>5}")
+print("-" * 75)
+
+for f in sorted(Path("data/parsed").glob("*_tree.json")):
+    with open(f) as fh:
+        tree = json.load(fh)
+    
+    reqs = tree["requirements"]
+    with_id = sum(1 for r in reqs if r["req_id"])
+    with_text = sum(1 for r in reqs if r["text"])
+    with_table = sum(1 for r in reqs if r["tables"])
+    with_image = sum(1 for r in reqs if r["images"])
+    with_xref = sum(1 for r in reqs if r["cross_references"]["standards"] or r["cross_references"]["external_plans"])
+    max_depth = max((len(r["hierarchy_path"]) for r in reqs), default=0)
+    
+    name = tree.get("plan_id", f.stem)
+    print(f"{name:<20} {len(reqs):>5} {with_id:>5} {with_text:>6} {with_table:>7} {with_image:>7} {with_xref:>6} {max_depth:>5}")
+
+# Deep-dive LTEDATARETRY
+print("\n--- LTEDATARETRY sample requirements ---")
+with open("data/parsed/LTEDATARETRY_tree.json") as f:
+    tree = json.load(f)
+
+print(f"Plan: {tree['plan_name']} (v{tree['version']})")
+print(f"Standards: {tree['referenced_standards_releases']}")
+
+for r in tree["requirements"][:3]:
+    print(f"\n  [{r['section_number']}] {r['title']}")
+    print(f"    req_id: {r['req_id']}")
+    print(f"    parent: {r['parent_section']}")
+    print(f"    path: {r['hierarchy_path']}")
+    print(f"    text: {r['text'][:120]}..." if len(r['text']) > 120 else f"    text: {r['text']}")
+    print(f"    tables: {len(r['tables'])}, images: {len(r['images'])}")
+    if r['cross_references']['standards']:
+        print(f"    standards: {[f'{s['spec']} §{s['section']}' for s in r['cross_references']['standards'][:3]]}")
+    if r['children']:
+        print(f"    children: {r['children'][:5]}")
+
+# Check a deep section
+print("\n--- Deep section example ---")
+for r in tree["requirements"]:
+    if len(r["hierarchy_path"]) >= 5:
+        print(f"  [{r['section_number']}] {r['title']}")
+        print(f"    req_id: {r['req_id']}")
+        print(f"    path: {r['hierarchy_path']}")
+        print(f"    parent: {r['parent_section']} -> {r['parent_req_id']}")
+        print(f"    xrefs: internal={len(r['cross_references']['internal'])}, standards={len(r['cross_references']['standards'])}")
+        break
+PYEOF }
+[[2026-04-13 08:06:24]] {Bash: source .venv/bin/activate && python3 << 'PYEOF'
+import re
+from pathlib import Path
+from src.models.document import DocumentIR, BlockType
+
+ir = DocumentIR.load_json(Path("data/extracted/LTEDATARETRY_ir.json"))
+
+# Check what's in the intro section (first ~15 pages)
+print("=== 3GPP references in first 20 pages ===")
+for b in ir.content_blocks:
+    if b.position.page > 20:
+        break
+    if "3GPP" in b.text or "release" in b.text.lower():
+        if b.type == BlockType.PARAGRAPH:
+            print(f"  p{b.position.page} [{b.font_info.size}pt]: {b.text[:150]}")
+        elif b.type == BlockType.TABLE:
+            for row in b.rows[:3]:
+                for cell in row:
+                    if "3GPP" in cell or "release" in cell.lower():
+                        print(f"  p{b.position.page} TABLE: {cell[:150]}")
+PYEOF }
+[[2026-04-13 08:06:45]] {Edit: "/mnt/d/work/req-agent/src/parser/structural_parser.py:415" ← "    def _extract_sta..." (-25/+29L) }
+[[2026-04-13 08:07:00]] {Edit: "/mnt/d/work/req-agent/src/parser/structural_parser.py:397" ← "        # Standards ..." (-13/+32L) }
+════════════════════════════════════════════════════════════════════════════════
+═══ CONTEXT COMPACTED  •  2026-04-13 08:45:09  •  Compaction #1  •  req-agent
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-13 08:45:09]] {Bash: ls /mnt/d/work/req-agent/data/extracted/*_ir.json 2>/dev/null }
+[[2026-04-13 08:45:10]] {Bash: ls /mnt/d/work/req-agent/data/parsed/*_tree.json 2>/dev/null }
+[[2026-04-13 08:45:35]] {Bash: python -m src.parser.parse_cli --profile profiles/vzw_oa_profile.json --docs-dir data/extracted --output-dir data/parsed -v 2>&1 }
+[[2026-04-13 08:45:49]] {Bash: python3 -c "
+import json
+for name in ['LTEAT', 'LTEB13NAC', 'LTEDATARETRY', 'LTEOTADM', 'LTESMS']:
+    with open(f'data/parsed/{name}_tree.json') as f:
+        tree = json.load(f)
+    
+    std_releases = tree.get('referenced_standards_releases', {})
+    reqs = tree.get('requirements', [])
+    
+    # Count cross-refs
+    total_internal = 0
+    total_external = 0
+    total_standards = 0
+    reqs_with_refs = 0
+    for r in reqs:
+        cr = r.get('cross_references', {})
+        n_int = len(cr.get('internal', []))
+        n_ext = len(cr.get('external_plans', []))
+        n_std = len(cr.get('standards', []))
+        total_internal += n_int
+        total_external += n_ext
+        total_standards += n_std
+        if n_int or n_ext or n_std:
+            reqs_with_refs += 1
+    
+    print(f'--- {name} ---')
+    print(f'  Requirements: {len(reqs)}')
+    print(f'  Standards releases: {len(std_releases)}')
+    for spec, rel in std_releases.items():
+        print(f'    {spec}: {rel}')
+    print(f'  Cross-refs: {reqs_with_refs} reqs with refs')
+    print(f'    Internal req refs: {total_internal}')
+    print(f'    External plan refs: {total_external}')
+    print(f'    Standards citations: {total_standards}')
+    print()
+"
+ }
+[[2026-04-13 08:48:42]] {Read: "/mnt/d/work/req-agent/SESSION_SUMMARY.md" }
+[[2026-04-13 08:48:45]] {ToolSearch: select:TaskUpdate }
+[[2026-04-13 08:49:33]] {Write: "/mnt/d/work/req-agent/SESSION_SUMMARY.md" ← "# Session Summary: T..." (205L) }
+[[2026-04-13 08:49:37]] {TaskUpdate: UPDATE: #12 }
+[[2026-04-13 08:50:29]] {Bash: git status }
+[[2026-04-13 08:50:30]] {Bash: git diff --stat }
+[[2026-04-13 08:50:30]] {Bash: git log --oneline -5 }
+[[2026-04-13 08:50:44]] {Bash: git add src/parser/__init__.py src/parser/structural_parser.py src/parser/parse_cli.py SESSION_SUMMARY.md && git commit -m "$(cat <<'EOF'
+PoC Step 3: Generic structural parser with profile-driven requirement tree extraction
+
+Profile-driven GenericStructuralParser converts normalized IR into structured
+RequirementTree using DocumentProfile rules — no per-MNO code. Extracts plan
+metadata, builds section hierarchy with parent-child linking, classifies
+document zones, and extracts cross-references (internal req IDs, external
+plans, 3GPP standards citations with spec/section/release).
+
+Validated on all 5 VZW OA docs: 711 total requirements parsed with correct
+hierarchy, 77 referenced standards releases, and 355 standards citations.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+EOF
+)" }

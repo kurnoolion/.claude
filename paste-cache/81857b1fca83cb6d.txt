@@ -1,0 +1,23 @@
+I would like to setup my overall workflow to continue the work on my work laptop (where I don't have Claude), and collaborate with requirement      
+  experts in terms of evalating the PoC by checking all the intermediate articafact (Document Profile, Document IR, taxonomy etc) quality. Since I    
+  can send any info (code, documents, emails etc) outside of my company premises and assets, below will be my development workflow going forward :    
+                                                                                                                                                      
+  * Co-develop with you locally on this PC, and push the code to github.com                                                                           
+  * On work laptop, clone github.com repo (one time), and pull changes everytime new changes are available                                            
+  * Push the repo and all changes regularly from work laptop to our internal github                                                                   
+  * Other team members pull our internal report, and contribute only to the files we define before hand (mainly for ingesting new documents, and adding new eval tests etc)
+
+As next step, I would like to setup required protocol with you so that I can replicate this work in my work infra 
+(we have a Linux PC with 16GB NVDIA GPU), and continously work with you on development and testing until PoC 
+is fully proven and then scale it to multiple MNOs and multiple requiement releases.
+
+When I run everything from my office PCs, you will not have access to output artifacts, and more over I will not be able to provide you 
+everything through this chat. Moreover, our on-prem execution will be on additional docs and eval sets that you have not seen, and 
+cannot be provided to you. To work with limitations and still make our overall pipeline as seamless as possible, I came up with below ideas.
+  * You add additional instrumentation the code for debugging such that I would only need to provide you unique error codes + my simpple observations. You will keep original verbose debug logging in place that you can provide a guide for me on how to interpret those logs, so that I can debug myself once I get comfortable with the code.
+  * A compacted version of output artifacts that is very easy for me to simply type in this chat. Note the compacted version shouldn't contain actual our internal document info. You keep the original artifacts intact, but the compacted version will be addtional on top for our collaborative debugging.
+  * Define a very simple and compact format or other ways for me to provide you the results of quality check all intermediate artifacts (document profile, taxonomy etc),  as well as eval results. 
+  * A compacted way of giving you our human modified document profiles, toxanomy files, feeddback on your eval sets as well as our own eval sets. 
+
+
+Review my ideas above, provide feedback, come up with better ideas if there are any. Once we agree on the ideas and approach, then you can concretely work on implementing them.

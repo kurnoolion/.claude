@@ -1,0 +1,62 @@
+[[2026-04-13 13:35:49]] {CREATE #1: Build CrossReferenceResolver data model | Define output data structures: ResolvedReference, CrossReferenceManifest, resolution status types }
+[[2026-04-13 13:35:50]] {CREATE #2: Implement internal reference resolution | Resolve req ID references within the same document tree. Verify targets exist, flag broken refs. }
+[[2026-04-13 13:35:52]] {CREATE #3: Implement cross-plan reference resolution | Resolve external plan references across trees. Match plan names to loaded trees, find specific req IDs. }
+[[2026-04-13 13:35:52]] {CREATE #4: Implement standards reference resolution | Resolve standards release versions using doc-level mapping when ref doesn't specify a release. }
+[[2026-04-13 13:35:54]] {CREATE #5: Build CLI and manifest output | CLI entry point that loads all trees, runs resolver, saves per-document manifests as JSON with summary stats. }
+[[2026-04-13 13:35:54]] {CREATE #6: Add tests for cross-reference resolver | Unit tests for resolution logic + pipeline test against real parsed trees. }
+[[2026-04-13 13:35:59]] {UPDATE: #1: pending -> in_progress }
+[[2026-04-13 13:37:41]] {UPDATE: #1: in_progress -> completed }
+[[2026-04-13 13:37:42]] {UPDATE: #3: pending -> completed }
+[[2026-04-13 13:37:42]] {UPDATE: #2: pending -> completed }
+[[2026-04-13 13:37:42]] {UPDATE: #4: pending -> completed }
+[[2026-04-13 13:39:42]] {UPDATE: #5: pending -> in_progress }
+[[2026-04-13 13:40:26]] {UPDATE: #5: in_progress -> completed }
+[[2026-04-13 13:40:26]] {UPDATE: #6: pending -> in_progress }
+[[2026-04-13 13:42:32]] {UPDATE: #6: in_progress -> completed }
+[[2026-04-13 13:58:45]] {CREATE #7: Build LLM abstraction layer (Protocol + mock provider) | Define LLMProvider protocol, build MockProvider with keyword-based heuristic extraction, document how to implement a real provider. }
+[[2026-04-13 13:58:46]] {CREATE #8: Build feature taxonomy data model and extractor | Data structures for features/taxonomy. Document-level feature extractor that uses LLMProvider. Prompt design. }
+[[2026-04-13 13:58:47]] {CREATE #9: Build taxonomy consolidation across documents | Merge per-document features into a unified taxonomy. Deduplicate features by keyword overlap. }
+[[2026-04-13 13:58:48]] {CREATE #10: Build taxonomy CLI | CLI entry point: load trees, extract features per doc, consolidate, save outputs. }
+[[2026-04-13 13:58:49]] {CREATE #11: Add tests for taxonomy pipeline | Unit tests with mock provider, pipeline test against real parsed trees. }
+[[2026-04-13 13:58:54]] {UPDATE: #7: pending -> in_progress }
+[[2026-04-13 14:00:15]] {UPDATE: #7: in_progress -> completed }
+[[2026-04-13 14:00:16]] {UPDATE: #8: pending -> in_progress }
+[[2026-04-13 14:01:45]] {UPDATE: #8: in_progress -> completed }
+[[2026-04-13 14:01:45]] {UPDATE: #9: pending -> in_progress }
+[[2026-04-13 14:05:04]] {UPDATE: #9: in_progress -> completed }
+[[2026-04-13 14:05:04]] {UPDATE: #10: pending -> in_progress | Testing taxonomy CLI }
+[[2026-04-13 14:05:12]] {UPDATE: #10: in_progress -> completed }
+[[2026-04-13 14:05:12]] {UPDATE: #11: pending -> in_progress | Writing taxonomy pipeline tests }
+[[2026-04-13 14:17:54]] {UPDATE: #11: in_progress -> completed }
+
+[[2026-04-13 15:23:37]] {CREATE #12: Build standards reference collector with section-level extraction | Scan cross-reference manifests AND requirement tree text to collect all (spec, release, sections[]) tuples. Improve section-level extraction using regex patterns against requirement text. }
+[[2026-04-13 15:23:39]] {CREATE #13: Build spec resolver and downloader | Map spec+release to 3GPP FTP URL using version encoding conventions. Download ZIP, extract DOC/DOCX, cache under data/standards/. Handle failures gracefully with fallback to manual placement. }
+[[2026-04-13 15:23:42]] {CREATE #14: Build 3GPP spec parser (DOC/DOCX to section tree) | Parse 3GPP DOC/DOCX spec documents into structured section trees. Handle numbered sections, annexes, definitions. Rule-based, no LLM. }
+[[2026-04-13 15:23:44]] {CREATE #15: Build section extractor for referenced sections + context | Given a parsed spec and referenced sections, extract each section + parent section + adjacent sub-sections + definitions. Produce focused contextual extracts. }
+[[2026-04-13 15:23:45]] {CREATE #16: Build standards ingestion CLI and tests | CLI entry point for end-to-end standards pipeline. Tests for each component. Integration test against real data. }
+[[2026-04-13 15:23:53]] {UPDATE: #12: pending -> in_progress }
+[[2026-04-13 15:29:47]] {UPDATE: #12: in_progress -> completed }
+[[2026-04-13 15:29:47]] {UPDATE: #13: pending -> in_progress }
+[[2026-04-13 15:52:14]] {UPDATE: #13: in_progress -> completed }
+[[2026-04-13 15:52:14]] {UPDATE: #14: pending -> in_progress }
+
+[[2026-04-13 17:30:22]] {UPDATE: #14: in_progress -> completed }
+[[2026-04-13 17:30:22]] {UPDATE: #15: pending -> in_progress }
+[[2026-04-13 17:41:28]] {UPDATE: #15: in_progress -> completed }
+[[2026-04-13 17:41:29]] {UPDATE: #16: pending -> in_progress }
+[[2026-04-13 18:01:25]] {UPDATE: #16: in_progress -> completed }
+[[2026-04-13 18:18:32]] {CREATE #17: Create KG schema module (src/graph/schema.py) | Define node types (MNO, Release, Plan, Requirement, Standard_Section, Feature) and edge types as enums/dataclasses per TDD 6.1-6.2. Skip Test_Plan/Test_Case since Step 4 was skipped. }
+[[2026-04-13 18:18:33]] {CREATE #18: Create KG builder module (src/graph/builder.py) | Implement KnowledgeGraphBuilder that loads parsed trees, xref manifests, taxonomy, and standards data, then constructs a NetworkX graph with all node/edge types per TDD 5.8 construction sequence. }
+[[2026-04-13 18:18:35]] {CREATE #19: Create KG CLI (src/graph/graph_cli.py) | CLI entry point that orchestrates graph construction from data directories and outputs graph stats, serialized graph, and verification queries. }
+[[2026-04-13 18:18:37]] {CREATE #20: Create KG tests (tests/test_graph.py) | Unit tests for schema, builder (with synthetic data), and integration tests using real parsed data. Verify node counts, edge types, traversal queries. }
+[[2026-04-13 18:18:38]] {CREATE #21: Run all tests and verify | Run pytest for test_graph.py and full test suite. Fix any issues. }
+[[2026-04-13 18:18:41]] {UPDATE: #17: pending -> in_progress }
+[[2026-04-13 18:25:46]] {UPDATE: #17: in_progress -> completed }
+[[2026-04-13 18:25:46]] {UPDATE: #18: pending -> in_progress }
+[[2026-04-13 18:27:22]] {UPDATE: #18: in_progress -> completed }
+[[2026-04-13 18:27:22]] {UPDATE: #19: pending -> in_progress }
+[[2026-04-13 18:28:00]] {UPDATE: #19: in_progress -> completed }
+[[2026-04-13 18:28:19]] {UPDATE: #20: pending -> in_progress }
+[[2026-04-13 18:30:19]] {UPDATE: #20: in_progress -> completed }
+[[2026-04-13 18:30:19]] {UPDATE: #21: pending -> in_progress }
+[[2026-04-13 18:32:04]] {UPDATE: #21: in_progress -> completed }

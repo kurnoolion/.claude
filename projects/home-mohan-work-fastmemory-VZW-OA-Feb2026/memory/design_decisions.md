@@ -1,0 +1,110 @@
+---
+name: Key Design Decisions and Rationale
+description: Why we chose specific architectural approaches for the Telecom Requirements AI System — the reasoning behind the TDD
+type: project
+---
+
+## Decision 1: Knowledge Graph + RAG over Pure RAG
+
+**Chose:** Hybrid Knowledge Graph + RAG
+**Rejected:** Pure vector RAG (already tried, failed)
+**Why:** User's team already tried pure RAG and it couldn't understand inter-dependencies between requirements. Root cause analysis identified 5 failure modes:
+1. No relationship awareness — chunks are independent, can't follow cross-doc dependencies
+2. Undirected retrieval scope — searches entire corpus, may miss critical docs
+3. Destroyed hierarchy — chunking loses parent-child structure that carries essential context
+4. Poor telecom terminology handling — standard embeddings don't handle 3GPP acronyms well
+5. Missing standards context — requirements that say "follow 3GPP TS X" are incomplete without standards text
+
+**How to apply:** The graph is the routing layer that fixes problems 1-3. Contextualized chunks help with 4. Standards ingestion fixes 5.
+
+## Decision 2: Graph Scoping → Targeted RAG (not Graph OR RAG)
+
+**Chose:** Graph narrows scope first, then vector RAG ranks within that scope
+**Rejected:** Graph-only retrieval, RAG-only retrieval, parallel graph+RAG
+**Why:**
+- Graph alone can't handle vague/conceptual queries ("what retry behavior is most aggressive?")
+- Graph scoping may return too many nodes (30+), RAG helps rank them
+- Graph may have edge gaps; RAG is the fallback
+- RAG alone is what already failed
+- The key insight: "graph tells us WHERE to look, RAG tells us WHAT's most relevant"
+
+## Decision 3: Structural Parsing over LLM Extraction
+
+**Chose:** Deterministic rule-based parser for document structure, LLM only for enrichment
+**Rejected:** Pure LLM extraction of requirements and relationships
+**Why:** VZW OA docs have highly consistent structure (requirement IDs follow `VZ_REQ_{PLANID}_{NUMBER}`, hierarchical section numbering, consistent zones). This structure is extractable with regex/rules — more reliable and cheaper than LLM extraction. LLM is reserved for what rules can't do: concept tagging, relationship classification, ambiguous cross-references.
+
+## Decision 4: Standards Ingestion — Option C (Hybrid Selective)
+
+**Chose:** Selectively ingest only referenced 3GPP sections + surrounding context (parent section, definitions, adjacent sub-sections)
+**Rejected:**
+- Option A (full ingestion of 3GPP specs) — too massive, TS 24.301 alone is 400+ pages
+- Option B (only exact referenced sections) — misses context, a section may depend on adjacent definitions
+**Why:** Option C is tractable for PoC (maybe 50-200 distinct section references across all VZW docs → ~5-10% of each standard), guarantees every ingested section is relevant, and includes enough surrounding context for completeness.
+
+## Decision 5: Bottom-Up Feature Taxonomy Derivation
+
+**Chose:** Derive taxonomy from documents using LLM, then human review
+**Rejected:** Pre-defined taxonomy, purely manual taxonomy
+**Why:** User explicitly chose to derive from documents first rather than imposing a predefined taxonomy. Approach: (1) LLM extracts features per document from TOC/section headings, (2) LLM consolidates across documents, (3) human reviews. This ensures the taxonomy reflects what's actually in the documents.
+
+## Decision 6: Two Cross-Document Patterns
+
+Identified two distinct patterns that need different graph structures:
+- **Pattern (a) Fragmented:** One logical capability spans multiple docs (e.g., activation = SIM + UI + Network + Entitlement). No doc cross-references the others. Handled by Feature Nodes that group requirements across docs.
+- **Pattern (b) Dependent:** Requirement X in Doc A is functionally incomplete without Requirement Y in Doc B (e.g., Data Retry behavior depends on SMS over IMS support). Handled by typed cross-document edges (depends_on, conditional_on, etc.).
+
+## Decision 7: Standards Relationship Classification
+
+Four relationship types between VZW requirements and 3GPP sections:
+- **DEFER** — VZW says "follow 3GPP" with no modifications
+- **CONSTRAIN** — VZW narrows an optional behavior
+- **OVERRIDE** — VZW specifies different behavior from 3GPP default
+- **EXTEND** — VZW adds beyond what 3GPP specifies
+
+Delta summaries are pre-computed during ingestion so comparison queries don't need re-analysis.
+
+## Decision 8: Keep RAG (Don't Skip to Context Stuffing)
+
+I proposed potentially skipping vector RAG for PoC given the large context window and using graph scoping + context stuffing. User decided to keep RAG because:
+- Production LLM context size may be much smaller than 2M
+- Need to validate the full pipeline including vector retrieval
+
+## Decision 9: Unified Graph + Vector Store over MxN Partitioned (2026-04-12)
+
+**Chose:** Single unified graph and vector store spanning all MNOs and releases, with logical partitioning via node/chunk metadata (mno, release, doc_type)
+**Rejected:** M (MNOs) × N (releases) separate graphs and vector stores
+**Why:**
+- Cross-MNO comparison queries are first-class requirements — unified graph makes these natural traversals, MxN requires external merge logic
+- Standards nodes are shared across MNOs (both VZW and TMO reference 3GPP TS 24.301) — avoids duplication
+- Feature nodes are shared across MNOs ("IMS Registration" links VZW and TMO requirements naturally)
+- New MNO/release ingestion is additive — new nodes with new metadata, existing nodes untouched
+- One query pipeline with metadata filters vs. routing to multiple stores and merging
+
+**How to apply:** Every node carries `mno` and `release` attributes. Query-time filtering handles scoping. Production graph DB (Neo4j) indexed on these attributes for performance.
+
+## Decision 10: Multi-MNO with Per-MNO Parser Registry (2026-04-12)
+
+Each MNO has its own consistent document format for both requirements and test cases. Solution: parser registry pattern — each MNO gets a dedicated parser implementation. VZW parser built for PoC; TMO and ATT parsers added when those docs are available.
+
+## Decision 11: Test Cases as First-Class Graph Citizens (2026-04-12)
+
+Test case documents are ingested with their own structural parser (per MNO format), producing Test_Case nodes linked to Requirement nodes via `tested_by`/`tests` edges. Test cases also get embedded in the vector store with `doc_type=testcase` metadata for filtered retrieval.
+
+## Decision 12: Release-Specific Standards Versioning (2026-04-12)
+
+Different MNO releases may reference different releases of the same 3GPP spec (e.g., VZW references Release 10, TMO references Release 15 of TS 24.301). Each standards release becomes a separate Standard_Section node. This is critical for accurate cross-MNO comparison — same spec section may have different content at different releases.
+
+## Decision 13: Multi-Format Document Support with Normalized IR (2026-04-12)
+
+**Chose:** Format-aware extraction layer (PDF, DOCX, XLS/XLSX) that produces a normalized intermediate representation consumed by structural parsers
+**Why:** MNO requirement documents come in multiple formats. DOCX is actually preferable to PDF when available (native heading styles, structured tables, accessible OLE embedded objects). Key additions:
+- Extractor registry by file extension (like parser registry by MNO)
+- Recursive embedded object extraction (XLSX in DOCX, DOCX in DOCX, etc.)
+- Image/diagram extraction with PoC path (store with captions) vs production path (multimodal LLM description)
+- Normalized intermediate representation (content_blocks with type, text, position) so structural parsers are format-agnostic
+- Tables serialized as Markdown in chunks for embedding and LLM readability
+
+## Decision 14: Folder-Structure-Driven Metadata (2026-04-12)
+
+Source docs organized as `/<MNO>/<Release>/Requirements/` and `/<MNO>/<Release>/TestCases/`. The ingestion pipeline derives mno, release, and doc_type from the folder path — eliminates manual metadata entry and enforces consistency. Standards pre-downloaded into `/Standards/<Spec>/<Release>/`.

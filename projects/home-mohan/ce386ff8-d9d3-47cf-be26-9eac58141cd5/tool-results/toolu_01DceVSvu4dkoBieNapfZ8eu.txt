@@ -1,0 +1,252 @@
+D:\trading\gex-vex-dashboard\data_store.py-5-Key improvement: PROGRESSIVE FIRST LOAD
+D:\trading\gex-vex-dashboard\data_store.py-6-  1. trigger_now() fetches nearest 4 expirations first → cache write in ~3-5s
+D:\trading\gex-vex-dashboard\data_store.py:7:  2. Then fetches all 6 months → cache update with full data
+D:\trading\gex-vex-dashboard\data_store.py-8-  This eliminates the 1-minute wait for first display.
+D:\trading\gex-vex-dashboard\data_store.py-9-
+--
+D:\trading\gex-vex-dashboard\data_store.py-198-
+D:\trading\gex-vex-dashboard\data_store.py-199-    recent_logs = conn.execute(
+D:\trading\gex-vex-dashboard\data_store.py:200:        "SELECT timestamp, symbol, mode, event, detail, duration_ms FROM fetch_log ORDER BY id DESC LIMIT 50"
+D:\trading\gex-vex-dashboard\data_store.py-201-    ).fetchall()
+D:\trading\gex-vex-dashboard\data_store.py-202-    logs = [{
+--
+D:\trading\gex-vex-dashboard\data_store.py-323-        PROGRESSIVE STRATEGY:
+D:\trading\gex-vex-dashboard\data_store.py-324-          Phase 1 (FAST): build_matrix_fast(symbol, mode) → nearest ~4 exps → cache in ~3-5s
+D:\trading\gex-vex-dashboard\data_store.py:325:          Phase 2 (FULL): build_matrix(symbol, mode) → all 6 months → replaces cache
+D:\trading\gex-vex-dashboard\data_store.py-326-
+D:\trading\gex-vex-dashboard\data_store.py-327-        The UI shows Phase 1 data almost immediately, then Phase 2 enriches it.
+--
+D:\trading\gex-vex-dashboard\app.py-5-Key changes from v3:
+D:\trading\gex-vex-dashboard\app.py-6-  - build_matrix_fast(): 4 nearest exps, parallel fetch → first data in ~3-5s
+D:\trading\gex-vex-dashboard\app.py:7:  - build_matrix(): all 6 months, parallel fetch
+D:\trading\gex-vex-dashboard\app.py-8-  - /api/debug endpoint for system diagnostics
+D:\trading\gex-vex-dashboard\app.py-9-  - File logging to gexvex.log
+--
+D:\trading\gex-vex-dashboard\app.py-72-client = TradierClient(cache_ttl=25)
+D:\trading\gex-vex-dashboard\app.py-73-
+D:\trading\gex-vex-dashboard\app.py:74:DEFAULT_STRIKES_ABOVE = 50
+D:\trading\gex-vex-dashboard\app.py:75:DEFAULT_STRIKES_BELOW = 50
+D:\trading\gex-vex-dashboard\app.py:76:DEFAULT_EXP_MONTHS = 6
+D:\trading\gex-vex-dashboard\app.py-77-FAST_EXP_MONTHS = 1       # for fast initial fetch (~4 expirations)
+D:\trading\gex-vex-dashboard\app.py-78-RISK_FREE_RATE = 0.05
+--
+D:\trading\gex-vex-dashboard\app.py-175-        return {"error": "No strikes in range", "quote": quote}
+D:\trading\gex-vex-dashboard\app.py-176-
+D:\trading\gex-vex-dashboard\app.py:177:    # 6. Build matrix
+D:\trading\gex-vex-dashboard\app.py-178-    matrix = {}
+D:\trading\gex-vex-dashboard\app.py-179-    pin_strike = None
+--
+D:\trading\gex-vex-dashboard\app.py-223-
+D:\trading\gex-vex-dashboard\app.py-224-def build_matrix(symbol: str, mode: str = "gex") -> dict:
+D:\trading\gex-vex-dashboard\app.py:225:    """Full matrix — all expirations within 6 months, parallel fetch."""
+D:\trading\gex-vex-dashboard\app.py-226-    return _build_matrix_core(symbol, mode, exp_months=DEFAULT_EXP_MONTHS, use_parallel=True)
+D:\trading\gex-vex-dashboard\app.py-227-
+--
+D:\trading\gex-vex-dashboard\CLAUDE.md-5-- SQLite (WAL mode) caches pre-computed GEX/VEX matrices
+D:\trading\gex-vex-dashboard\CLAUDE.md-6-- Background daemon thread fetches from Tradier API every 55s
+D:\trading\gex-vex-dashboard\CLAUDE.md:7:- Progressive first-load: Phase 1 (nearest 4 exps, ~3s) → Phase 2 (6 months, parallel)
+D:\trading\gex-vex-dashboard\CLAUDE.md-8-- Frontend polls /api/matrix, compares fetched_at timestamps, re-renders only on new data (zero flicker)
+D:\trading\gex-vex-dashboard\CLAUDE.md-9-- Multiple resizable widgets, each with independent ticker/mode/timer
+--
+D:\trading\gex-vex-dashboard\CLAUDE.md-20-
+D:\trading\gex-vex-dashboard\CLAUDE.md-21-## GEX Formula
+D:\trading\gex-vex-dashboard\CLAUDE.md:22:GEX_call = gamma × OI × 100 × S² × 0.01
+D:\trading\gex-vex-dashboard\CLAUDE.md:23:GEX_put = -gamma × OI × 100 × S² × 0.01 (negated — dealer convention)
+D:\trading\gex-vex-dashboard\CLAUDE.md-24-#Pin strike (★) = highest |value| in any individual cell, not row total
+D:\trading\gex-vex-dashboard\CLAUDE.md-25-Pin strike (★) = highest |value| in any individual collumn (i.e., for a given strike price), not row total
+--
+D:\trading\gex-vex-dashboard\CLAUDE.md-27-## VEX Formula  
+D:\trading\gex-vex-dashboard\CLAUDE.md-28-vanna = BS analytical: -e^(-qT) × N'(d1) × d2 / σ × 0.01
+D:\trading\gex-vex-dashboard\CLAUDE.md:29:VEX = vanna × OI × 100
+D:\trading\gex-vex-dashboard\CLAUDE.md-30-
+D:\trading\gex-vex-dashboard\CLAUDE.md-31-## Log Tags (grep-friendly)
+--
+D:\trading\gex-vex-dashboard\CLAUDE.md-37-
+D:\trading\gex-vex-dashboard\CLAUDE.md-38-## Configurability
+D:\trading\gex-vex-dashboard\CLAUDE.md:39:- Though default number of strike prices to fecth is 101 (50 above current price, and 50 below current price), make the count configurable (if config value is N, fetch N above and N below current price, along with current price')
+D:\trading\gex-vex-dashboard\CLAUDE.md:40:- Though default number of months for expiry dates is 6, make it configurable
+D:\trading\gex-vex-dashboard\CLAUDE.md-41-
+D:\trading\gex-vex-dashboard\CLAUDE.md-42-## Known Issues / Active Work
+--
+D:\trading\gex-vex-dashboard\greeks.py-9---------
+D:\trading\gex-vex-dashboard\greeks.py-10-GEX per strike/expiration:
+D:\trading\gex-vex-dashboard\greeks.py:11:    GEX_call =  gamma_call × OI_call × 100 × S² × 0.01
+D:\trading\gex-vex-dashboard\greeks.py:12:    GEX_put  = -gamma_put  × OI_put  × 100 × S² × 0.01
+D:\trading\gex-vex-dashboard\greeks.py-13-    Net_GEX  =  GEX_call + GEX_put
+D:\trading\gex-vex-dashboard\greeks.py-14-
+--
+D:\trading\gex-vex-dashboard\greeks.py-18-VEX per strike/expiration:
+D:\trading\gex-vex-dashboard\greeks.py-19-    vanna  ≈ -delta / (IV × S) × vega        (analytical approx)
+D:\trading\gex-vex-dashboard\greeks.py:20:    VEX_call =  vanna_call × OI_call × 100
+D:\trading\gex-vex-dashboard\greeks.py:21:    VEX_put  =  vanna_put  × OI_put  × 100
+D:\trading\gex-vex-dashboard\greeks.py-22-    Net_VEX  =  VEX_call + VEX_put
+D:\trading\gex-vex-dashboard\greeks.py-23-"""
+--
+D:\trading\gex-vex-dashboard\greeks.py-120-            continue
+D:\trading\gex-vex-dashboard\greeks.py-121-
+D:\trading\gex-vex-dashboard\greeks.py:122:        # GEX formula: gamma × OI × 100 × S² × 0.01
+D:\trading\gex-vex-dashboard\greeks.py-123-        # Put GEX is negated (dealer short gamma convention)
+D:\trading\gex-vex-dashboard\greeks.py:124:        gex = gamma * oi * 100 * (spot ** 2) * 0.01
+D:\trading\gex-vex-dashboard\greeks.py-125-        if opt_type == "put":
+D:\trading\gex-vex-dashboard\greeks.py-126-            gex *= -1
+--
+D:\trading\gex-vex-dashboard\greeks.py-135-    Given a list of option contract dicts, compute Net VEX per strike.
+D:\trading\gex-vex-dashboard\greeks.py-136-
+D:\trading\gex-vex-dashboard\greeks.py:137:    VEX = vanna × OI × 100
+D:\trading\gex-vex-dashboard\greeks.py-138-
+D:\trading\gex-vex-dashboard\greeks.py-139-    Returns: { strike: net_vex_dollars, ... }
+--
+D:\trading\gex-vex-dashboard\greeks.py-166-            continue
+D:\trading\gex-vex-dashboard\greeks.py-167-
+D:\trading\gex-vex-dashboard\greeks.py:168:        vex = vanna * oi * 100
+D:\trading\gex-vex-dashboard\greeks.py-169-        vex_by_strike[strike] = vex_by_strike.get(strike, 0.0) + vex
+D:\trading\gex-vex-dashboard\greeks.py-170-
+--
+D:\trading\gex-vex-dashboard\README.md-48-### GEX (Gamma Exposure)
+D:\trading\gex-vex-dashboard\README.md-49-```
+D:\trading\gex-vex-dashboard\README.md:50:GEX_call =  gamma × OI × 100 × spot² × 0.01
+D:\trading\gex-vex-dashboard\README.md:51:GEX_put  = −gamma × OI × 100 × spot² × 0.01
+D:\trading\gex-vex-dashboard\README.md-52-Net GEX  =  GEX_call + GEX_put
+D:\trading\gex-vex-dashboard\README.md-53-```
+--
+D:\trading\gex-vex-dashboard\README.md-57-```
+D:\trading\gex-vex-dashboard\README.md-58-vanna = BS analytical vanna (∂delta/∂sigma)
+D:\trading\gex-vex-dashboard\README.md:59:VEX   = vanna × OI × 100
+D:\trading\gex-vex-dashboard\README.md-60-```
+D:\trading\gex-vex-dashboard\README.md-61-When Tradier doesn't return Greeks, the app computes them from Black-Scholes using the contract's implied volatility.
+--
+D:\trading\gex-vex-dashboard\gexvex.log-3-2026-04-02 00:08:51.448 [app] INFO: [APP] GEX/VEX Dashboard starting
+D:\trading\gex-vex-dashboard\gexvex.log-4-2026-04-02 00:08:51.448 [app] INFO: [APP] Port: 5050 | BG interval: 55s | Parallel workers: 4
+D:\trading\gex-vex-dashboard\gexvex.log:5:2026-04-02 00:08:51.448 [app] INFO: [APP] Log file: D:\trading\gex-vex-dashboard-6\gexvex.log
+D:\trading\gex-vex-dashboard\gexvex.log-6-2026-04-02 00:08:51.449 [app] INFO: ======================================================================
+D:\trading\gex-vex-dashboard\gexvex.log:7:2026-04-02 00:08:51.464 [data_store] INFO: [DB] Initialized database at D:\trading\gex-vex-dashboard-6\gexvex_cache.db
+D:\trading\gex-vex-dashboard\gexvex.log-8-2026-04-02 00:08:51.464 [data_store] INFO: [BG] Thread started, waiting 2s for Flask startup...
+D:\trading\gex-vex-dashboard\gexvex.log-9-2026-04-02 00:08:51.464 [data_store] INFO: [BG] Background fetcher STARTED (interval=55s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-50-2026-04-02 00:09:01.324 [tradier] INFO: [TRADIER] API #5 DONE  → 200 /markets/options/chains (0.06s) | total_api_time=0.7s | cache_size=4
+D:\trading\gex-vex-dashboard\gexvex.log-51-2026-04-02 00:09:01.326 [tradier] INFO: [TRADIER] Chain NVDA/2026-04-08 → 180 contracts (0.06s)
+D:\trading\gex-vex-dashboard\gexvex.log:52:2026-04-02 00:09:01.326 [tradier] INFO: [TRADIER] API #6 START → GET /markets/options/chains params={'symbol': 'NVDA', 'expiration': '2026-04-10', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-53-2026-04-02 00:09:01.377 [urllib3.connectionpool] DEBUG: https://api.tradier.com:443 "GET /v1/markets/options/chains?symbol=NVDA&expiration=2026-04-10&greeks=true HTTP/1.1" 200 None
+D:\trading\gex-vex-dashboard\gexvex.log:54:2026-04-02 00:09:01.383 [tradier] INFO: [TRADIER] API #6 DONE  → 200 /markets/options/chains (0.06s) | total_api_time=0.7s | cache_size=5
+D:\trading\gex-vex-dashboard\gexvex.log-55-2026-04-02 00:09:01.385 [tradier] INFO: [TRADIER] Chain NVDA/2026-04-10 → 202 contracts (0.06s)
+D:\trading\gex-vex-dashboard\gexvex.log-56-2026-04-02 00:09:01.385 [tradier] INFO: [TRADIER] API #7 START → GET /markets/options/chains params={'symbol': 'NVDA', 'expiration': '2026-04-13', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-57-2026-04-02 00:09:01.415 [urllib3.connectionpool] DEBUG: https://api.tradier.com:443 "GET /v1/markets/options/chains?symbol=NVDA&expiration=2026-04-13&greeks=true HTTP/1.1" 200 None
+D:\trading\gex-vex-dashboard\gexvex.log:58:2026-04-02 00:09:01.417 [tradier] INFO: [TRADIER] API #7 DONE  → 200 /markets/options/chains (0.03s) | total_api_time=0.7s | cache_size=6
+D:\trading\gex-vex-dashboard\gexvex.log-59-2026-04-02 00:09:01.418 [tradier] INFO: [TRADIER] Chain NVDA/2026-04-13 → 60 contracts (0.03s)
+D:\trading\gex-vex-dashboard\gexvex.log-60-2026-04-02 00:09:01.419 [tradier] INFO: [TRADIER] API #8 START → GET /markets/options/chains params={'symbol': 'NVDA', 'expiration': '2026-04-15', 'greeks': 'true'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-86-2026-04-02 00:09:01.684 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'NVDA'}
+D:\trading\gex-vex-dashboard\gexvex.log-87-2026-04-02 00:09:01.684 [tradier] INFO: [TRADIER] Expirations for NVDA → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:88:2026-04-02 00:09:01.684 [app] INFO: [MATRIX:FULL] NVDA/GEX expirations=15 (of 26 total) for 6 months (0ms)
+D:\trading\gex-vex-dashboard\gexvex.log-89-2026-04-02 00:09:01.685 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'NVDA', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-90-2026-04-02 00:09:01.685 [tradier] INFO: [TRADIER] Chain NVDA/2026-04-02 → 202 contracts (0.00s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-135-2026-04-02 00:09:02.377 [app] INFO: [MATRIX:FULL] NVDA/GEX chains fetched → 2518 contracts across 15 exps (693ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-136-2026-04-02 00:09:02.379 [app] INFO: [MATRIX:FULL] NVDA/GEX computed GEX for 284 unique strikes (2ms)
+D:\trading\gex-vex-dashboard\gexvex.log:137:2026-04-02 00:09:02.380 [app] INFO: [MATRIX:FULL] NVDA/GEX COMPLETE → 100 strikes, 15 exps, pin=177.5 ($120301869), total=697ms
+D:\trading\gex-vex-dashboard\gexvex.log:138:2026-04-02 00:09:02.393 [data_store] INFO: [DB] Cache WRITE NVDA/GEX → 15 exps, 100 strikes, 696 ms, fetched_at=2026-04-02T00:09:02
+D:\trading\gex-vex-dashboard\gexvex.log:139:2026-04-02 00:09:02.403 [data_store] INFO: [BG:FULL] NVDA/GEX → cached in 696 ms (100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-140-2026-04-02 00:09:02.411 [data_store] INFO: [BG:FAST] NVDA/VEX starting (nearest expirations)...
+D:\trading\gex-vex-dashboard\gexvex.log-141-2026-04-02 00:09:02.412 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/quotes|{'symbols': 'NVDA', 'greeks': 'false'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-175-2026-04-02 00:09:02.494 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'NVDA'}
+D:\trading\gex-vex-dashboard\gexvex.log-176-2026-04-02 00:09:02.494 [tradier] INFO: [TRADIER] Expirations for NVDA → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:177:2026-04-02 00:09:02.495 [app] INFO: [MATRIX:FULL] NVDA/VEX expirations=15 (of 26 total) for 6 months (0ms)
+D:\trading\gex-vex-dashboard\gexvex.log-178-2026-04-02 00:09:02.495 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'NVDA', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-179-2026-04-02 00:09:02.495 [tradier] INFO: [TRADIER] Chain NVDA/2026-04-02 → 202 contracts (0.00s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-209-2026-04-02 00:09:02.499 [app] INFO: [MATRIX:FULL] NVDA/VEX chains fetched → 2518 contracts across 15 exps (4ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-210-2026-04-02 00:09:02.616 [app] INFO: [MATRIX:FULL] NVDA/VEX computed VEX for 284 unique strikes (117ms)
+D:\trading\gex-vex-dashboard\gexvex.log:211:2026-04-02 00:09:02.619 [app] INFO: [MATRIX:FULL] NVDA/VEX COMPLETE → 100 strikes, 15 exps, pin=200.0 ($80827), total=125ms
+D:\trading\gex-vex-dashboard\gexvex.log:212:2026-04-02 00:09:02.628 [data_store] INFO: [DB] Cache WRITE NVDA/VEX → 15 exps, 100 strikes, 125 ms, fetched_at=2026-04-02T00:09:02
+D:\trading\gex-vex-dashboard\gexvex.log:213:2026-04-02 00:09:02.635 [data_store] INFO: [BG:FULL] NVDA/VEX → cached in 125 ms (100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-214-2026-04-02 00:09:02.646 [data_store] DEBUG: [DB] Cache HIT NVDA/gex fetched_at=2026-04-02T00:09:02
+D:\trading\gex-vex-dashboard\gexvex.log-215-2026-04-02 00:09:02.646 [app] INFO: [APP] GET /api/matrix/NVDA?mode=gex → cache HIT (2.5ms) fetched_at=2026-04-02T00:09:02
+--
+D:\trading\gex-vex-dashboard\gexvex.log-275-2026-04-02 00:09:42.335 [app] INFO: [MATRIX:FAST] META/GEX chains fetched → 2448 contracts across 9 exps (996ms, parallel=False)
+D:\trading\gex-vex-dashboard\gexvex.log-276-2026-04-02 00:09:42.336 [app] INFO: [MATRIX:FAST] META/GEX computed GEX for 274 unique strikes (1ms)
+D:\trading\gex-vex-dashboard\gexvex.log:277:2026-04-02 00:09:42.337 [app] INFO: [MATRIX:FAST] META/GEX COMPLETE → 100 strikes, 9 exps, pin=580.0 ($29096372), total=1037ms
+D:\trading\gex-vex-dashboard\gexvex.log:278:2026-04-02 00:09:42.348 [data_store] INFO: [DB] Cache WRITE META/GEX → 9 exps, 100 strikes, 1037 ms, fetched_at=2026-04-02T00:09:42
+D:\trading\gex-vex-dashboard\gexvex.log:279:2026-04-02 00:09:42.356 [data_store] INFO: [BG:FAST] META/GEX → cached in 1037 ms (100 strikes, 9 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-280-2026-04-02 00:09:42.364 [data_store] INFO: [BG:FULL] META/GEX starting (all expirations)...
+D:\trading\gex-vex-dashboard\gexvex.log-281-2026-04-02 00:09:42.364 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/quotes|{'symbols': 'META', 'greeks': 'false'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-284-2026-04-02 00:09:42.364 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'META'}
+D:\trading\gex-vex-dashboard\gexvex.log-285-2026-04-02 00:09:42.364 [tradier] INFO: [TRADIER] Expirations for META → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:286:2026-04-02 00:09:42.364 [app] INFO: [MATRIX:FULL] META/GEX expirations=15 (of 26 total) for 6 months (0ms)
+D:\trading\gex-vex-dashboard\gexvex.log-287-2026-04-02 00:09:42.365 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'META', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-288-2026-04-02 00:09:42.365 [tradier] INFO: [TRADIER] Chain META/2026-04-02 → 412 contracts (0.00s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-330-2026-04-02 00:09:42.597 [app] INFO: [MATRIX:FULL] META/GEX chains fetched → 4406 contracts across 15 exps (233ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-331-2026-04-02 00:09:42.599 [app] INFO: [MATRIX:FULL] META/GEX computed GEX for 289 unique strikes (2ms)
+D:\trading\gex-vex-dashboard\gexvex.log:332:2026-04-02 00:09:42.600 [app] INFO: [MATRIX:FULL] META/GEX COMPLETE → 100 strikes, 15 exps, pin=580.0 ($29096372), total=237ms
+D:\trading\gex-vex-dashboard\gexvex.log:333:2026-04-02 00:09:42.613 [data_store] INFO: [DB] Cache WRITE META/GEX → 15 exps, 100 strikes, 237 ms, fetched_at=2026-04-02T00:09:42
+D:\trading\gex-vex-dashboard\gexvex.log:334:2026-04-02 00:09:42.621 [data_store] INFO: [BG:FULL] META/GEX → cached in 237 ms (100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-335-2026-04-02 00:09:42.629 [data_store] INFO: [BG:FAST] META/VEX starting (nearest expirations)...
+D:\trading\gex-vex-dashboard\gexvex.log-336-2026-04-02 00:09:42.629 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/quotes|{'symbols': 'META', 'greeks': 'false'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-361-2026-04-02 00:09:42.633 [app] INFO: [MATRIX:FAST] META/VEX chains fetched → 2448 contracts across 9 exps (3ms, parallel=False)
+D:\trading\gex-vex-dashboard\gexvex.log-362-2026-04-02 00:09:42.704 [app] INFO: [MATRIX:FAST] META/VEX computed VEX for 274 unique strikes (71ms)
+D:\trading\gex-vex-dashboard\gexvex.log:363:2026-04-02 00:09:42.706 [app] INFO: [MATRIX:FAST] META/VEX COMPLETE → 100 strikes, 9 exps, pin=620.0 ($7011), total=78ms
+D:\trading\gex-vex-dashboard\gexvex.log:364:2026-04-02 00:09:42.718 [data_store] INFO: [DB] Cache WRITE META/VEX → 9 exps, 100 strikes, 78 ms, fetched_at=2026-04-02T00:09:42
+D:\trading\gex-vex-dashboard\gexvex.log:365:2026-04-02 00:09:42.726 [data_store] INFO: [BG:FAST] META/VEX → cached in 78 ms (100 strikes, 9 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-366-2026-04-02 00:09:42.733 [data_store] INFO: [BG:FULL] META/VEX starting (all expirations)...
+D:\trading\gex-vex-dashboard\gexvex.log-367-2026-04-02 00:09:42.733 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/quotes|{'symbols': 'META', 'greeks': 'false'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-370-2026-04-02 00:09:42.733 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'META'}
+D:\trading\gex-vex-dashboard\gexvex.log-371-2026-04-02 00:09:42.733 [tradier] INFO: [TRADIER] Expirations for META → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:372:2026-04-02 00:09:42.733 [app] INFO: [MATRIX:FULL] META/VEX expirations=15 (of 26 total) for 6 months (0ms)
+D:\trading\gex-vex-dashboard\gexvex.log-373-2026-04-02 00:09:42.735 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'META', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-374-2026-04-02 00:09:42.735 [tradier] INFO: [TRADIER] Chain META/2026-04-02 → 412 contracts (0.00s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-404-2026-04-02 00:09:42.739 [app] INFO: [MATRIX:FULL] META/VEX chains fetched → 4406 contracts across 15 exps (6ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-405-2026-04-02 00:09:42.964 [app] INFO: [MATRIX:FULL] META/VEX computed VEX for 289 unique strikes (225ms)
+D:\trading\gex-vex-dashboard\gexvex.log:406:2026-04-02 00:09:42.967 [app] INFO: [MATRIX:FULL] META/VEX COMPLETE → 100 strikes, 15 exps, pin=700.0 ($11044), total=234ms
+D:\trading\gex-vex-dashboard\gexvex.log:407:2026-04-02 00:09:42.979 [data_store] INFO: [DB] Cache WRITE META/VEX → 15 exps, 100 strikes, 234 ms, fetched_at=2026-04-02T00:09:42
+D:\trading\gex-vex-dashboard\gexvex.log:408:2026-04-02 00:09:42.987 [data_store] INFO: [BG:FULL] META/VEX → cached in 234 ms (100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-409-2026-04-02 00:09:43.282 [data_store] DEBUG: [DB] Cache HIT META/gex fetched_at=2026-04-02T00:09:42
+D:\trading\gex-vex-dashboard\gexvex.log-410-2026-04-02 00:09:43.282 [app] INFO: [APP] GET /api/matrix/META?mode=gex → cache HIT (3.5ms) fetched_at=2026-04-02T00:09:42
+--
+D:\trading\gex-vex-dashboard\gexvex.log-417-2026-04-02 00:09:48.491 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'META'}
+D:\trading\gex-vex-dashboard\gexvex.log-418-2026-04-02 00:09:48.491 [tradier] INFO: [TRADIER] Expirations for META → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:419:2026-04-02 00:09:48.491 [app] INFO: [MATRIX:FULL] META/GEX expirations=15 (of 26 total) for 6 months (0ms)
+D:\trading\gex-vex-dashboard\gexvex.log-420-2026-04-02 00:09:48.492 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'META', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-421-2026-04-02 00:09:48.493 [tradier] INFO: [TRADIER] Chain META/2026-04-02 → 412 contracts (0.00s)
+--
+D:\trading\gex-vex-dashboard\gexvex.log-451-2026-04-02 00:09:48.497 [app] INFO: [MATRIX:FULL] META/GEX chains fetched → 4406 contracts across 15 exps (5ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-452-2026-04-02 00:09:48.500 [app] INFO: [MATRIX:FULL] META/GEX computed GEX for 289 unique strikes (3ms)
+D:\trading\gex-vex-dashboard\gexvex.log:453:2026-04-02 00:09:48.502 [app] INFO: [MATRIX:FULL] META/GEX COMPLETE → 100 strikes, 15 exps, pin=580.0 ($29096372), total=11ms
+D:\trading\gex-vex-dashboard\gexvex.log:454:2026-04-02 00:09:48.512 [data_store] INFO: [DB] Cache WRITE META/GEX → 15 exps, 100 strikes, 11 ms, fetched_at=2026-04-02T00:09:48
+D:\trading\gex-vex-dashboard\gexvex.log:455:2026-04-02 00:09:48.521 [data_store] INFO: [BG:FETCH] Cycle #1 → META/GEX OK (11 ms, 100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-456-2026-04-02 00:09:48.826 [data_store] INFO: [BG:FETCH] Cycle #1 → META/VEX starting...
+D:\trading\gex-vex-dashboard\gexvex.log-457-2026-04-02 00:09:48.826 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/quotes|{'symbols': 'META', 'greeks': 'false'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-460-2026-04-02 00:09:48.827 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/expirations|{'symbol': 'META'}
+D:\trading\gex-vex-dashboard\gexvex.log-461-2026-04-02 00:09:48.827 [tradier] INFO: [TRADIER] Expirations for META → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:462:2026-04-02 00:09:48.827 [app] INFO: [MATRIX:FULL] META/VEX expirations=15 (of 26 total) for 6 months (1ms)
+D:\trading\gex-vex-dashboard\gexvex.log-463-2026-04-02 00:09:48.828 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'META', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-464-2026-04-02 00:09:48.829 [tradier] DEBUG: [TRADIER] CACHE HIT /markets/options/chains|{'symbol': 'META', 'expiration': '2026-04-06', 'greeks': 'true'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-494-2026-04-02 00:09:48.834 [app] INFO: [MATRIX:FULL] META/VEX chains fetched → 4406 contracts across 15 exps (6ms, parallel=True)
+D:\trading\gex-vex-dashboard\gexvex.log-495-2026-04-02 00:09:48.966 [app] INFO: [MATRIX:FULL] META/VEX computed VEX for 289 unique strikes (132ms)
+D:\trading\gex-vex-dashboard\gexvex.log:496:2026-04-02 00:09:48.969 [app] INFO: [MATRIX:FULL] META/VEX COMPLETE → 100 strikes, 15 exps, pin=700.0 ($11044), total=143ms
+D:\trading\gex-vex-dashboard\gexvex.log:497:2026-04-02 00:09:48.980 [data_store] INFO: [DB] Cache WRITE META/VEX → 15 exps, 100 strikes, 144 ms, fetched_at=2026-04-02T00:09:48
+D:\trading\gex-vex-dashboard\gexvex.log:498:2026-04-02 00:09:48.989 [data_store] INFO: [BG:FETCH] Cycle #1 → META/VEX OK (144 ms, 100 strikes, 15 exps)
+D:\trading\gex-vex-dashboard\gexvex.log-499-2026-04-02 00:09:49.292 [data_store] INFO: [BG:CYCLE] ═══ Cycle #1 DONE ═══ 0.8s total
+D:\trading\gex-vex-dashboard\gexvex.log-500-2026-04-02 00:09:49.305 [data_store] INFO: [BG] Sleeping 55s until next cycle...
+--
+D:\trading\gex-vex-dashboard\gexvex.log-513-2026-04-02 00:10:44.381 [tradier] INFO: [TRADIER] API #36 DONE  → 200 /markets/options/expirations (0.02s) | total_api_time=5.0s | cache_size=34
+D:\trading\gex-vex-dashboard\gexvex.log-514-2026-04-02 00:10:44.382 [tradier] INFO: [TRADIER] Expirations for META → 26 dates (2026-04-02 ... 2028-12-15)
+D:\trading\gex-vex-dashboard\gexvex.log:515:2026-04-02 00:10:44.382 [app] INFO: [MATRIX:FULL] META/GEX expirations=15 (of 26 total) for 6 months (25ms)
+D:\trading\gex-vex-dashboard\gexvex.log-516-2026-04-02 00:10:44.383 [tradier] INFO: [TRADIER] API #37 START → GET /markets/options/chains params={'symbol': 'META', 'expiration': '2026-04-02', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log-517-2026-04-02 00:10:44.384 [tradier] INFO: [TRADIER] API #38 START → GET /markets/options/chains params={'symbol': 'META', 'expiration': '2026-04-06', 'greeks': 'true'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-547-2026-04-02 00:10:44.663 [urllib3.connectionpool] DEBUG: https://api.tradier.com:443 "GET /v1/markets/options/chains?symbol=META&expiration=2026-04-17&greeks=true HTTP/1.1" 200 None
+D:\trading\gex-vex-dashboard\gexvex.log-548-2026-04-02 00:10:44.663 [tradier] INFO: [TRADIER] API #47 START → GET /markets/options/chains params={'symbol': 'META', 'expiration': '2026-05-15', 'greeks': 'true'}
+D:\trading\gex-vex-dashboard\gexvex.log:549:2026-04-02 00:10:44.676 [tradier] INFO: [TRADIER] API #43 DONE  → 200 /markets/options/chains (0.13s) | total_api_time=6.1s | cache_size=34
+D:\trading\gex-vex-dashboard\gexvex.log-550-2026-04-02 00:10:44.679 [tradier] INFO: [TRADIER] Chain META/2026-04-17 → 402 contracts (0.14s)
+D:\trading\gex-vex-dashboard\gexvex.log-551-2026-04-02 00:10:44.679 [tradier] INFO: [TRADIER] API #48 START → GET /markets/options/chains params={'symbol': 'META', 'expiration': '2026-06-18', 'greeks': 'true'}
+--
+D:\trading\gex-vex-dashboard\gexvex.log-554-2026-04-02 00:10:44.791 [urllib3.connectionpool] DEBUG: https://api.tradier.com:443 "GET /v1/markets/options/chains?symbol=META&expiration=2026-05-15&greeks=true HTTP/1.1" 200 None
+
+[Showing results with pagination = limit: 250]

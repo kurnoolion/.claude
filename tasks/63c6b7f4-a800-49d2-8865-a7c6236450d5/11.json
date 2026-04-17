@@ -1,0 +1,9 @@
+{
+  "id": "11",
+  "subject": "Build GenericStructuralParser",
+  "description": "Profile-driven parser (TDD 5.3) that takes normalized IR + document profile → structured requirement tree JSON. Classify blocks as headings using profile rules, build section hierarchy from numbering depth, attach requirement IDs, extract plan metadata, tag document zones.",
+  "activeForm": "Building structural parser",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

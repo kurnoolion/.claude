@@ -1,0 +1,10 @@
+{
+  "session_id": "2dd2cfbc-8085-4803-b413-7f6835b40b88",
+  "transcript_path": "/home/mohan/.claude/projects/-mnt-d-work-req-agent/2dd2cfbc-8085-4803-b413-7f6835b40b88.jsonl",
+  "sessions_index_path": null,
+  "sesslog_dir": "/home/mohan/.claude/sesslogs/req-agent__2dd2cfbc-8085-4803-b413-7f6835b40b88_mohan",
+  "original_cwd": "/mnt/d/work/req-agent",
+  "cwd": "/mnt/d/work/req-agent",
+  "current_name": "req-agent",
+  "updated_at": "2026-04-15T22:11:21.978355Z"
+}
