@@ -12,19 +12,5 @@
       }
     }
   },
-  "effortLevel": "high",
-  "hooks": {
-    "SessionEnd": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/sync-claude-to-git.sh",
-            "timeout": 30
-          }
-        ]
-      }
-    ]
-  }
+  "effortLevel": "high"
 }

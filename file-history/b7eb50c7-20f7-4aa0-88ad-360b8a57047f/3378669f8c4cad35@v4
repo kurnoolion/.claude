@@ -8,9 +8,6 @@ plugins/
 # Debug/diagnostic logs (machine-specific)
 logs/
 
-# Backups (git handles versioning)
-backups/
-
 # Lock files
 **/.lock
 **/.highwatermark
