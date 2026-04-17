@@ -1,0 +1,24 @@
+User: I have a mini PC at home which I use for trading. I have tradingview premium subscription. I open multiple ticker charts in multiple tabs in Chrome and monitor charts occasionally. I also run discord and Whatsapp apps on my Mini PC to track all the messages in various trading groups I'm part of.
+
+I have a work laptop that I work from from my office location. I want to leave my personal mini PC at home running, at access the screen remotely from my work laptop so that I can check stock charts in chrome, and also access discord. Help me achieve this goal. Note that my work has firewalls in place.
+Assistant: The user wants to remotely access their home mini PC from their work laptop, with the constraint that their work network has firewalls. Let me think about the best solutions for this.
+
+Key requirements:
+1. Access home mini PC screen remotely from work laptop
+2. View TradingView charts in Chrome
+3. Access Discord and WhatsApp
+4. Work network has firewalls
+
+The main approaches:
+
+1. **Cloud-based remote desktop solutions** - These work through firewalls because they use outbound HTTPS connections (port 443), which most corporate firewalls allow. Examples: Chrome Remote Desktop, TeamViewer, AnyDesk, Parsec, RustDesk with relay.
+
+
+2. **VPN-based solutions** - Tailscale and ZeroTier create mesh VPNs that can tunnel through NATs and firewalls using relay servers.
+3. **Traditional VPN + RDP** - Less likely to work through corporate firewalls.
+
+For practical recommendations, I'm focusing on what's most likely to work through corporate firewalls. Chrome Remote Desktop stands out as the simplest option—it's free, routes through Google's servers over HTTPS, and should easily bypass corporate firewalls while providing adequate quality for monitoring charts. Tailscale with RDP or VNC is another strong contender since it uses WireGuard and can punch through most network restrictions.
+
+However, Tailscale might struggle if the corporate firewall specifically blocks UDP traffic, though it has an HTTPS fallback through DERP relays. Parsec could work but might get blocked, and TeamViewer or AnyDesk are commonly filtered by IT departments since they're seen as security risks. My ranking would be Chrome Remote Desktop first since Google's infrastructure is rarely blocked, followed by Tailscale for its mesh capabilities and fallback options, then RustDesk with a relay server as a third choice.This is a common setup. The main challenge is getting through your work firewall. Here's a practical approach, ordered by likelihood of working behind corporate firewalls.
+
+## Option 1: Chrome Remote
