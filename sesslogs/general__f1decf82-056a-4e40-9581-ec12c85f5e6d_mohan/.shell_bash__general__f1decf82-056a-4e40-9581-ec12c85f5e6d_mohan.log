@@ -313,3 +313,4 @@ EOF
 [[2026-04-17 19:34:16]] {Bash: cd /home/mohan/.claude && git push }
 [[2026-04-17 19:34:26]] {Bash: nohup python3 /home/mohan/.claude/hooks/extract-kg-batch.py > /home/mohan/.claude/knowledge-graph/batch-extraction.log 2>&1 &
 echo "PID: $!" }
+[[2026-04-17 19:42:06]] {Bash: ps aux | grep -E "extract-kg|kg-extract|claude.*haiku" | grep -v grep }

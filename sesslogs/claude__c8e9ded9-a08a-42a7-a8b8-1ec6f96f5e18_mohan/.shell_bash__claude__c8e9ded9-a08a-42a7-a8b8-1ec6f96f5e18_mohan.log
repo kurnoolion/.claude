@@ -1,0 +1,9 @@
+════════════════════════════════════════════════════════════════════════════════
+═══ SESSION START  •  2026-04-17 19:41:44  •  Run #1  •  claude
+════════════════════════════════════════════════════════════════════════════════
+[[2026-04-17 19:41:44]] {Read: "/home/mohan/.claude/knowledge-graph/tmpg953l0p7.txt" }
+[[2026-04-17 19:41:45]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" }
+[[2026-04-17 19:41:47]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (50L) }
+[[2026-04-17 19:41:47]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" (50L) }
+[[2026-04-17 19:41:50]] {Bash: head -20 /home/mohan/.claude/knowledge-graph/entities.jsonl && echo "---relationships---" && head -20 /home/mohan/.claude/knowledge-graph/relationships.jsonl }
+[[2026-04-17 19:41:55]] {Bash: wc -l /home/mohan/.claude/knowledge-graph/entities.jsonl /home/mohan/.claude/knowledge-graph/relationships.jsonl 2>/dev/null || echo "Files may be empty or missing" }
