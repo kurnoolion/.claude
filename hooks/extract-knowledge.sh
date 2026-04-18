@@ -57,6 +57,7 @@ nohup bash -c "
     MSG=\"Knowledge graph updated: \${ENTITIES} entities, \${RELS} relationships\"
     echo \"[$(date -u +%Y-%m-%dT%H:%M:%SZ)] SUCCESS session $SESSION_ID — \$MSG\" >> \"$KG_DIR/extraction.log\"
     python3 \"$HOME/.claude/hooks/generate-kg-readme.py\" > /dev/null 2>&1
+    python3 \"$HOME/.claude/hooks/generate-kg-site.py\" > /dev/null 2>&1
     powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null; [System.Windows.Forms.MessageBox]::Show('\$MSG', 'Claude KG Extraction', 'OK', 'Information')\" > /dev/null 2>&1 &
   else
     echo \"[$(date -u +%Y-%m-%dT%H:%M:%SZ)] FAILED session $SESSION_ID (exit \$EXIT_CODE)\" >> \"$KG_DIR/extraction.log\"
