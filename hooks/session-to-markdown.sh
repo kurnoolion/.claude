@@ -12,6 +12,9 @@ case "$REASON" in
   clear|resume) exit 0 ;;
 esac
 
+# Skip batch/non-interactive sessions
+[ "$CLAUDE_KG_BATCH" = "1" ] && exit 0
+
 # Skip if transcript doesn't exist or is trivially small
 [ -f "$TRANSCRIPT_PATH" ] || exit 0
 LINES=$(wc -l < "$TRANSCRIPT_PATH")

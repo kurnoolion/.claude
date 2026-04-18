@@ -8,6 +8,24 @@ plugins/
 # Debug/diagnostic logs (machine-specific)
 logs/
 
+# KG extraction logs and temp files
+knowledge-graph/logs/
+knowledge-graph/batch-extraction.log
+knowledge-graph/extraction.log
+knowledge-graph/import-queue.jsonl
+knowledge-graph/tmp*
+
+# Conversation conversion logs
+conversations/.conversion.log
+
+# Session state - keep session-states/ synced for cross-PC resume
+sessions/
+sesslogs/
+file-history/
+shell-snapshots/
+history.jsonl
+stats-cache.json
+
 # Backups (git handles versioning)
 backups/
 

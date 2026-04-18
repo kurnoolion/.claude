@@ -1,0 +1,286 @@
+{"source":"Mini PC","target":"TradingView","type":"uses","context":"Mini PC has TradingView premium subscription for monitoring stock charts","date":"2026-04-17"}
+{"source":"Mini PC","target":"Chrome","type":"uses","context":"Multiple ticker chart tabs opened in Chrome browser","date":"2026-04-17"}
+{"source":"Mini PC","target":"Discord","type":"runs","context":"Discord app running to track messages in trading groups","date":"2026-04-17"}
+{"source":"Mini PC","target":"WhatsApp","type":"runs","context":"WhatsApp app running to track messages in trading groups","date":"2026-04-17"}
+{"source":"Work Laptop","target":"Corporate Firewall","type":"blocked_by","context":"Work network has firewalls blocking certain protocols and services","date":"2026-04-17"}
+{"source":"Chrome Remote Desktop","target":"HTTPS","type":"uses","context":"Uses HTTPS for communication, easily bypasses corporate firewalls","date":"2026-04-17"}
+{"source":"Tailscale","target":"WireGuard","type":"built_with","context":"Tailscale uses WireGuard protocol for secure mesh VPN","date":"2026-04-17"}
+{"source":"Tailscale","target":"DERP Relay","type":"depends_on","context":"Uses DERP relay servers as HTTPS fallback to bypass firewall restrictions","date":"2026-04-17"}
+{"source":"RustDesk","target":"Relay servers","type":"uses","context":"Can use relay servers to work through firewalls as third-choice option","date":"2026-04-17"}
+{"source":"Corporate Firewall","target":"UDP","type":"blocks_protocol","context":"Firewall may block UDP traffic affecting some VPN solutions","date":"2026-04-17"}
+{"source":"TeamViewer","target":"Corporate Firewall","type":"blocked_by","context":"Commonly blocked by IT departments as security risk","date":"2026-04-17"}
+{"source":"AnyDesk","target":"Corporate Firewall","type":"blocked_by","context":"Commonly blocked by IT departments as security risk","date":"2026-04-17"}
+{"source":"x86-64 Assembly","target":"Callee-saved registers","type":"uses","context":"Assembly code uses callee-saved registers to preserve values across function calls","date":"2026-04-17"}
+{"source":"x86-64 Assembly","target":"Caller-saved registers","type":"uses","context":"Assembly code can safely trash caller-saved registers within function calls","date":"2026-04-17"}
+{"source":"Memory alignment","target":"Cache line","type":"optimizes","context":"Memory alignment ensures data fits within single cache line for performance","date":"2026-04-17"}
+{"source":"Variadic functions","target":"Symbol resolution","type":"depends_on","context":"Printf parses format string at runtime to determine which registers/stack to read from","date":"2026-04-17"}
+{"source":"Function pointers","target":"Variadic functions","type":"enables","context":"Function pointers allow generic functions like qsort to accept custom callbacks","date":"2026-04-17"}
+{"source":"Virtual memory","target":"Page tables","type":"uses","context":"Virtual memory system uses page tables for address translation","date":"2026-04-17"}
+{"source":"Page tables","target":"Memory Management Unit","type":"processed_by","context":"MMU hardware translates virtual addresses using page table lookups","date":"2026-04-17"}
+{"source":"Shared libraries","target":"Loader","type":"loaded_by","context":"Loader finds and loads shared libraries into memory at runtime","date":"2026-04-17"}
+{"source":"Linker","target":"Static libraries","type":"bakes_in","context":"Linker copies static library code directly into executable","date":"2026-04-17"}
+{"source":"libc","target":"Linker","type":"linked_by","context":"libc can be linked as static or shared library depending on flags","date":"2026-04-17"}
+{"source":"glibc","target":"libc","type":"implements","context":"glibc is the GNU implementation of the C standard library","date":"2026-04-17"}
+{"source":"musl","target":"libc","type":"implements","context":"musl is a lightweight alternative implementation of the C standard library","date":"2026-04-17"}
+{"source":"Linker","target":"Symbol resolution","type":"performs","context":"Linker resolves symbol references between object files and libraries","date":"2026-04-17"}
+{"source":"ELF format","target":"Loader","type":"processed_by","context":"Loader reads ELF format executables and prepares them for execution","date":"2026-04-17"}
+{"source":"Position Independent Code","target":"Shared libraries","type":"required_for","context":"Shared libraries must be compiled with PIC to work at any memory address","date":"2026-04-17"}
+{"source":"Procedure Linkage Table","target":"Shared libraries","type":"part_of","context":"PLT entries enable indirect function calls in dynamically linked executables","date":"2026-04-17"}
+{"source":"Global Offset Table","target":"Shared libraries","type":"part_of","context":"GOT stores addresses of external symbols for dynamic linking","date":"2026-04-17"}
+{"source":"Preprocessor","target":"Compiler","type":"feeds_into","context":"Preprocessor expands macros and creates .i files that compiler consumes","date":"2026-04-17"}
+{"source":"Compiler","target":"Assembler","type":"feeds_into","context":"Compiler generates .s assembly files that assembler translates to .o object files","date":"2026-04-17"}
+{"source":"Assembler","target":"Linker","type":"feeds_into","context":"Assembler produces .o object files that linker combines into executables","date":"2026-04-17"}
+{"source":"Linker","target":"Loader","type":"produces","context":"Linker creates executable files that loader will later run at runtime","date":"2026-04-17"}
+{"source":"Advait Duggi","target":"US#4 - Stuttering and Hesitation Detection","type":"worked_on","context":"Assigned to implement all tasks for US#4 during Sprint 2","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"Advait Duggi","target":"US#6 - Personalized Areas for Improvement","type":"worked_on","context":"Assigned to implement all tasks for US#6 during Week 2 of Sprint 2","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"Advait Duggi","target":"US#7 - Targeted Script-Based Suggestions","type":"worked_on","context":"Assigned to all tasks for US#7","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#4 - Stuttering and Hesitation Detection","target":"StageSense","type":"part_of","context":"User story is part of StageSense project","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#6 - Personalized Areas for Improvement","target":"StageSense","type":"part_of","context":"User story is part of StageSense project","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#7 - Targeted Script-Based Suggestions","target":"StageSense","type":"part_of","context":"User story is part of StageSense project","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#4 - Stuttering and Hesitation Detection","type":"includes","target":"Repetition detection","context":"US#4 task2 implements repetition detection on Whisper transcripts","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#4 - Stuttering and Hesitation Detection","target":"Fluency metrics","type":"includes","context":"US#4 tasks 3-4 compute fluency summary metrics (hesitation count, total time, repetition count)","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#6 - Personalized Areas for Improvement","target":"Rules engine","type":"includes","context":"US#6 includes building the rules engine for personalized improvement areas","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#6 - Personalized Areas for Improvement","target":"Claude API","type":"uses","context":"US#6 integrates Claude API for generating personalized coaching paragraphs","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#6 - Personalized Areas for Improvement","target":"Areas for Improvement UI card","type":"includes","context":"US#6 task 3 constructs the Areas for Improvement UI card","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"Repetition detection","target":"Whisper","type":"depends_on","context":"Repetition detection flags consecutive repeated words in Whisper transcripts","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"Fluency metrics","target":"Whisper","type":"depends_on","context":"Fluency metrics computed from Whisper transcript analysis","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#4 - Stuttering and Hesitation Detection","target":"Sprint 2","type":"part_of","context":"US#4 scheduled for Sprint 2 with completion by end of Spring Break and Week 2","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"US#6 - Personalized Areas for Improvement","target":"Sprint 2","type":"part_of","context":"US#6 scheduled for Week 2 of Sprint 2","session_id":"web-fbf02d73-b8e8-467d-83fc-0762b8d99cd1","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Research Assistant","type":"fused_from","context":"Created by fusing Research Assistant and Coding Partner prompts","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Coding Partner","type":"fused_from","context":"Created by fusing Research Assistant and Coding Partner prompts","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Grant Permission to Fail","type":"incorporates","context":"Principle woven into prompt structure for encouraging experimentation","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Decompose Into Checkpoints","type":"incorporates","context":"Principle woven into prompt structure for breaking work into milestones","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Frame With Curiosity","type":"incorporates","context":"Principle woven into prompt structure for approaching problems as design puzzles","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Invite Transparency","type":"incorporates","context":"Principle woven into prompt structure for clear communication of tradeoffs","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Collaborate, Don't Command","type":"incorporates","context":"Principle woven into prompt structure for genuine collaboration","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Acknowledge Difficulty","type":"incorporates","context":"Principle woven into prompt structure for recognizing complex work","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Counteract Brooding Baseline","type":"incorporates","context":"Principle woven into prompt structure for constructive energy","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"RAG architectures","type":"uses","context":"Partner has expertise in RAG systems for AI/LLM solutions","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Agentic workflows","type":"uses","context":"Partner has expertise in agentic workflow patterns","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Fine-tuning","type":"uses","context":"Partner has expertise in model fine-tuning tradeoffs","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Prompt engineering","type":"uses","context":"Partner has expertise in prompt engineering techniques","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Inference infrastructure","type":"uses","context":"Partner has expertise in inference infrastructure design","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"Evaluation frameworks","type":"uses","context":"Partner has expertise in LLM evaluation frameworks","date":"2026-04-17"}
+{"source":"Applied AI Software Design Partner","target":"LLM integration patterns","type":"uses","context":"Partner has expertise in LLM integration architectural patterns","date":"2026-04-17"}
+{"source":"kurnoolion","target":"req-agent","type":"worked_on","context":"Pushing code updates to GitHub repository","date":"2026-04-17"}
+{"source":"req-agent","target":"GitHub","type":"depends_on","context":"Repository hosted and managed on GitHub","date":"2026-04-17"}
+{"source":"req-agent","target":"Git","type":"uses","context":"Version control system for project management","date":"2026-04-17"}
+{"source":"req-agent","target":"SSH","type":"uses","context":"SSH authentication for secure Git push operations to GitHub","date":"2026-04-17"}
+{"source":"Git","target":"SSH","type":"uses","context":"SSH protocol for secure repository authentication","date":"2026-04-17"}
+{"source":"kurnoolion","target":"Windows Subsystem for Linux","type":"uses","context":"WSL terminal for executing git push commands to GitHub","date":"2026-04-17"}
+{"source":"NVIDIA DGX Spark","target":"Blackwell GPU","type":"uses","context":"DGX Spark platform built around Blackwell GPU architecture for compute performance","date":"2026-04-17"}
+{"source":"NVIDIA DGX Spark","target":"CUDA","type":"uses","context":"DGX Spark provides full CUDA software stack enabling standard ML frameworks without modification","date":"2026-04-17"}
+{"source":"Blackwell GPU","target":"Tensor Cores","type":"contains","context":"Blackwell GPU features 5th-generation Tensor Cores for efficient tensor operations","date":"2026-04-17"}
+{"source":"Tensor Cores","target":"FP4","type":"supports","context":"Blackwell Tensor Cores have native FP4 support for model compression and efficiency","date":"2026-04-17"}
+{"source":"Unsloth","target":"CUDA","type":"depends_on","context":"Unsloth fine-tuning framework runs without modification on CUDA-enabled hardware","date":"2026-04-17"}
+{"source":"Axolotl","target":"CUDA","type":"depends_on","context":"Axolotl fine-tuning framework built on CUDA for GPU acceleration","date":"2026-04-17"}
+{"source":"NeMo","target":"CUDA","type":"depends_on","context":"NVIDIA NeMo framework optimized for CUDA-enabled GPUs for LLM training","date":"2026-04-17"}
+{"source":"PyTorch","target":"CUDA","type":"uses","context":"PyTorch ML framework supports CUDA acceleration for efficient GPU computation","date":"2026-04-17"}
+{"source":"TensorFlow","target":"CUDA","type":"uses","context":"TensorFlow framework integrates CUDA for GPU-accelerated ML workloads","date":"2026-04-17"}
+{"source":"JAX","target":"CUDA","type":"uses","context":"JAX ML framework supports CUDA backend for GPU acceleration","date":"2026-04-17"}
+{"source":"Apple Mac Studio M3 Ultra","target":"MPS","type":"uses","context":"Mac Studio uses Metal Performance Shaders framework for GPU compute on Apple silicon","date":"2026-04-17"}
+{"source":"NVIDIA DGX Spark","target":"Fine-tuning","type":"preferred_for","context":"DGX Spark superior for fine-tuning with 4x more compute than Mac Studio M3 Ultra","date":"2026-04-17"}
+{"source":"MPS","target":"CPU fallback","type":"causes","context":"Mac MPS backend has backward-pass coverage gaps causing fallback to CPU for certain operators","date":"2026-04-17"}
+{"source":"Interactive compound interest calculator","target":"compound interest","type":"demonstrates","context":"Visualization tool explains and demonstrates the mathematical principles of compound interest","date":"2026-04-17"}
+{"source":"Mohan","target":"AI training budget approval","type":"worked_on","context":"Requesting help drafting justification for AI training budget approval","date":"2026-04-18"}
+{"source":"Mohan","target":"Technical Project Manager","type":"manages","context":"Leading team of TPMs needing AI training","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Generative AI","type":"uses","context":"TPMs use ChatGPT, Claude, Copilot, Gemini to improve productivity on their work","date":"2026-04-18"}
+{"source":"Vanderbilt Prompt Engineering Specialization","target":"Coursera","type":"hosted_on","context":"Course offered on Coursera platform","date":"2026-04-18"}
+{"source":"Vanderbilt Prompt Engineering Specialization","target":"Dr. Jules White","type":"taught_by","context":"Dr. Jules White is the instructor for the specialization","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Customer communication","type":"performs","context":"Core TPM responsibility","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Customer negotiation","type":"performs","context":"Core TPM responsibility","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Technical writing","type":"performs","context":"Core TPM responsibility","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Deliverable tracking","type":"performs","context":"Core TPM responsibility","date":"2026-04-18"}
+{"source":"Technical Project Manager","target":"Issue tracking","type":"performs","context":"Core TPM responsibility","date":"2026-04-18"}
+{"source":"Generative AI","target":"Customer communication","type":"improves","context":"GenAI tools help draft emails and prepare for customer communications","date":"2026-04-18"}
+{"source":"Generative AI","target":"Customer negotiation","type":"improves","context":"GenAI helps prepare data-driven negotiation positions and impact analysis","date":"2026-04-18"}
+{"source":"Generative AI","target":"Technical writing","type":"improves","context":"GenAI helps translate technical content into customer-friendly formats","date":"2026-04-18"}
+{"source":"Generative AI","target":"Deliverable tracking","type":"improves","context":"GenAI helps organize and track deliverables more efficiently","date":"2026-04-18"}
+{"source":"Vanderbilt Prompt Engineering Specialization","target":"Generative AI","type":"teaches","context":"Course teaches prompt engineering patterns applicable to GenAI productivity use cases","date":"2026-04-18"}
+{"source":"Claude Code","target":"Git for Windows","type":"depends_on","context":"Claude Code requires Git for Windows to be installed first on Windows systems","date":"2026-04-17"}
+{"source":"Claude Code","target":"PowerShell","type":"uses","context":"Claude Code CLI runs in PowerShell terminal with commands like claude --version","date":"2026-04-17"}
+{"source":"Claude Code","target":"VS Code","type":"integrates_with","context":"VS Code extension for Claude Code opens PowerShell and runs claude commands","date":"2026-04-17"}
+{"source":"Claude Code","target":"Windows","type":"runs_on","context":"Claude Code native installer for Windows available via PowerShell","date":"2026-04-17"}
+{"source":"Claude Code","target":"~/.claude/projects/","type":"stores_sessions_in","context":"Each project gets its own folder with conversation JSONL files","date":"2026-04-17"}
+{"source":"history.jsonl","target":"Claude Code","type":"logs","context":"Stores all prompts sent across all Claude Code sessions globally","date":"2026-04-17"}
+{"source":"Remote Control","target":"Claude Code","type":"feature_of","context":"Remote Control is built into Claude Code for remote device access","date":"2026-04-17"}
+{"source":"Remote Control","target":"Claude mobile app","type":"works_with","context":"Mobile app connects to Remote Control sessions via claude.ai/code or native app","date":"2026-04-17"}
+{"source":"Remote Control","target":"claude.ai/code","type":"accessible_via","context":"Remote Control sessions appear in web browser at claude.ai/code","date":"2026-04-17"}
+{"source":"/rc command","target":"Remote Control","type":"enables","context":"Typing /rc in Claude Code session starts Remote Control with session URL","date":"2026-04-17"}
+{"source":"/config command","target":"Remote Control","type":"configures","context":"/config sets 'Enable Remote Control for all sessions' to activate automatically","date":"2026-04-17"}
+{"source":"/mobile command","target":"Claude mobile app","type":"provides_download","context":"/mobile command displays QR code for iOS/Android app download","date":"2026-04-17"}
+{"source":"claude-conversation-extractor","target":"~/.claude/projects/","type":"exports","context":"Tool converts JSONL files in .claude/projects to HTML/markdown formats","date":"2026-04-17"}
+{"source":"Claude Code","target":"history.jsonl","type":"logs_to","context":"All messages logged globally in history.jsonl searchable via grep in PowerShell","date":"2026-04-17"}
+{"source":"Tree tournament problem","target":"DFS algorithm","type":"uses","context":"Solution uses DFS to traverse tree structure and compute internal node counts","date":"2026-04-17"}
+{"source":"Skill assignment optimization","target":"Tree tournament problem","type":"solved","context":"Greedy strategy of matching sorted skills to leaf depths maximizes tournament happiness","date":"2026-04-17"}
+{"source":"Leaf depth weighting","target":"Tree tournament problem","type":"related_to","context":"Core insight: each player's happiness contribution equals skill × depth (number of ancestor matches)","date":"2026-04-17"}
+{"source":"Competitive programming","target":"Tree tournament problem","type":"includes","context":"Problem is typical competitive programming optimization challenge","date":"2026-04-17"}
+{"source":"TS.30 TAC Application Form","target":"GSMA Device Database","type":"feeds_into","context":"TAC allocation request form defines fields collected in GSMA Device Database","date":"2026-04-17"}
+{"source":"Device manufacturer","target":"TAC Application Request","type":"submits","context":"Manufacturers submit TAC applications through GSMA allocation process","date":"2026-04-17"}
+{"source":"TAC Application Request","target":"GSMA","type":"submitted_to","context":"TAC requests submitted to GSMA for code allocation","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"TAC","type":"contains","context":"Database stores TAC identifiers from manufacturer submissions","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"IMEI","type":"contains","context":"Database stores IMEI identifiers from manufacturer submissions","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"eUICC","type":"has_column","context":"eUICC is a column in GSMA Device Database export files","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"Standardized_Name","type":"has_column","context":"Standardized_Name is a column in GSMA Device Database export","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"GSMA_NONREMOVABLE_eUICC","type":"has_column","context":"GSMA_NONREMOVABLE_eUICC is a column in GSMA Device Database export","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"Band_Support","type":"has_column","context":"Band_Support is a column indicating supported frequency bands in export","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"GSMA_Name","type":"has_column","context":"GSMA_Name is a column with device name in GSMA export files","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"MNO","type":"restricted_to","context":"GSMA Device Database access restricted to Mobile Network Operator partners","date":"2026-04-17"}
+{"source":"GSMA Device Database","target":"DeviceAtlas","type":"enriched_by","context":"DeviceAtlas may provide enrichment and mapping of GSMA data","date":"2026-04-17"}
+{"source":"Mohan","target":"GSMA Device Database","type":"researches","context":"Tracking down column names and mappings for GSMA TAC/IMEI database fields","date":"2026-04-17"}
+{"source":"Dheemahi","target":"Gayatri Mantra","type":"originates_from","context":"Dheemahi word comes directly from the Gayatri Mantra","session_id":"web-d0ddeb8b-0d55-4f37-97fa-ebd85b542a64","date":"2026-04-17"}
+{"source":"Gayatri Mantra","target":"Vedas","type":"part_of","context":"Gayatri Mantra is a verse from the Rigveda, oldest Hindu sacred text","session_id":"web-d0ddeb8b-0d55-4f37-97fa-ebd85b542a64","date":"2026-04-17"}
+{"source":"Hindu naming traditions","target":"Vedas","type":"depends_on","context":"Hindu naming practices draw from Vedic sources for meaningful names","session_id":"web-d0ddeb8b-0d55-4f37-97fa-ebd85b542a64","date":"2026-04-17"}
+{"source":"Hindu naming traditions","target":"Puranas","type":"depends_on","context":"Many Hindu names reference Puranic deities and mythological concepts","session_id":"web-d0ddeb8b-0d55-4f37-97fa-ebd85b542a64","date":"2026-04-17"}
+{"source":"Hindu naming traditions","target":"Purva Bhadra nakshatra","type":"related_to","context":"Nakshatra syllables guide name selection in Hindu traditions","session_id":"web-d0ddeb8b-0d55-4f37-97fa-ebd85b542a64","date":"2026-04-17"}
+{"source":"Connected devices","target":"Cellular Networks","type":"uses","context":"Connected devices rely on MNO Cellular Networks for connectivity","date":"2026-04-17"}
+{"source":"Cellular Networks","target":"MNO","type":"operated_by","context":"Cellular networks operated and managed by Mobile Network Operators","date":"2026-04-17"}
+{"source":"VoLTE","target":"Cellular Networks","type":"part_of","context":"VoLTE is a network capability provided by cellular networks","date":"2026-04-17"}
+{"source":"VoWiFi","target":"Cellular Networks","type":"part_of","context":"VoWiFi extends voice capability to WiFi networks with cellular fallback","date":"2026-04-17"}
+{"source":"ePDG","target":"VoWiFi","type":"enables","context":"ePDG provides tunnel fallback mechanism for VoWiFi calls","date":"2026-04-17"}
+{"source":"MNO","target":"3GPP","type":"based_on","context":"MNO requirements build on 3GPP standard specifications","date":"2026-04-17"}
+{"source":"MNO","target":"GSMA","type":"based_on","context":"MNO requirements based on GSMA standards with customizations","date":"2026-04-17"}
+{"source":"Multi-document RAG","target":"Query decomposition","type":"uses","context":"Query decomposition breaks complex multi-document questions into sub-queries","date":"2026-04-17"}
+{"source":"Multi-document RAG","target":"Multi-hop retrieval","type":"uses","context":"Multi-hop retrieval follows requirement chains across documents","date":"2026-04-17"}
+{"source":"Multi-document RAG","target":"Knowledge graph for requirements","type":"uses","context":"Knowledge graph helps navigate cross-references between requirement documents","date":"2026-04-17"}
+{"source":"Multi-hop retrieval","target":"Cross-requirement linking","type":"depends_on","context":"Multi-hop retrieval relies on tracked cross-references between requirements","date":"2026-04-17"}
+{"source":"Document ingestion pipeline","target":"MNO","type":"parses","context":"Ingestion pipeline extracts requirements with IDs from MNO requirement documents","date":"2026-04-17"}
+{"source":"Compliance lock down document","target":"MNO","type":"specifies_compliance","context":"Lock down document records yes/no/partial compliance with MNO feature requirements","date":"2026-04-17"}
+{"source":"Network capability customization","target":"3GPP","type":"extends","context":"MNOs customize standard 3GPP capabilities with their own requirements","date":"2026-04-17"}
+{"source":"LLC","target":"Land investment","type":"conducted","context":"LLC formed for buying and selling land property","date":"2026-04-17"}
+{"source":"Travel expense","target":"Land investment","type":"part_of","context":"Travel costs incurred during land due diligence, viewing, and closing process","date":"2026-04-17"}
+{"source":"Business meal deduction","target":"Land investment","type":"part_of","context":"Meals with brokers, buyers, sellers, and members during land deal transactions","date":"2026-04-17"}
+{"source":"Legal and professional fees","target":"Land investment","type":"part_of","context":"Attorney and CPA fees for legal review, title work, and tax preparation","date":"2026-04-17"}
+{"source":"Due diligence costs","target":"Land investment","type":"part_of","context":"Survey, environmental assessment, appraisal, and title search for land evaluation","date":"2026-04-17"}
+{"source":"LLC compliance","target":"LLC","type":"required_for","context":"State filing and registered agent fees necessary for LLC legal operation","date":"2026-04-17"}
+{"source":"Real estate marketing","target":"Land investment","type":"part_of","context":"Listing fees, photography, signage, and online promotion for land sale","date":"2026-04-17"}
+{"source":"Business tax documentation","target":"LLC","type":"required_for","context":"Receipts and statements needed to substantiate all claimed business deductions with IRS","date":"2026-04-17"}
+{"source":"Android OS","target":"Android logcat","type":"uses","context":"Android logging system captures OS-level events and debug information","date":"2026-04-17"}
+{"source":"Android logcat","target":"Log analysis","type":"enables","context":"Logcat output provides primary input for debugging Android system issues","date":"2026-04-17"}
+{"source":"Dumpstate logs","target":"Log analysis","type":"enables","context":"Dumpstate provides comprehensive device state snapshot for analysis","date":"2026-04-17"}
+{"source":"Qualcomm modem","target":"Qualcomm logs","type":"produces","context":"Qualcomm modem firmware generates protocol and connectivity logs","date":"2026-04-17"}
+{"source":"Log analysis","target":"Root cause analysis","type":"feeds_into","context":"Log examination provides data for systematic root cause investigation","date":"2026-04-17"}
+{"source":"Root cause analysis","target":"Android logcat","type":"uses","context":"Root cause analysis correlates logcat entries with system behavior","date":"2026-04-17"}
+{"source":"VoNR","target":"5G","type":"part_of","context":"VoNR is voice capability over 5G New Radio networks","date":"2026-04-17"}
+{"source":"Satellite connectivity","type":"related_to","target":"Android OS","context":"Satellite connectivity requires Android OS handling of non-terrestrial networks","date":"2026-04-17"}
+{"source":"Telephony framework","target":"VoLTE","type":"manages","context":"Telephony framework controls VoLTE call state and media","date":"2026-04-17"}
+{"source":"Telephony framework","target":"VoNR","type":"manages","context":"Telephony framework manages VoNR call setup and teardown","date":"2026-04-17"}
+{"source":"Connectivity framework","target":"Cellular Networks","type":"manages","context":"Connectivity framework tracks network state and failures","date":"2026-04-17"}
+{"source":"Battery drain analysis","target":"Log analysis","type":"depends_on","context":"Battery drain investigation requires analyzing power-related log entries","date":"2026-04-17"}
+{"source":"LLM knowledge evaluation","target":"Telecom standards","type":"tests","context":"Framework evaluates LLM understanding of telecom standard specifications","date":"2026-04-17"}
+{"source":"SGP.02","target":"M2M profile","type":"defines","context":"SGP.02 specification defines M2M eSIM profile architecture","date":"2026-04-17"}
+{"source":"SGP.22","target":"Consumer profile","type":"defines","context":"SGP.22 specification defines Consumer profile download and management","date":"2026-04-17"}
+{"source":"SGP.32","target":"Profile download flow","type":"specifies","context":"SGP.32 defines subscriber provisioning in profile lifecycle","date":"2026-04-17"}
+{"source":"eUICC HAL","target":"EuiccService","type":"implements","context":"HAL provides low-level interface for EuiccService","date":"2026-04-17"}
+{"source":"EuiccService","target":"EuiccConnector","type":"uses","context":"Service provides AIDL interface through connector component","date":"2026-04-17"}
+{"source":"IEuiccService","target":"eUICC HAL","type":"defines_interface","context":"AIDL interface defines contracts for HAL communication","date":"2026-04-17"}
+{"source":"APDU commands","target":"SGP.22","type":"part_of","context":"SGP.22 specifies APDU sequences for profile operations","date":"2026-04-17"}
+{"source":"Profile download flow","target":"LPA","type":"involves","context":"LPA client-side component initiates and manages profile downloads","date":"2026-04-17"}
+{"source":"Profile download flow","target":"SM-DP+","type":"involves","context":"SM-DP+ server-side component provides provisioning data","date":"2026-04-17"}
+{"source":"ES interfaces","target":"SGP.22","type":"specified_by","context":"ES interfaces are defined in SGP.22 specification","date":"2026-04-17"}
+{"source":"Qualcomm modem","target":"L2/L3/L4 protocols","type":"implements","context":"Qualcomm modem implements 3GPP-standard protocol layers","date":"2026-04-17"}
+{"source":"Qualcomm logs","target":"Root cause analysis","type":"enables","context":"Modem logs provide protocol-level details for root cause investigation","date":"2026-04-17"}
+{"source":"Android logcat","target":"Qualcomm logs","type":"correlates_with","context":"Logcat and modem logs must be cross-referenced for device issues","date":"2026-04-17"}
+{"source":"eUICC error codes","type":"indicates","target":"Profile download flow","context":"Error codes signal failures at specific steps in profile operations","date":"2026-04-17"}
+{"source":"Shell project","target":"CS-252","type":"part_of","context":"Shell project is assignment for CS-252 course","date":"2026-04-17"}
+{"source":"Part 2.1: Ctrl-C Signal Handling","target":"Shell project","type":"part_of","context":"Part 2.1 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.2: Zombie Elimination","target":"Shell project","type":"part_of","context":"Part 2.2 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.3: Exit command","target":"Shell project","type":"part_of","context":"Part 2.3 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.4: Quotes","target":"Shell project","type":"part_of","context":"Part 2.4 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.5: Escaping","target":"Shell project","type":"part_of","context":"Part 2.5 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.6: Builtin Functions","target":"Shell project","type":"part_of","context":"Part 2.6 is task in shell project","date":"2026-04-17"}
+{"source":"Part 2.7: Creating a Default Source File","target":"Shell project","type":"part_of","context":"Part 2.7 is extra credit task in shell project","date":"2026-04-17"}
+{"source":"SIGINT signal","target":"Part 2.1: Ctrl-C Signal Handling","type":"related_to","context":"SIGINT is signal handled in Ctrl-C implementation","date":"2026-04-17"}
+{"source":"SIGCHLD signal","target":"Part 2.2: Zombie Elimination","type":"related_to","context":"SIGCHLD is signal handled for zombie process cleanup","date":"2026-04-17"}
+{"source":"write() function","target":"SIGINT signal","type":"used_in","context":"write() is async-signal-safe for use in SIGINT handler","date":"2026-04-17"}
+{"source":"Zombie process","target":"Part 2.2: Zombie Elimination","type":"problem_solved_by","context":"SIGCHLD handler with waitpid solves zombie process problem","date":"2026-04-17"}
+{"source":"printenv builtin","target":"Part 2.6: Builtin Functions","type":"part_of","context":"printenv is one of builtins implemented in Part 2.6","date":"2026-04-17"}
+{"source":"setenv builtin","target":"Part 2.6: Builtin Functions","type":"part_of","context":"setenv is one of builtins implemented in Part 2.6","date":"2026-04-17"}
+{"source":"unsetenv builtin","target":"Part 2.6: Builtin Functions","type":"part_of","context":"unsetenv is one of builtins implemented in Part 2.6","date":"2026-04-17"}
+{"source":"cd builtin","target":"Part 2.6: Builtin Functions","type":"part_of","context":"cd is one of builtins implemented in Part 2.6","date":"2026-04-17"}
+{"source":"source builtin","target":"Part 2.6: Builtin Functions","type":"part_of","context":"source is one of builtins implemented in Part 2.6","date":"2026-04-17"}
+{"source":"source builtin","target":"yy_create_buffer","type":"depends_on","context":"source builtin uses Flex buffer management functions","date":"2026-04-17"}
+{"source":"source builtin","target":"yy_switch_to_buffer","type":"depends_on","context":"source builtin uses Flex buffer switching for file parsing","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Flask","type":"built_with","context":"Dashboard backend implemented using Flask web framework","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Python","type":"built_with","context":"Dashboard implemented in Python programming language","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"yfinance","type":"depends_on","context":"Dashboard uses yfinance to fetch real-time market data for stocks and indices","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"FRED API","type":"depends_on","context":"Dashboard uses FRED API to fetch economic indicators","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"GridStack.js","type":"uses","context":"Frontend uses GridStack.js for draggable and resizable dashboard sections","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Market breadth metrics","type":"displays","context":"Dashboard includes market breadth metrics section with all breadth indicators","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Economic calendar","type":"displays","context":"Dashboard displays upcoming economic events with actual vs estimate data","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Breaking news feed","type":"displays","context":"Dashboard includes real-time financial news section with RSS feed integration","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Sector rotation","type":"displays","context":"Dashboard shows sector rotation tracking across multiple timeframes","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Macro regime","type":"displays","context":"Dashboard displays refined macro indicators relevant to growth/tech stock trading","date":"2026-04-17"}
+{"source":"Market breadth metrics","target":"NYSE","type":"depends_on","context":"Breadth metrics calculated from stock data across NYSE exchange","date":"2026-04-17"}
+{"source":"Market breadth metrics","target":"NASDAQ","type":"depends_on","context":"Breadth metrics calculated from stock data across NASDAQ exchange","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Bullish/bearish signals","type":"generates","context":"Dashboard marks each metric with bullish or bearish sentiment indicators","date":"2026-04-17"}
+{"source":"Market breadth metrics","target":"Weinstein stage analysis","type":"includes","context":"Market breadth section includes Weinstein stage-1 through stage-4 analysis","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"jinja2.exceptions.TemplateNotFound","type":"experienced","context":"Dashboard initially failed with template not found error due to folder structure","date":"2026-04-17"}
+{"source":"jinja2.exceptions.TemplateNotFound","type":"solved_by","target":"Template folder structure fix","context":"Error resolved by creating templates/ folder and moving index.html into it","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"Ticker data fetching issue","type":"blocked_by","context":"Market breadth shows fewer stocks than expected due to ticker fetching limitations","date":"2026-04-17"}
+{"source":"Macro Trading Dashboard","target":"GridStack drag functionality issue","type":"blocked_by","context":"Dashboard sections are resizable but not draggable until drag handler is fixed","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"pytesseract","type":"uses","context":"Application uses pytesseract for OCR text extraction during PDF generation","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Pillow","type":"uses","context":"Application uses PIL for screenshot capture, image comparison, and manipulation","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"reportlab","type":"uses","context":"Application uses reportlab to generate final PDF from screenshots","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"pynput","type":"uses","context":"Application uses pynput for keyboard hotkey listener (ESC to stop) and spacebar injection","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Kindle for PC","type":"automates","context":"Application automates capture of Kindle for PC book pages for PDF creation","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Image similarity detection","type":"implements","context":"Core algorithm comparing consecutive screenshots to filter duplicates","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Spacebar key injection","type":"uses","context":"Sends spacebar keyboard events to Kindle for PC to advance pages","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Foreground window activation","type":"depends_on","context":"Must activate target window before sending keyboard events for reliable delivery","date":"2026-04-17"}
+{"source":"Screen capture automation application","target":"Debug logging system","type":"uses","context":"Application logs all capture loop operations for debugging and troubleshooting","date":"2026-04-17"}
+{"source":"pytesseract","target":"Tesseract OCR binary","type":"depends_on","context":"pytesseract wrapper requires native Tesseract binary to be installed and in PATH","date":"2026-04-17"}
+{"source":"Image similarity detection","target":"Pillow","type":"uses","context":"Pillow enables pixel-level comparison of images for similarity scoring","date":"2026-04-17"}
+{"source":"Image similarity detection","type":"solves","target":"Duplicate screenshot issue","context":"Similarity detection prevents saving identical or near-identical consecutive frames","date":"2026-04-17"}
+{"source":"Spacebar key injection","target":"pynput","type":"enabled_by","context":"pynput library provides keyboard event injection capability","date":"2026-04-17"}
+{"source":"Spacebar key injection","type":"solves","target":"Mouse click reliability issue","context":"Keyboard events more reliable than hover-dependent mouse clicks for page navigation","date":"2026-04-17"}
+{"source":"Window handle staling","type":"caused_by","target":"Kindle for PC","context":"Kindle dynamically destroys/recreates child windows during page transitions","date":"2026-04-17"}
+{"source":"Foreground window activation","target":"Windows API","type":"depends_on","context":"Uses Windows Win32 API calls to SetForegroundWindow and activate target window","date":"2026-04-17"}
+{"source":"PDF image compression","target":"Pillow","type":"uses","context":"Pillow handles JPEG compression and resizing of images before PDF embedding","date":"2026-04-17"}
+{"source":"PDF image compression","type":"solves","target":"Large PDF file size problem","context":"JPEG compression significantly reduces final PDF size compared to raw PNGs","date":"2026-04-17"}
+{"source":"Debug logging system","target":"File I/O","type":"uses","context":"Logging writes detailed trace information to file for post-execution analysis","date":"2026-04-17"}
+{"source":"Screenshot comparison loop","target":"Screen capture automation application","type":"implements","context":"Main capture loop logic forms core of application functionality","date":"2026-04-17"}
+{"source":"Mohan","target":"Sweet 16 Invitation Website","type":"worked_on","context":"Building custom invitation website for daughter's Sweet 16 event","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Amukta Duggi","type":"created_for","context":"Website created to invite guests to Amukta's Sweet 16 party","date":"2026-04-17"}
+{"source":"Sreepriya Duggi","target":"Amukta Duggi","type":"related_to","context":"Co-host for Sweet 16 event alongside Mohan Duggi","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Wix","type":"designed_on","context":"Initial design and UI built using Wix website builder","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Netlify","type":"deployed_on","context":"Website deployed to Netlify for free hosting with optional custom domain","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Google Sheets","type":"uses","context":"All RSVP responses stored in Google Sheet via Apps Script API","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Google Apps Script","type":"uses","context":"Google Apps Script web app backend receives RSVP POST requests and writes to Google Sheet","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Calendar integration","type":"includes","context":"Guests can add event to Google Calendar or Apple Calendar directly from invitation page","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"RSVP system","type":"includes","context":"Custom RSVP form collects attendance, name, email, phone, and optional message from guests","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"Evite","type":"inspired_by","context":"RSVP and guest list design patterns based on Evite platform","date":"2026-04-17"}
+{"source":"Calendar integration","target":"Google Calendar","type":"supports","context":"Guests can add event to Google Calendar with pre-filled title, date, time, location","date":"2026-04-17"}
+{"source":"Calendar integration","target":"Apple Calendar","type":"supports","context":"Guests can download .ics file to add event to Apple Calendar or any calendar app","date":"2026-04-17"}
+{"source":"RSVP system","target":"Google Sheets","type":"stores_to","context":"Attendance responses, guest details, and messages saved in Google Sheet","date":"2026-04-17"}
+{"source":"Sweet 16 Invitation Website","target":"index.html","type":"generated_as","context":"Single deployable HTML file with CSS and JavaScript bundled for easy deployment to Netlify","date":"2026-04-17"}
+{"source":"Olde Mill Inn","target":"Amukta Duggi","type":"venue_for","context":"Location of Sweet 16 celebration on June 21, 2026 from 6-10 PM EDT","date":"2026-04-17"}
+{"source":"Google Apps Script","target":"Google Sheets","type":"writes_to","context":"Backend web app appends RSVP data rows to Google Sheet when guests submit forms","date":"2026-04-17"}
+{"source":"The Beats","target":"Cold War","type":"rejected","context":"Beats movement rejected Cold War conformity and militarization","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Allen Ginsberg","target":"The Beats","type":"member_of","context":"Ginsberg was a key Beat poet with 'Howl' testing free expression boundaries","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Ella Baker","target":"SNCC","type":"founded","context":"Baker organized meeting in Raleigh, NC that founded SNCC in April 1960","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Robert Moses","target":"SNCC","type":"worked_on","context":"Moses was SNCC organizer advocating youth-led social change","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"SNCC","target":"Civil Rights Movement","type":"part_of","context":"Student-led SNCC was major civil rights organization with grassroots philosophy","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"SCLC","target":"Martin Luther King Jr.","type":"led_by","context":"SCLC was King's ministerial-led civil rights organization","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"SCLC","target":"Civil Rights Movement","type":"part_of","context":"SCLC was major civil rights organization contrasting with student-led SNCC","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"CORE","target":"Freedom Rides","type":"organized","context":"CORE organized Freedom Rides to test segregation compliance in 1961","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Sit-ins","target":"Civil Rights Movement","type":"tactic_of","context":"Sit-ins were nonviolent tactic bringing segregation into public view","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Freedom Rides","target":"Civil Rights Movement","type":"part_of","context":"Freedom Rides tested interstate segregation laws forcing public confrontation","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Civil Rights Movement","target":"APUSH","type":"major_topic_in","context":"Civil Rights Movement dominates multiple APUSH chapters and testing","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"New Left","target":"Civil Rights Movement","type":"inspired_by","context":"New Left movements were catalyzed by sit-ins and civil rights activism","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"New Left","target":"Old Left","type":"rejected","context":"New Left rejected Old Left's Soviet Union model and working-class focus","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"New Left","target":"Counterculture","type":"related_to","context":"New Left and 1960s counterculture overlapped in rejecting establishment values","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Counterculture","target":"Vietnam War","type":"opposed","context":"Counterculture fueled massive anti-war movement against Vietnam escalation","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Stagflation","target":"Reagan Revolution","type":"preceded","context":"1970s stagflation created constituency for Reagan's conservative economic policies","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Deindustrialization","target":"Stagflation","type":"related_to","context":"Deindustrialization contributed to stagflationary conditions of 1970s","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Proposition 13","target":"Reagan Revolution","type":"fueled","context":"California's Proposition 13 proved anti-tax sentiment fueling conservative movement","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Sagebrush Rebellion","target":"Reagan Revolution","type":"contributed_to","context":"Western anti-federal-government sentiment flowed into Reagan's coalition","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Ronald Reagan","target":"Reagan Revolution","type":"leader_of","context":"Reagan presidency embodied and led conservative revolution of 1980s","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"George H.W. Bush","target":"Panama invasion","type":"ordered","context":"Bush administration ordered 1989 invasion to remove Noriega","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"George H.W. Bush","target":"Gulf War","type":"ordered","context":"Bush built 40-nation coalition and ordered Operation Desert Storm in 1991","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Saddam Hussein","target":"Gulf War","type":"caused","context":"Hussein's invasion of Kuwait triggered US-led coalition military response","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Operation Desert Storm","target":"Gulf War","type":"part_of","context":"Desert Storm was February 1991 military operation in Gulf War","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Bill Clinton","target":"Election of 1992","type":"won","context":"Clinton defeated Bush despite 89% approval, exploiting 1991 recession","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Bill Clinton","target":"Welfare reform","type":"implemented","context":"Clinton promised to 'end welfare as we know it' combining liberalism with conservatism","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Ross Perot","target":"Election of 1992","type":"participated_in","context":"Perot's 19% independent run attacked both parties on economy and deficit","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"APUSH","target":"MCQ tests","type":"assessed_by","context":"APUSH course emphasizes niche details that appear on MCQ tests","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}
+{"source":"Post-Cold War World","target":"APUSH","type":"major_topic_in","context":"Post-Cold War era (Bush/Clinton) covers significant APUSH content","session_id":"web-tmpfxcpdw95","date":"2026-04-17"}

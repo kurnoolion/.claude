@@ -12,6 +12,9 @@ case "$REASON" in
   clear|resume) exit 0 ;;
 esac
 
+# Skip if running inside a batch/non-interactive claude -p session
+[ "$CLAUDE_KG_BATCH" = "1" ] && exit 0
+
 # Skip if transcript doesn't exist or is trivially small
 [ -f "$TRANSCRIPT_PATH" ] || exit 0
 LINES=$(wc -l < "$TRANSCRIPT_PATH")
@@ -40,8 +43,9 @@ PROMPT="$PROMPT
 
 # Spawn background claude process for extraction, then notify on completion
 nohup bash -c "
-  claude -p \"$PROMPT\" \
+  CLAUDE_KG_BATCH=1 claude -p \"$PROMPT\" \
     --allowedTools 'Read,Write,Glob,Grep' \
+    --permission-mode bypassPermissions \
     --model claude-haiku-4-5-20251001 \
     > \"$LOG_DIR/$SESSION_ID.log\" 2>&1
   EXIT_CODE=\$?

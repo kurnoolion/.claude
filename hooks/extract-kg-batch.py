@@ -104,12 +104,17 @@ Read the file at: {tmp.name}
 
     log_path = LOG_DIR / f"{session_id}.log"
 
+    env = os.environ.copy()
+    env["CLAUDE_KG_BATCH"] = "1"
+
     try:
         result = subprocess.run(
             ["claude", "-p", prompt,
              "--allowedTools", "Read,Write,Glob,Grep",
+             "--permission-mode", "bypassPermissions",
              "--model", "claude-haiku-4-5-20251001"],
-            capture_output=True, text=True, timeout=120
+            capture_output=True, text=True, timeout=120,
+            env=env,
         )
 
         with open(log_path, "w") as f:
@@ -167,12 +172,30 @@ def main():
     print(f"\nDone: {success} succeeded, {failed} failed")
 
     # Show current KG stats
-    for fname in ["entities.jsonl", "relationships.jsonl"]:
+    entity_count = 0
+    rel_count = 0
+    for fname, label in [("entities.jsonl", "entities"), ("relationships.jsonl", "relationships")]:
         fpath = KG_DIR / fname
         if fpath.exists():
             with open(fpath) as f:
                 count = sum(1 for line in f if line.strip())
             print(f"  {fname}: {count} entries")
+            if label == "entities":
+                entity_count = count
+            else:
+                rel_count = count
+
+    # Windows toast notification
+    msg = f"KG batch done: {success} ok, {failed} failed. {entity_count} entities, {rel_count} relationships."
+    try:
+        subprocess.Popen(
+            ["powershell.exe", "-Command",
+             f"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null; "
+             f"[System.Windows.Forms.MessageBox]::Show('{msg}', 'Claude KG Batch', 'OK', 'Information')"],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":

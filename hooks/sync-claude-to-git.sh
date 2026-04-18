@@ -1,5 +1,6 @@
 #!/bin/bash
 # Auto-commit and push .claude changes on session end
+[ "$CLAUDE_KG_BATCH" = "1" ] && exit 0
 CLAUDE_DIR="$HOME/.claude"
 
 cd "$CLAUDE_DIR" || exit 0
