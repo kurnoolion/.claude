@@ -309,7 +309,7 @@ claude --version
 
 Below is in my ~/.npmrc (I'm using a windows path on purpose)
 
-prefix=/mnt/d/.npm-global/
+prefix=/home/mohan/.npm-global/
 
 ---
 
@@ -337,8 +337,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Your custom global prefix AFTER nvm
-export NPM_CONFIG_PREFIX=/mnt/d/.npm-global
-export PATH=/mnt/d/.npm-global/bin:$PATH
+export NPM_CONFIG_PREFIX=/home/mohan/.npm-global
+export PATH=/home/mohan/.npm-global/bin:$PATH
 ```
 
 **Step 3 — Remove `prefix` from `~/.npmrc`** and let the env var handle it instead (env vars take precedence and don't trigger the nvm conflict):
@@ -351,7 +351,7 @@ cat ~/.npmrc   # verify it's gone
 ```bash
 source ~/.bashrc
 nvm use 22
-npm config get prefix    # should show /mnt/d/.npm-global
+npm config get prefix    # should show /home/mohan/.npm-global
 which node               # should show ~/.nvm/versions/node/...
 ```
 
@@ -363,7 +363,7 @@ claude --version
 
 ---
 
-**Why this works:** The conflict is specifically that nvm detects a `prefix` key in `~/.npmrc` and refuses to proceed. Moving it to an environment variable (`NPM_CONFIG_PREFIX`) achieves the same result — your globals land on D: — without triggering nvm's check. The D: drive path via `/mnt/d/` will work fine as long as that drive is mounted when WSL starts.
+**Why this works:** The conflict is specifically that nvm detects a `prefix` key in `~/.npmrc` and refuses to proceed. Moving it to an environment variable (`NPM_CONFIG_PREFIX`) achieves the same result — your globals land on D: — without triggering nvm's check. The D: drive path via `/home/mohan/` will work fine as long as that drive is mounted when WSL starts.
 
 ---
 
@@ -371,7 +371,7 @@ claude --version
 
 I'm getting below error during step-4 when I run "nvm use 22"
 
-nvm is not compatible with the "NPM_CONFIG_PREFIX" environment variable: currently set to "/mnt/d/.npm-global"
+nvm is not compatible with the "NPM_CONFIG_PREFIX" environment variable: currently set to "/home/mohan/.npm-global"
 Run `unset NPM_CONFIG_PREFIX` to unset it.
 
 ---
@@ -407,9 +407,9 @@ node --version   # v22.x
 
 **3. Restore your D: drive prefix in `~/.bashrc`:**
 ```bash
-echo 'export PATH=/mnt/d/.npm-global/bin:$PATH' >> ~/.bashrc
+echo 'export PATH=/home/mohan/.npm-global/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
-npm config set prefix '/mnt/d/.npm-global'
+npm config set prefix '/home/mohan/.npm-global'
 ```
 
 **4. Install Claude Code:**
@@ -439,7 +439,7 @@ Globals will live inside `~/.nvm/versions/node/v22.x.x/bin/` — WSL only, not a
 
 ---
 
-**Which to pick:** Since you intentionally set `/mnt/d/.npm-global` (likely so globals survive WSL resets or are accessible from Windows), **Option A** is the right call. NodeSource gives you a stable system Node without nvm's restrictions.
+**Which to pick:** Since you intentionally set `/home/mohan/.npm-global` (likely so globals survive WSL resets or are accessible from Windows), **Option A** is the right call. NodeSource gives you a stable system Node without nvm's restrictions.
 
 ---
 
@@ -458,8 +458,8 @@ No problem — if `~/.npmrc` doesn't exist, there's nothing to clean. Just skip 
 ```bash
 # Remove NPM_CONFIG_PREFIX from ~/.bashrc
 nano ~/.bashrc
-# Delete this line:  export NPM_CONFIG_PREFIX=/mnt/d/.npm-global
-# Delete this line:  export PATH=/mnt/d/.npm-global/bin:$PATH
+# Delete this line:  export NPM_CONFIG_PREFIX=/home/mohan/.npm-global
+# Delete this line:  export PATH=/home/mohan/.npm-global/bin:$PATH
 
 # Reload
 source ~/.bashrc
@@ -619,11 +619,11 @@ The clean workaround is a **symlink** — move the directory to D: and point `~/
 
 ---
 
-## Solution: Symlink `~/.claude` to `/mnt/d/`
+## Solution: Symlink `~/.claude` to `/home/mohan/`
 
 **Step 1 — Create the target directory on D: drive:**
 ```bash
-mkdir -p /mnt/d/.claude
+mkdir -p /home/mohan/.claude
 ```
 
 **Step 2 — If `~/.claude` already exists, move it first:**
@@ -632,19 +632,19 @@ mkdir -p /mnt/d/.claude
 ls ~/.claude
 
 # If it does, move it to D:
-mv ~/.claude/* /mnt/d/.claude/
+mv ~/.claude/* /home/mohan/.claude/
 rm -rf ~/.claude
 ```
 
 **Step 3 — Create the symlink:**
 ```bash
-ln -s /mnt/d/.claude ~/.claude
+ln -s /home/mohan/.claude ~/.claude
 ```
 
 **Step 4 — Verify it works:**
 ```bash
 ls -la ~ | grep .claude
-# Should show:  .claude -> /mnt/d/.claude
+# Should show:  .claude -> /home/mohan/.claude
 
 ls ~/.claude
 # Should show your settings, projects/ folder, etc.
@@ -658,10 +658,10 @@ The auth/credentials file is a separate file also in `~`:
 
 ```bash
 # Move it to D:
-mv ~/.claude.json /mnt/d/.claude.json
+mv ~/.claude.json /home/mohan/.claude.json
 
 # Symlink it
-ln -s /mnt/d/.claude.json ~/.claude.json
+ln -s /home/mohan/.claude.json ~/.claude.json
 ```
 
 ---
@@ -674,10 +674,10 @@ If that becomes noticeable, a better compromise is to keep `~/.claude` on WSL fo
 
 ```bash
 # Keep ~/.claude on WSL, but redirect transcripts to D:
-mkdir -p /mnt/d/.claude/projects
-mv ~/.claude/projects/* /mnt/d/.claude/projects/ 2>/dev/null
+mkdir -p /home/mohan/.claude/projects
+mv ~/.claude/projects/* /home/mohan/.claude/projects/ 2>/dev/null
 rm -rf ~/.claude/projects
-ln -s /mnt/d/.claude/projects ~/.claude/projects
+ln -s /home/mohan/.claude/projects ~/.claude/projects
 ```
 
 This gives you Windows-accessible session logs where you actually want them, without slowing down config reads on every startup.

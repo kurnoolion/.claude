@@ -806,7 +806,7 @@ Let me explore the exported data first.
 
 ## Assistant
 
-> **Tool:** Run: `ls -la /mnt/d/claude-data-04172026/`
+> **Tool:** Run: `ls -la /home/mohan/claude-data-04172026/`
 
 ---
 
@@ -816,7 +816,7 @@ Let me explore the exported data first.
 import json
 
 for fname in ['users.json', 'memories.json']:
-    with open(f'/mnt/d/claude-data-04172026/{fna...`
+    with open(f'/home/mohan/claude-data-04172026/{fna...`
 
 ---
 
@@ -825,7 +825,7 @@ for fname in ['users.json', 'memories.json']:
 > **Tool:** Run: `python3 -c "
 import json
 
-with open('/mnt/d/claude-data-04172026/conversations.json') as f:
+with open('/home/mohan/claude-data-04172026/conversations.json') as f:
     data = json.load(f)
 
 pri...`
@@ -836,7 +836,7 @@ pri...`
 
 > **Tool:** Run: `python3 -c "
 import json
-with open('/mnt/d/claude-data-04172026/conversations.json') as f:
+with open('/home/mohan/claude-data-04172026/conversations.json') as f:
     data = json.load(f)
 
 # Ch...`
@@ -853,7 +853,7 @@ Good — I understand the format now. Let me also check the projects.json quickl
 
 > **Tool:** Run: `python3 -c "
 import json
-with open('/mnt/d/claude-data-04172026/projects.json') as f:
+with open('/home/mohan/claude-data-04172026/projects.json') as f:
     data = json.load(f)
 print(f'To...`
 
@@ -891,7 +891,7 @@ Now let me run the import.
 
 ## Assistant
 
-> **Tool:** Run: `python3 /home/mohan/.claude/hooks/import-claude-export.py /mnt/d/claude-data-04172026 --extract-kg`
+> **Tool:** Run: `python3 /home/mohan/.claude/hooks/import-claude-export.py /home/mohan/claude-data-04172026 --extract-kg`
 
 ---
 
@@ -1433,7 +1433,7 @@ Because now we have common paths across PCs (/home/mohan) how will they be machi
 
 Fair point. With the same `/home/mohan` path, the session states *could* technically work across machines. But there are still reasons to exclude them:
 
-1. **`cwd` paths differ** — this session points to `/mnt/d/work/general` which is a WSL2 Windows mount. Another Linux machine wouldn't have `/mnt/d/`
+1. **`cwd` paths differ** — this session points to `/home/mohan/work/general` which is a WSL2 Windows mount. Another Linux machine wouldn't have `/home/mohan/`
 2. **`sesslogs/`** — terminal shell logs, tied to the specific shell process
 3. **`shell-snapshots/`** — snapshots of shell env at a point in time
 4. **`history.jsonl`** — command history, accumulates fast
@@ -1471,14 +1471,14 @@ See the problem — the project directory name is derived from the **working dir
 projects/-mnt-d-work-general/<session-id>.jsonl
 ```
 
-On another PC, if you start Claude from a different path (say `/home/mohan/work/general` instead of `/mnt/d/work/general`), it creates a different project directory (`home-mohan-work-general`), and `--resume` won't find the transcript.
+On another PC, if you start Claude from a different path (say `/home/mohan/work/general` instead of `/home/mohan/work/general`), it creates a different project directory (`home-mohan-work-general`), and `--resume` won't find the transcript.
 
 **So cross-PC resume works only if:**
 - Same username (`mohan`) 
 - Same working directory path (e.g., both use `/home/mohan/work/general`)
 - Session state + transcript are both synced
 
-In practice, your WSL2 paths (`/mnt/d/...`) won't match another Linux machine. You'd need to standardize your working directories across machines (e.g., always use `/home/mohan/work/general`) for this to work reliably.
+In practice, your WSL2 paths (`/home/mohan/...`) won't match another Linux machine. You'd need to standardize your working directories across machines (e.g., always use `/home/mohan/work/general`) for this to work reliably.
 
 That said, even without resume, you can still **read** all your past conversations from any device via the GitHub Markdown pages — which is what we set up.
 
@@ -1660,7 +1660,7 @@ What is current directory you are working in?
 
 ## Assistant
 
-`/mnt/d/.claude` — which is the same as `/home/mohan/.claude` via your symlink. That's where all the `.claude` repo work has been happening.
+`/home/mohan/.claude` — which is the same as `/home/mohan/.claude` via your symlink. That's where all the `.claude` repo work has been happening.
 
 ---
 
@@ -1682,11 +1682,11 @@ Switched. I'll use `/home/mohan/.claude` from now on.
 
 ## User
 
-Never go back to /mnt/d paths again. Can you fix any paths referred to /mnt/d/ in /home/mohan/.claude files to /home/mohan?
+Never go back to /mnt/d paths again. Can you fix any paths referred to /home/mohan/ in /home/mohan/.claude files to /home/mohan?
 
 ## Assistant
 
-> **Tool:** Search for: `/mnt/d/`
+> **Tool:** Search for: `/home/mohan/`
 
 ---
 
@@ -1698,7 +1698,7 @@ Never go back to /mnt/d paths again. Can you fix any paths referred to /mnt/d/ i
 
 ## Assistant
 
-> **Tool:** Run: `cd /home/mohan/.claude && git ls-files | xargs grep -l "/mnt/d/" 2>/dev/null`
+> **Tool:** Run: `cd /home/mohan/.claude && git ls-files | xargs grep -l "/home/mohan/" 2>/dev/null`
 
 ---
 
@@ -1721,13 +1721,13 @@ for f in glob.glob('/home/mohan/.claude/session-states/*.json'):
 
 ## Assistant
 
-> **Tool:** Run: `cd /home/mohan/.claude && git ls-files session-states/ | xargs grep -l "/mnt/d/" 2>/dev/null | wc -l`
+> **Tool:** Run: `cd /home/mohan/.claude && git ls-files session-states/ | xargs grep -l "/home/mohan/" 2>/dev/null | wc -l`
 
 ---
 
 ## Assistant
 
-> **Tool:** Run: `cd /home/mohan/.claude && git ls-files session-states/ | xargs grep -l "/mnt/d/" 2>/dev/null`
+> **Tool:** Run: `cd /home/mohan/.claude && git ls-files session-states/ | xargs grep -l "/home/mohan/" 2>/dev/null`
 
 ---
 
@@ -1764,13 +1764,13 @@ Now let me commit and push the path fixes.
 ## Assistant
 
 > **Tool:** Run: `cd /home/mohan/.claude && git add session-states/ && git commit -m "$(cat <<'EOF'
-Fix /mnt/d/ paths to /home/mohan/ in s...`
+Fix /home/mohan/ paths to /home/mohan/ in s...`
 
 ---
 
 ## Assistant
 
-Done. 85 session-state files fixed and pushed. Note that Claude Code keeps overwriting the current session's `cwd` back to `/mnt/d/.claude` since that's where the process is actually running — that'll resolve once you start new sessions from `/home/mohan/` paths.
+Done. 85 session-state files fixed and pushed. Note that Claude Code keeps overwriting the current session's `cwd` back to `/home/mohan/.claude` since that's where the process is actually running — that'll resolve once you start new sessions from `/home/mohan/` paths.
 
 ---
 
@@ -1786,7 +1786,7 @@ Yes. When you're ready, exit and resume with:
 claude --resume f1decf82-056a-4e40-9581-ec12c85f5e6d
 ```
 
-The full transcript is saved in the projects directory, so I'll have all the context from this session. Just make sure to start Claude from `/home/mohan/work/general` (not `/mnt/d/`) so the new session uses the canonical path.
+The full transcript is saved in the projects directory, so I'll have all the context from this session. Just make sure to start Claude from `/home/mohan/work/general` (not `/home/mohan/`) so the new session uses the canonical path.
 
 Let me save a memory so future sessions know about this setup.
 

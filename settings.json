@@ -14,6 +14,18 @@
   },
   "effortLevel": "high",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "case \"$PWD\" in /home/mohan*) ;; *) echo 'Error: cwd must be under /home/mohan, got '\"$PWD\" >&2; exit 1;; esac",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "SessionEnd": [
       {
         "matcher": "*",

@@ -3,8 +3,8 @@
   "transcript_path": "/home/mohan/.claude/projects/-mnt-d-work-req-agent/cee147ed-85db-4f0c-87b8-d7e831dc465b.jsonl",
   "sessions_index_path": null,
   "sesslog_dir": "/home/mohan/.claude/sesslogs/req-agent__cee147ed-85db-4f0c-87b8-d7e831dc465b_mohan",
-  "original_cwd": "/mnt/d/work/req-agent",
-  "cwd": "/mnt/d/work/req-agent",
+  "original_cwd": "/home/mohan/work/req-agent",
+  "cwd": "/home/mohan/work/req-agent",
   "current_name": "req-agent",
   "updated_at": "2026-04-18T03:24:52.863502Z"
 }

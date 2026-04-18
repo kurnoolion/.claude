@@ -11,7 +11,7 @@ WHat is your cwd?
 
 ## Assistant
 
-My current working directory is `/mnt/d/work/req-agent`.
+My current working directory is `/home/mohan/work/req-agent`.
 
 ---
 
@@ -33,11 +33,11 @@ Done — my working directory is now `/home/mohan/work/req-agent`.
 
 ## User
 
-I started claude from /home/mohan/work/req-agent. Why did it change to /mnt/d/work/req-agent?
+I started claude from /home/mohan/work/req-agent. Why did it change to /home/mohan/work/req-agent?
 
 ## Assistant
 
-This is likely because `/home/mohan/work/req-agent` is a symlink that resolves to `/mnt/d/work/req-agent`. Claude Code probably resolved the symlink to the canonical path. Let me verify.
+This is likely because `/home/mohan/work/req-agent` is a symlink that resolves to `/home/mohan/work/req-agent`. Claude Code probably resolved the symlink to the canonical path. Let me verify.
 
 ---
 
@@ -49,7 +49,7 @@ This is likely because `/home/mohan/work/req-agent` is a symlink that resolves t
 
 ## Assistant
 
-That confirms it. `readlink -f` shows that `/home/mohan/work/req-agent` resolves to `/mnt/d/work/req-agent` — it's on your Windows D: drive mounted via WSL2. Claude Code resolves symlinks to the canonical path, which is why it set the primary working directory to `/mnt/d/work/req-agent`.
+That confirms it. `readlink -f` shows that `/home/mohan/work/req-agent` resolves to `/home/mohan/work/req-agent` — it's on your Windows D: drive mounted via WSL2. Claude Code resolves symlinks to the canonical path, which is why it set the primary working directory to `/home/mohan/work/req-agent`.
 
 Both paths point to the same directory, so functionally there's no difference. I'll continue using `/home/mohan/work/req-agent` as you prefer.
 
@@ -73,11 +73,11 @@ There's **no built-in setting** in Claude Code to disable symlink resolution —
 
 1. **Use a bind mount instead of a symlink** — bind mounts don't get resolved:
    ```bash
-   sudo mount --bind /mnt/d/work/req-agent /home/mohan/work/req-agent
+   sudo mount --bind /home/mohan/work/req-agent /home/mohan/work/req-agent
    ```
    (Add to `/etc/fstab` to persist across reboots.)
 
-2. **Launch from the canonical path** — just `cd /mnt/d/work/req-agent` before starting `claude`.
+2. **Launch from the canonical path** — just `cd /home/mohan/work/req-agent` before starting `claude`.
 
 3. **File a feature request** — run `/feedback` in Claude Code to request a `--no-resolve-symlinks` flag or similar option.
 
@@ -94,7 +94,7 @@ The reason I'm insisting on /home/mohan path is that I'm using thie path across 
 Add this line to `/etc/fstab`:
 
 ```
-/mnt/d/work/req-agent /home/mohan/work/req-agent none bind 0 0
+/home/mohan/work/req-agent /home/mohan/work/req-agent none bind 0 0
 ```
 
 After adding it, apply without rebooting:
