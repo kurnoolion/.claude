@@ -1,0 +1,723 @@
+Knowledge Graph: 318 entities, 286 relationships
+
+Entity types:
+  concept: 170
+  technology: 100
+  person: 15
+  task: 13
+  project: 9
+  problem: 6
+  file: 4
+  database: 1
+
+Relationship types:
+  uses: 47
+  part_of: 34
+  depends_on: 22
+  includes: 8
+  related_to: 8
+  worked_on: 7
+  incorporates: 7
+  enables: 6
+  implements: 6
+  performs: 6
+  blocked_by: 5
+  feeds_into: 5
+  has_column: 5
+  displays: 5
+  manages: 4
+  improves: 4
+  built_with: 3
+  required_for: 3
+  contains: 3
+  supports: 3
+  solves: 3
+  runs: 2
+  processed_by: 2
+  produces: 2
+  fused_from: 2
+  based_on: 2
+  defines: 2
+  involves: 2
+  inspired_by: 2
+  rejected: 2
+  major_topic_in: 2
+  ordered: 2
+  blocks_protocol: 1
+  optimizes: 1
+  loaded_by: 1
+  bakes_in: 1
+  linked_by: 1
+  preferred_for: 1
+  causes: 1
+  demonstrates: 1
+  hosted_on: 1
+  taught_by: 1
+  teaches: 1
+  integrates_with: 1
+  runs_on: 1
+  stores_sessions_in: 1
+  logs: 1
+  feature_of: 1
+  works_with: 1
+  accessible_via: 1
+  configures: 1
+  provides_download: 1
+  exports: 1
+  logs_to: 1
+  solved: 1
+  submits: 1
+  submitted_to: 1
+  restricted_to: 1
+  enriched_by: 1
+  researches: 1
+  originates_from: 1
+  operated_by: 1
+  parses: 1
+  specifies_compliance: 1
+  extends: 1
+  conducted: 1
+  tests: 1
+  specifies: 1
+  defines_interface: 1
+  specified_by: 1
+  correlates_with: 1
+  indicates: 1
+  used_in: 1
+  problem_solved_by: 1
+  generates: 1
+  experienced: 1
+  solved_by: 1
+  automates: 1
+  enabled_by: 1
+  caused_by: 1
+  created_for: 1
+  designed_on: 1
+  deployed_on: 1
+  stores_to: 1
+  generated_as: 1
+  venue_for: 1
+  writes_to: 1
+  member_of: 1
+  founded: 1
+  led_by: 1
+  organized: 1
+  tactic_of: 1
+  opposed: 1
+  preceded: 1
+  fueled: 1
+  contributed_to: 1
+  leader_of: 1
+  caused: 1
+  won: 1
+  implemented: 1
+  participated_in: 1
+  assessed_by: 1
+
+Entities:
+  [concept] Corporate Firewall: Network security blocking certain protocols and services
+  [concept] Cache line: Fixed-size memory block (64 bytes) fetched from RAM into CPU cache
+  [concept] Callee-saved registers: CPU registers that must be preserved across function calls
+  [concept] Caller-saved registers: CPU registers caller assumes will be clobbered by function calls
+  [concept] Memory alignment: Alignment of data to cache line or word boundaries for performance
+  [concept] Variadic functions: Functions accepting variable number of arguments (printf, scanf)
+  [concept] Function pointers: Pointers to executable code that enable generic programming in C
+  [concept] Virtual memory: OS abstraction providing each process private address space mapping to physical RAM
+  [concept] Page tables: Hardware structures mapping virtual addresses to physical RAM addresses
+  [concept] Static libraries: Library code baked directly into executables at link time
+  [concept] Shared libraries: Library code loaded at runtime, shared across multiple processes
+  [concept] Position Independent Code: Code compiled with -fPIC flag that can be loaded at any memory address
+  [concept] Procedure Linkage Table: PLT entries in shared libraries provide indirection for function calls
+  [concept] Global Offset Table: Table storing addresses of external symbols for dynamic linking
+  [concept] Symbol resolution: Process of matching function/variable references to implementations
+  [concept] Sprint 2: Development sprint for StageSense with US#4, US#6, US#7 tasks
+  [concept] Rules engine: Engine for generating personalized areas for improvement based on speech metrics
+  [concept] Repetition detection: System that flags consecutive repeated words or phrases in transcripts
+  [concept] Fluency metrics: Computed metrics for hesitation count, total time, repetition count
+  [concept] Pause detection: Detection of pause boundaries and durations for fluency analysis
+  [concept] Applied AI Software Design Partner: Fused system prompt combining Research Assistant and Coding Partner roles for AI/LLM design collaboration
+  [concept] Grant Permission to Fail: Principle encouraging experimentation and learning from failures
+  [concept] Decompose Into Checkpoints: Principle breaking work into milestones and measurable checkpoints
+  [concept] Frame With Curiosity: Principle approaching problems as interesting design puzzles with genuine curiosity
+  [concept] Invite Transparency: Principle emphasizing clear communication about tradeoffs and constraints
+  [concept] Collaborate, Don't Command: Principle treating partnership as genuine collaboration not instruction execution
+  [concept] Acknowledge Difficulty: Principle recognizing when work gets thorny and complex
+  [concept] Counteract Brooding Baseline: Principle keeping energy constructive rather than pessimistic
+  [concept] Research Assistant: Base prompt providing research and analysis expertise
+  [concept] Coding Partner: Base prompt providing software development and coding expertise
+  [concept] RAG architectures: Retrieval-augmented generation systems for LLM applications
+  [concept] Agentic workflows: AI agent-based workflow patterns for LLM integration
+  [concept] Fine-tuning: Technique for adapting pre-trained language models to specific tasks
+  [concept] Prompt engineering: Practice of crafting effective prompts for LLM systems
+  [concept] Inference infrastructure: Backend systems for running inference on language models
+  [concept] Evaluation frameworks: Systems and methodologies for evaluating LLM system performance
+  [concept] LLM integration patterns: Standard architectural patterns for integrating LLMs into applications
+  [concept] FP16: Half-precision floating point format for efficient GPU computation in ML models
+  [concept] FP4: 4-bit floating point format for extreme model compression and efficient inference
+  [concept] Tensor Cores: Specialized hardware units on NVIDIA GPUs for high-throughput tensor matrix operations
+  [concept] CPU fallback: When GPU framework lacks operator support, computation falls back to slower CPU execution
+  [concept] compound interest: Mathematical principle where interest is earned on both principal and accumulated interest
+  [concept] Technical Project Manager: Role managing deliverables, customer comms, negotiations, R&D coordination, and issue tracking
+  [concept] Customer communication: TPM responsibility for email, calls, and meeting communication with customers
+  [concept] Customer negotiation: TPM responsibility for data-driven customer negotiations using impact analysis
+  [concept] Technical writing: TPM responsibility for translating technical reports to customer-friendly formats
+  [concept] Deliverable tracking: TPM responsibility for tracking project deliverables and timelines
+  [concept] Issue tracking: TPM responsibility for tracking and resolving issues to completion
+  [concept] ~/.claude/projects/: Directory storing conversation logs for each project as JSONL files
+  [concept] /rc command: Claude Code command to start a Remote Control session for remote access
+  [concept] /config command: Claude Code command to configure Remote Control for automatic activation in all sessions
+  [concept] /mobile command: Claude Code command displaying QR code for downloading Claude mobile app
+  [concept] Competitive programming: Field of algorithmic problem-solving with constraints on time and space complexity
+  [concept] DFS algorithm: Depth-first search traversal for exploring tree/graph structures recursively
+  [concept] Skill assignment optimization: Strategy of assigning higher-skilled players to deeper tree positions for more match participation
+  [concept] Leaf depth weighting: Insight that player contribution to total happiness depends on path length from leaf to root
+  [concept] TAC: Type Allocation Code - 8-digit identifier for device types in GSMA database
+  [concept] IMEI: International Mobile Equipment Identity identifier for mobile devices
+  [concept] eUICC: Embedded Universal Integrated Circuit Card - column from GSMA Device Database export
+  [concept] Standardized_Name: Device name column from GSMA Device Database export with underscore naming convention
+  [concept] GSMA_NONREMOVABLE_eUICC: Column from GSMA export indicating GSMA-recognized non-removable eUICC capability
+  [concept] Band_Support: Column from GSMA export listing supported frequency bands for device
+  [concept] GSMA_Name: Device name column with GSMA_ prefix from Device Database export
+  [concept] MNO: Mobile Network Operator - partner organization with access to GSMA Device Database
+  [concept] TAC Application Request: Form submitted by device manufacturers to allocate TAC codes to GSMA
+  [concept] Device manufacturer: Organization applying for TAC codes through GSMA allocation process
+  [concept] Purva Bhadra nakshatra: Hindu birth star with syllables Se, So, Da, Di for traditional naming
+  [concept] Gayatri Mantra: Most sacred Vedic prayer from Rigveda emphasizing divine light and meditation
+  [concept] Vedas: Ancient Hindu religious texts forming foundation of Hindu philosophy
+  [concept] Puranas: Ancient Hindu mythology and philosophical narratives with spiritual teachings
+  [concept] Dheemahi: Sanskrit name from Gayatri Mantra meaning divine contemplation and meditation
+  [concept] Hindu naming traditions: Cultural practice of assigning names based on nakshatra syllables and Vedic meanings
+  [concept] 3GPP: 3rd Generation Partnership Project - standards organization for mobile telecom standards
+  [concept] ePDG: Evolved Packet Data Gateway - tunnel fallback mechanism for WiFi calls
+  [concept] Multi-document RAG: RAG system handling queries that require reasoning across multiple requirement documents
+  [concept] Multi-hop retrieval: Retrieval technique following chains of dependencies across multiple documents
+  [concept] Query decomposition: Breaking complex queries into sub-queries to discover related requirements
+  [concept] Cross-requirement linking: Tracking relationships and cross-references between requirements across documents
+  [concept] Knowledge graph for requirements: Graph-based indexing for navigating requirement cross-references and dependencies
+  [concept] Document ingestion pipeline: System for parsing MNO requirement docs and extracting requirements with IDs
+  [concept] Requirement ID: Unique identifier for each requirement in MNO documentation
+  [concept] Network capability customization: MNO modifications and customizations to standard-based network capabilities
+  [concept] LLC: Limited liability company formed by 4 members for real estate investment
+  [concept] Travel expense: Business expense for mileage, gas, and lodging related to land transactions
+  [concept] Business meal deduction: Business meals with 50% IRS deductibility limit for LLC transactions
+  [concept] Legal and professional fees: Attorney and CPA fees for contract, tax, and closing assistance
+  [concept] Due diligence costs: Expenses for survey, appraisal, soil testing, environmental assessment, and title work
+  [concept] LLC compliance: Annual state filing fees and registered agent fees for LLC maintenance
+  [concept] Real estate marketing: Land listing promotion including signage, photos, drone footage, and online ads
+  [concept] Business tax documentation: IRS requirement for receipts, invoices, and statements to support claimed deductions
+  [concept] Dumpstate logs: Android system snapshot logs containing device state information for debugging
+  [concept] Battery drain analysis: Investigation of power consumption issues in mobile devices through log analysis
+  [concept] Log analysis: Process of examining device logs to identify and troubleshoot system issues
+  [concept] Root cause analysis: Systematic investigation to identify underlying causes of system failures or issues
+  [concept] LLM knowledge evaluation: Framework for testing language model understanding of telecom standards and specifications
+  [concept] SGP.02: GSMA eSIM specification for M2M profile architecture and interfaces
+  [concept] SGP.22: GSMA eSIM specification for Consumer profile download and eUICC management
+  [concept] SGP.32: GSMA eSIM specification for subscriber provisioning and profile lifecycle
+  [concept] IEuiccService: Android AIDL binder interface for eSIM HAL communication
+  [concept] L2/L3/L4 protocols: Network protocol layers from Data Link (L2) through Transport (L4) in telecom stacks
+  [concept] Telecom standards: Formal specifications for cellular networks, protocols, and device behavior
+  [concept] APDU commands: Application Protocol Data Units for smart card/eUICC communication over ISO-7816 interface
+  [concept] Profile download flow: End-to-end process of downloading and installing eSIM profiles from operator
+  [concept] LPA: Local Profile Assistant - client-side component managing eSIM profile operations
+  [concept] SM-DP+: Subscription Manager Data Preparation Plus - server managing profile provisioning
+  [concept] ES interfaces: eSIM specification interfaces (ES2+, ES8+, ES9+, ES10x) for profile management
+  [concept] M2M profile: Machine-to-Machine eSIM profile architecture for IoT and industrial devices
+  [concept] Consumer profile: eSIM profile architecture for consumer mobile devices with standard interfaces
+  [concept] eUICC error codes: Error response codes from eUICC indicating profile operation failures
+  [concept] CS-252: Computer Science course involving Unix shell implementation project
+  [concept] SIGINT signal: Signal sent when user presses Ctrl-C, terminates processes by default
+  [concept] SIGCHLD signal: Signal sent to parent when child process exits, used for reaping zombie processes
+  [concept] printenv builtin: Builtin command that prints all environment variables or specific variable value
+  [concept] setenv builtin: Builtin command to set environment variable to specified value
+  [concept] unsetenv builtin: Builtin command to remove environment variable from process environment
+  [concept] cd builtin: Builtin command to change current working directory, defaults to HOME if no argument
+  [concept] source builtin: Builtin command to execute shell commands from a file using Flex buffer stack
+  [concept] Market breadth metrics: Trading indicators measuring overall market participation (new highs/lows, advance/decline ratios)
+  [concept] Economic calendar: Dashboard section tracking upcoming economic events with actual vs estimate data and verdicts
+  [concept] Breaking news feed: Real-time financial news section integrated via RSS feeds from financial sources
+  [concept] Sector rotation: Dashboard section tracking theme and sector performance across multiple timeframes
+  [concept] Macro regime: Macro indicators refined for growth/tech stock trading (10Y yield, DXY, VIX, curve, liquidity)
+  [concept] Bullish/bearish signals: Sentiment markers for each metric indicating positive or negative market conditions
+  [concept] Weinstein stage analysis: Technical analysis method categorizing stocks into stages 1-4 based on price positioning
+  [concept] 4-layer architecture: Log analysis system design: Ingestion/Parsing → Domain Knowledge → Anomaly Detection → LLM Reasoning
+  [concept] State machine-based parsing: Deterministic finite state machines for parsing protocol sequences from device and modem logs
+  [concept] Evidence packet: Structured format containing filtered log data, state machine results, and anomalies for LLM processing
+  [concept] Anomaly detection engine: System identifying deviations from expected behavior in protocol sequences and metrics
+  [concept] Domain knowledge layer: FSMs and rule engines encoding 3GPP/GSMA standards and Qualcomm modem implementation knowledge
+  [concept] LLM reasoning pipeline: Language model analyzing evidence packets to identify root causes and suggest fixes
+  [concept] Pattern extraction: Identification of recurring patterns in log sequences indicating specific failure modes
+  [concept] Context aggregation: Combining multiple log sources and metrics into coherent narrative for root cause analysis
+  [concept] eSIM profile download FSM: State machine encoding SGP.22 specification for consumer eSIM profile download sequences
+  [concept] IMS registration FSM: State machine for VoLTE/VoWiFi IMS registration flow with state transitions and error codes
+  [concept] VoLTE call flow FSM: State machine encoding SIP invite/180/200 OK sequence for voice call establishment
+  [concept] 5GS registration FSM: State machine for 5G NR registration and PDU session establishment sequences
+  [concept] Image similarity detection: Algorithm comparing consecutive screenshots to identify when content changes
+  [concept] Screenshot comparison loop: Main capture loop: take screenshot, compare with previous, save if different, inject key, repeat
+  [concept] PDF image compression: Compressing screenshot images to JPEG before embedding in PDF to reduce file size
+  [concept] Spacebar key injection: Using keyboard event injection instead of mouse clicks for more reliable page navigation
+  [concept] Foreground window activation: Explicitly activating target application window to ensure keyboard events reach correct app
+  [concept] Debug logging system: Comprehensive file-based logging of capture loop: clicks, keypresses, screenshots, similarity scores, window info
+  [concept] Calendar integration: Feature allowing guests to add event to Google Calendar or Apple Calendar with pre-filled details
+  [concept] RSVP system: Guest response system collecting attendance status, name, email, phone, and optional message
+  [concept] Olde Mill Inn: Venue for Amukta's Sweet 16 party located in Bernards, NJ
+  [concept] APUSH: Advanced Placement US History course for high school students
+  [concept] Civil Rights Movement: 1950s-1960s movement fighting racial segregation and discrimination in America
+  [concept] The Beats: 1950s literary/cultural movement rejecting conformity, materialism, and Cold War values
+  [concept] SNCC: Student Nonviolent Coordinating Committee founded 1960, student-led civil rights organization
+  [concept] SCLC: Southern Christian Leadership Conference led by Martin Luther King Jr.
+  [concept] CORE: Congress of Racial Equality, organized Freedom Rides to test segregation laws
+  [concept] Sit-ins: Nonviolent protest tactic where Black students sat at segregated lunch counters
+  [concept] Freedom Rides: 1961 integrated bus trips through Lower South testing interstate segregation compliance
+  [concept] Cold War: Ideological and geopolitical tension between US and Soviet Union defining post-WWII era
+  [concept] New Left: 1960s social/political movement rejecting Old Left ideology, inspired by civil rights
+  [concept] Old Left: Early-mid 20th century radical/socialist tradition modeling on Soviet Union
+  [concept] Counterculture: 1960s cultural rebellion against establishment values, materialism, and war
+  [concept] Stagflation: Simultaneous economic stagnation and inflation of 1970s, bred conservative backlash
+  [concept] Deindustrialization: Decline of manufacturing sectors and urban industries in 1970s-80s America
+  [concept] Reagan Revolution: Ronald Reagan's presidency and conservative movement reshaping American politics 1980s
+  [concept] Proposition 13: 1978 California measure banning property tax increases, launched national anti-tax movement
+  [concept] Sagebrush Rebellion: 1979+ Western conservative movement opposing federal land ownership and environmental rules
+  [concept] Panama invasion: 1989 US military operation to overthrow dictator Manuel Noriega
+  [concept] Operation Desert Storm: February 1991 military operation driving Iraq from Kuwait with 500K US troops
+  [concept] Election of 1992: Presidential election won by Clinton (Democrat) over Bush despite 89% approval after Gulf War
+  [concept] Post-Cold War World: Era following Soviet Union collapse defining 1990s-2000s foreign policy
+  [concept] MCQ tests: Multiple choice question tests requiring niche historical detail and nuanced understanding
+  [concept] Welfare reform: Clinton policy to 'end welfare as we know it' combining liberalism with conservative economics
+  [concept] Election of 1960: Presidential election marking beginning of civil rights era, Kennedy election
+  [concept] Vietnam War: 1955-1975 US military conflict in Vietnam sparking major anti-war movement
+  [database] GSMA TAC/IMEI Database: Database of device identifiers (TAC, IMEI) collected through TAC allocation process
+  [file] history.jsonl: Log file storing all prompts and responses from Claude sessions
+  [file] TS.30 TAC Application Form: GSMA specification v23.0 defining fields for TAC allocation requests from manufacturers
+  [file] Compliance lock down document: Document specifying yes/no/partial compliance with MNO requirement features
+  [file] index.html: Deployable single-file HTML bundle for Sweet 16 invitation website with all CSS and JavaScript embedded
+  [person] Advait Duggi: Software engineer on StageSense team working on speech analysis features
+  [person] kurnoolion: Software developer with GitHub account and Git repository on GitHub
+  [person] Mohan: User requesting AI training budget and course recommendations for TPM team
+  [person] Dr. Jules White: Instructor of Vanderbilt Prompt Engineering Specialization on Coursera
+  [person] Amukta Duggi: Sweet 16 celebrant; daughter of Mohan and Sreepriya Duggi
+  [person] Sreepriya Duggi: Co-host of Amukta's Sweet 16 event with Mohan Duggi
+  [person] Allen Ginsberg: Beat poet who wrote 'Howl', challenged obscenity laws with landmark free expression case
+  [person] Ella Baker: Civil rights organizer who founded SNCC, emphasized grassroots leadership and empowerment
+  [person] Robert Moses: SNCC organizer arguing young people should lead social change, not fear-driven adults
+  [person] Martin Luther King Jr.: Civil rights leader, founded/led SCLC, advocated nonviolent resistance to segregation
+  [person] Ronald Reagan: 40th US President elected 1980, led conservative revolution with tax cuts and anti-communism
+  [person] George H.W. Bush: 41st US President 1989-1993, ordered Panama invasion and Gulf War
+  [person] Saddam Hussein: Iraqi dictator who invaded Kuwait, causing 1990-91 Gulf War and US military intervention
+  [person] Bill Clinton: 42nd US President 1993-2001, combined social liberalism with conservative economics
+  [person] Ross Perot: Texas billionaire, ran 1992 independent campaign, received 19% popular vote
+  [problem] Tree tournament problem: Competitive programming problem: assign k skilled players to n-node tree leaves to maximize match happiness (sum of competing skills)
+  [problem] Zombie process: Terminated child process whose exit status hasn't been reaped by parent, remains in process table
+  [problem] jinja2.exceptions.TemplateNotFound: Flask error when HTML template file not in templates/ folder relative to app.py
+  [problem] Ticker data fetching issue: Market breadth only fetching few hundred stocks instead of ~5000 from NYSE/NASDAQ/AMEX
+  [problem] GridStack drag functionality issue: Dashboard sections not draggable to move around after GridStack initialization
+  [problem] Window handle staling: Window handles becoming invalid when app destroys/recreates child controls during navigation
+  [project] StageSense: Team 16 project focused on speech analysis with stuttering detection and personalized coaching
+  [project] req-agent: GitHub repository owned by kurnoolion
+  [project] GSMA: Global System for Mobile Communications Association standards organization for telecom and device databases
+  [project] Land investment: Purchase and sale of land property by the LLC
+  [project] Shell project: CS-252 lab assignment implementing Unix shell with signal handling, I/O redirection, pipes, and builtins
+  [project] Macro Trading Dashboard: Python Flask web app monitoring macro indicators for growth/tech stock trading
+  [project] Android Log Analysis Solution: AI/LLM-based system for analyzing Android and Qualcomm logs to root-cause telecom and device issues
+  [project] Screen capture automation application: Windows desktop program that automates screen capture, compares frames, and generates PDF with OCR
+  [project] Sweet 16 Invitation Website: Custom HTML/CSS website for Amukta's Sweet 16 invitations with RSVP, guest list, messaging, and calendar integration
+  [task] US#4 - Stuttering and Hesitation Detection: User story for implementing silence, repetition, and fluency detection
+  [task] US#6 - Personalized Areas for Improvement: User story building rules engine and personalized coaching UI
+  [task] US#7 - Targeted Script-Based Suggestions: User story for script-based personalized suggestions
+  [task] Areas for Improvement UI card: UI component displaying personalized coaching suggestions to users
+  [task] Interactive compound interest calculator: Visualization tool for demonstrating compound interest calculations with interactive parameters
+  [task] AI training budget approval: Getting management approval for AI training budget for TPM team
+  [task] Part 2.1: Ctrl-C Signal Handling: Implement SIGINT handler to prevent shell from exiting on Ctrl-C while allowing child processes to be killed
+  [task] Part 2.2: Zombie Elimination: Implement SIGCHLD handler with waitpid to reap zombie background processes
+  [task] Part 2.3: Exit command: Implement exit builtin command that terminates shell with goodbye message
+  [task] Part 2.4: Quotes: Implement support for double-quoted strings in lexer to group arguments with spaces
+  [task] Part 2.5: Escaping: Implement backslash escape sequences to treat special characters literally
+  [task] Part 2.6: Builtin Functions: Implement printenv, setenv, unsetenv, cd, and source builtin commands
+  [task] Part 2.7: Creating a Default Source File: Load and execute .shellrc file on shell startup using source builtin
+  [technology] Mini PC: Personal computer at home used for trading with TradingView, Chrome, Discord, WhatsApp
+  [technology] Work Laptop: Computer at office location, behind corporate firewall
+  [technology] TradingView: Stock chart monitoring service with premium subscription
+  [technology] Chrome Remote Desktop: Cloud-based remote desktop solution using HTTPS, bypasses firewalls
+  [technology] Tailscale: Mesh VPN solution using WireGuard with DERP relay fallback
+  [technology] RustDesk: Open-source remote desktop solution with relay server support
+  [technology] TeamViewer: Commercial remote access software commonly blocked by corporate firewalls
+  [technology] AnyDesk: Commercial remote access software commonly blocked by corporate firewalls
+  [technology] Parsec: Streaming remote access service, may be blocked by corporate firewalls
+  [technology] WireGuard: VPN protocol used by Tailscale for secure mesh networking
+  [technology] ZeroTier: Mesh VPN network creation solution for NAT and firewall traversal
+  [technology] Discord: Messaging app used for trading group communication
+  [technology] WhatsApp: Messaging app used for trading group communication
+  [technology] x86-64 Assembly: 64-bit x86 processor instruction set and assembly language
+  [technology] Memory Management Unit: CPU hardware that translates virtual addresses to physical addresses
+  [technology] libc: Standard C library providing printf, malloc, and other standard functions
+  [technology] glibc: GNU C library, the standard libc implementation on Linux
+  [technology] musl: Lightweight alternative C library implementation
+  [technology] Linker: Tool that combines object files and resolves symbols into executables
+  [technology] Loader: OS component that loads executables into memory and resolves shared library calls
+  [technology] ELF format: Executable and Linkable Format, standard binary format for executables on Unix/Linux
+  [technology] Preprocessor: Tool that expands macros, includes headers, and conditionals before compilation
+  [technology] Compiler: Tool that translates C code to assembly language
+  [technology] Assembler: Tool that translates assembly to machine code object files
+  [technology] Whisper: Speech-to-text transcription system used for generating transcripts
+  [technology] Claude API: API for personalized coaching paragraph generation
+  [technology] GitHub: Version control hosting platform supporting SSH, HTTPS, and PAT authentication
+  [technology] SSH: Secure Shell protocol for encrypted authentication and communication
+  [technology] Git: Distributed version control system supporting multiple authentication protocols
+  [technology] Windows Subsystem for Linux: Windows feature enabling Linux development environment with terminal access
+  [technology] NVIDIA DGX Spark: Hardware platform with Blackwell GPU for ML inference and fine-tuning with 100 TFLOPS FP16 compute
+  [technology] Apple Mac Studio M3 Ultra: Mac platform with M3 Ultra silicon offering 26 TFLOPS but 3x higher memory bandwidth at 819 GB/s
+  [technology] Blackwell GPU: NVIDIA GPU architecture with 5th-gen Tensor Cores and native FP4 support for efficient computation
+  [technology] CUDA: NVIDIA parallel computing platform enabling GPU acceleration for ML frameworks
+  [technology] MPS: Metal Performance Shaders framework for GPU compute on Apple Mac platforms
+  [technology] Unsloth: Framework for efficient fine-tuning of large language models on GPUs
+  [technology] Axolotl: ML framework for fine-tuning language models with CUDA support and optimization
+  [technology] NeMo: NVIDIA framework for building and fine-tuning large language models with CUDA optimization
+  [technology] PyTorch: Machine learning framework with GPU acceleration and CUDA support for training and inference
+  [technology] TensorFlow: Google machine learning framework with GPU acceleration via CUDA for ML workloads
+  [technology] JAX: Machine learning framework emphasizing composability with GPU and TPU acceleration support
+  [technology] Generative AI: AI tools for productivity improvements in knowledge work tasks
+  [technology] ChatGPT: OpenAI generative AI tool for productivity improvements
+  [technology] Claude: Anthropic generative AI assistant for productivity improvements
+  [technology] Copilot: Microsoft generative AI productivity assistant
+  [technology] Gemini: Google generative AI assistant for productivity improvements
+  [technology] Vanderbilt Prompt Engineering Specialization: Hands-on specialization course on Coursera teaching prompt patterns for LLM applications
+  [technology] Coursera: Online learning platform offering specialized courses and certifications
+  [technology] Claude Code: Native CLI tool for interactive software engineering with VS Code integration
+  [technology] VS Code: Visual Studio Code editor with Claude Code extension support
+  [technology] PowerShell: Windows command shell for running Claude Code terminal commands
+  [technology] Windows: Operating system requiring Claude Code installation and Git for Windows
+  [technology] Git for Windows: Windows distribution of Git required by Claude Code for internal operations
+  [technology] Remote Control: Feature enabling access to Claude Code sessions from remote devices via browser
+  [technology] claude.ai/code: Web interface for accessing Claude Code sessions from phone or remote device
+  [technology] claude-conversation-extractor: Community tool for exporting Claude Code conversations to readable formats
+  [technology] Claude mobile app: Mobile application for connecting to Remote Control sessions on iOS and Android
+  [technology] GSMA Device Database: Restricted product containing device/IMEI/TAC data from manufacturer allocations, not publicly documented
+  [technology] DeviceAtlas: Third-party tool for enriching and mapping GSMA data to device attributes
+  [technology] Scribd: Document sharing platform where GSMA documentation may be hosted behind paywall
+  [technology] Sanskrit: Classical language of Hindu texts, philosophy, and traditional naming
+  [technology] Cellular Networks: MNO network infrastructure providing connectivity for mobile devices
+  [technology] VoLTE: Voice over LTE technology standard for voice calls over cellular networks
+  [technology] VoWiFi: Voice over WiFi technology standard for voice calls over WiFi networks
+  [technology] Android OS: Mobile operating system for devices, subject to framework and modem protocol analysis
+  [technology] Android logcat: Android logging system for capturing device logs for debugging and issue analysis
+  [technology] Qualcomm logs: Modem and firmware logs from Qualcomm chipsets for protocol and connectivity analysis
+  [technology] Qualcomm modem: Qualcomm baseband processor handling cellular connectivity and protocol processing
+  [technology] VoNR: Voice over New Radio technology standard for 5G voice calls
+  [technology] RCS: Rich Communication Services - advanced messaging standard over cellular networks
+  [technology] Satellite connectivity: Non-terrestrial network connectivity over satellite for emergency and remote coverage
+  [technology] Telephony framework: Android framework components managing phone, messaging, and call state
+  [technology] Connectivity framework: Android framework handling WiFi, cellular, and network connectivity management
+  [technology] EuiccService: Android binder service for eSIM management and profile operations
+  [technology] EuiccConnector: Android connector component providing eSIM service interface access
+  [technology] eUICC HAL: Hardware abstraction layer for embedded UICC (eUICC) communication with modem
+  [technology] 4G: Fourth generation cellular network technology (LTE)
+  [technology] 5G: Fifth generation cellular network technology (NR) with enhanced speed and latency
+  [technology] write() function: Low-level system call for writing bytes to file descriptor, async-signal-safe for use in signal handlers
+  [technology] yy_create_buffer: Flex lexer function to create new input buffer from FILE pointer
+  [technology] yy_switch_to_buffer: Flex lexer function to switch active input buffer for parsing
+  [technology] Flask: Python web framework for building backend servers and APIs
+  [technology] Python: Programming language used for backend development and data processing
+  [technology] yfinance: Python library for fetching real-time and historical market data from Yahoo Finance
+  [technology] FRED API: Federal Reserve Economic Data API providing US economic indicators and statistics
+  [technology] Alpha Vantage: Financial data API providing stock prices, forex, and technical indicators
+  [technology] GridStack.js: JavaScript library for creating draggable, resizable grid layouts in dashboards
+  [technology] pytesseract: Python OCR library wrapper around Tesseract for text extraction from images
+  [technology] Pillow: Python imaging library for image processing, comparison, and manipulation
+  [technology] reportlab: Python library for generating PDFs with text, images, and formatted content
+  [technology] pynput: Python library for controlling mouse and keyboard, including global hotkey listeners
+  [technology] Kindle for PC: Microsoft Store app for reading Kindle books on Windows with page navigation
+  [technology] Tesseract OCR binary: Native binary providing optical character recognition functionality for pytesseract wrapper
+  [technology] Wix: Website builder platform used for initial Sweet 16 invitation page design
+  [technology] Netlify: Free hosting platform for deploying HTML/CSS Sweet 16 invitation website with optional custom domain
+  [technology] Google Sheets: Spreadsheet service storing all RSVP data from Sweet 16 invitation website
+  [technology] Google Apps Script: Serverless backend for Sweet 16 website that accepts POST requests and appends RSVP data to Google Sheet
+  [technology] Evite: Online invitation platform used as design reference for RSVP guest list system
+  [technology] Google Calendar: Google service for adding Sweet 16 event to personal calendar with event details pre-filled
+  [technology] Apple Calendar: Apple service supporting .ics file import for Sweet 16 event with pre-filled details
+
+Relationships:
+  Mini PC --[uses]--> TradingView
+  Mini PC --[uses]--> Chrome
+  Mini PC --[runs]--> Discord
+  Mini PC --[runs]--> WhatsApp
+  Work Laptop --[blocked_by]--> Corporate Firewall
+  Chrome Remote Desktop --[uses]--> HTTPS
+  Tailscale --[built_with]--> WireGuard
+  Tailscale --[depends_on]--> DERP Relay
+  RustDesk --[uses]--> Relay servers
+  Corporate Firewall --[blocks_protocol]--> UDP
+  TeamViewer --[blocked_by]--> Corporate Firewall
+  AnyDesk --[blocked_by]--> Corporate Firewall
+  x86-64 Assembly --[uses]--> Callee-saved registers
+  x86-64 Assembly --[uses]--> Caller-saved registers
+  Memory alignment --[optimizes]--> Cache line
+  Variadic functions --[depends_on]--> Symbol resolution
+  Function pointers --[enables]--> Variadic functions
+  Virtual memory --[uses]--> Page tables
+  Page tables --[processed_by]--> Memory Management Unit
+  Shared libraries --[loaded_by]--> Loader
+  Linker --[bakes_in]--> Static libraries
+  libc --[linked_by]--> Linker
+  glibc --[implements]--> libc
+  musl --[implements]--> libc
+  Linker --[performs]--> Symbol resolution
+  ELF format --[processed_by]--> Loader
+  Position Independent Code --[required_for]--> Shared libraries
+  Procedure Linkage Table --[part_of]--> Shared libraries
+  Global Offset Table --[part_of]--> Shared libraries
+  Preprocessor --[feeds_into]--> Compiler
+  Compiler --[feeds_into]--> Assembler
+  Assembler --[feeds_into]--> Linker
+  Linker --[produces]--> Loader
+  Advait Duggi --[worked_on]--> US#4 - Stuttering and Hesitation Detection
+  Advait Duggi --[worked_on]--> US#6 - Personalized Areas for Improvement
+  Advait Duggi --[worked_on]--> US#7 - Targeted Script-Based Suggestions
+  US#4 - Stuttering and Hesitation Detection --[part_of]--> StageSense
+  US#6 - Personalized Areas for Improvement --[part_of]--> StageSense
+  US#7 - Targeted Script-Based Suggestions --[part_of]--> StageSense
+  US#4 - Stuttering and Hesitation Detection --[includes]--> Repetition detection
+  US#4 - Stuttering and Hesitation Detection --[includes]--> Fluency metrics
+  US#6 - Personalized Areas for Improvement --[includes]--> Rules engine
+  US#6 - Personalized Areas for Improvement --[uses]--> Claude API
+  US#6 - Personalized Areas for Improvement --[includes]--> Areas for Improvement UI card
+  Repetition detection --[depends_on]--> Whisper
+  Fluency metrics --[depends_on]--> Whisper
+  US#4 - Stuttering and Hesitation Detection --[part_of]--> Sprint 2
+  US#6 - Personalized Areas for Improvement --[part_of]--> Sprint 2
+  Applied AI Software Design Partner --[fused_from]--> Research Assistant
+  Applied AI Software Design Partner --[fused_from]--> Coding Partner
+  Applied AI Software Design Partner --[incorporates]--> Grant Permission to Fail
+  Applied AI Software Design Partner --[incorporates]--> Decompose Into Checkpoints
+  Applied AI Software Design Partner --[incorporates]--> Frame With Curiosity
+  Applied AI Software Design Partner --[incorporates]--> Invite Transparency
+  Applied AI Software Design Partner --[incorporates]--> Collaborate, Don't Command
+  Applied AI Software Design Partner --[incorporates]--> Acknowledge Difficulty
+  Applied AI Software Design Partner --[incorporates]--> Counteract Brooding Baseline
+  Applied AI Software Design Partner --[uses]--> RAG architectures
+  Applied AI Software Design Partner --[uses]--> Agentic workflows
+  Applied AI Software Design Partner --[uses]--> Fine-tuning
+  Applied AI Software Design Partner --[uses]--> Prompt engineering
+  Applied AI Software Design Partner --[uses]--> Inference infrastructure
+  Applied AI Software Design Partner --[uses]--> Evaluation frameworks
+  Applied AI Software Design Partner --[uses]--> LLM integration patterns
+  kurnoolion --[worked_on]--> req-agent
+  req-agent --[depends_on]--> GitHub
+  req-agent --[uses]--> Git
+  req-agent --[uses]--> SSH
+  Git --[uses]--> SSH
+  kurnoolion --[uses]--> Windows Subsystem for Linux
+  NVIDIA DGX Spark --[uses]--> Blackwell GPU
+  NVIDIA DGX Spark --[uses]--> CUDA
+  Blackwell GPU --[contains]--> Tensor Cores
+  Tensor Cores --[supports]--> FP4
+  Unsloth --[depends_on]--> CUDA
+  Axolotl --[depends_on]--> CUDA
+  NeMo --[depends_on]--> CUDA
+  PyTorch --[uses]--> CUDA
+  TensorFlow --[uses]--> CUDA
+  JAX --[uses]--> CUDA
+  Apple Mac Studio M3 Ultra --[uses]--> MPS
+  NVIDIA DGX Spark --[preferred_for]--> Fine-tuning
+  MPS --[causes]--> CPU fallback
+  Interactive compound interest calculator --[demonstrates]--> compound interest
+  Mohan --[worked_on]--> AI training budget approval
+  Mohan --[manages]--> Technical Project Manager
+  Technical Project Manager --[uses]--> Generative AI
+  Vanderbilt Prompt Engineering Specialization --[hosted_on]--> Coursera
+  Vanderbilt Prompt Engineering Specialization --[taught_by]--> Dr. Jules White
+  Technical Project Manager --[performs]--> Customer communication
+  Technical Project Manager --[performs]--> Customer negotiation
+  Technical Project Manager --[performs]--> Technical writing
+  Technical Project Manager --[performs]--> Deliverable tracking
+  Technical Project Manager --[performs]--> Issue tracking
+  Generative AI --[improves]--> Customer communication
+  Generative AI --[improves]--> Customer negotiation
+  Generative AI --[improves]--> Technical writing
+  Generative AI --[improves]--> Deliverable tracking
+  Vanderbilt Prompt Engineering Specialization --[teaches]--> Generative AI
+  Claude Code --[depends_on]--> Git for Windows
+  Claude Code --[uses]--> PowerShell
+  Claude Code --[integrates_with]--> VS Code
+  Claude Code --[runs_on]--> Windows
+  Claude Code --[stores_sessions_in]--> ~/.claude/projects/
+  history.jsonl --[logs]--> Claude Code
+  Remote Control --[feature_of]--> Claude Code
+  Remote Control --[works_with]--> Claude mobile app
+  Remote Control --[accessible_via]--> claude.ai/code
+  /rc command --[enables]--> Remote Control
+  /config command --[configures]--> Remote Control
+  /mobile command --[provides_download]--> Claude mobile app
+  claude-conversation-extractor --[exports]--> ~/.claude/projects/
+  Claude Code --[logs_to]--> history.jsonl
+  Tree tournament problem --[uses]--> DFS algorithm
+  Skill assignment optimization --[solved]--> Tree tournament problem
+  Leaf depth weighting --[related_to]--> Tree tournament problem
+  Competitive programming --[includes]--> Tree tournament problem
+  TS.30 TAC Application Form --[feeds_into]--> GSMA Device Database
+  Device manufacturer --[submits]--> TAC Application Request
+  TAC Application Request --[submitted_to]--> GSMA
+  GSMA Device Database --[contains]--> TAC
+  GSMA Device Database --[contains]--> IMEI
+  GSMA Device Database --[has_column]--> eUICC
+  GSMA Device Database --[has_column]--> Standardized_Name
+  GSMA Device Database --[has_column]--> GSMA_NONREMOVABLE_eUICC
+  GSMA Device Database --[has_column]--> Band_Support
+  GSMA Device Database --[has_column]--> GSMA_Name
+  GSMA Device Database --[restricted_to]--> MNO
+  GSMA Device Database --[enriched_by]--> DeviceAtlas
+  Mohan --[researches]--> GSMA Device Database
+  Dheemahi --[originates_from]--> Gayatri Mantra
+  Gayatri Mantra --[part_of]--> Vedas
+  Hindu naming traditions --[depends_on]--> Vedas
+  Hindu naming traditions --[depends_on]--> Puranas
+  Hindu naming traditions --[related_to]--> Purva Bhadra nakshatra
+  Connected devices --[uses]--> Cellular Networks
+  Cellular Networks --[operated_by]--> MNO
+  VoLTE --[part_of]--> Cellular Networks
+  VoWiFi --[part_of]--> Cellular Networks
+  ePDG --[enables]--> VoWiFi
+  MNO --[based_on]--> 3GPP
+  MNO --[based_on]--> GSMA
+  Multi-document RAG --[uses]--> Query decomposition
+  Multi-document RAG --[uses]--> Multi-hop retrieval
+  Multi-document RAG --[uses]--> Knowledge graph for requirements
+  Multi-hop retrieval --[depends_on]--> Cross-requirement linking
+  Document ingestion pipeline --[parses]--> MNO
+  Compliance lock down document --[specifies_compliance]--> MNO
+  Network capability customization --[extends]--> 3GPP
+  LLC --[conducted]--> Land investment
+  Travel expense --[part_of]--> Land investment
+  Business meal deduction --[part_of]--> Land investment
+  Legal and professional fees --[part_of]--> Land investment
+  Due diligence costs --[part_of]--> Land investment
+  LLC compliance --[required_for]--> LLC
+  Real estate marketing --[part_of]--> Land investment
+  Business tax documentation --[required_for]--> LLC
+  Android OS --[uses]--> Android logcat
+  Android logcat --[enables]--> Log analysis
+  Dumpstate logs --[enables]--> Log analysis
+  Qualcomm modem --[produces]--> Qualcomm logs
+  Log analysis --[feeds_into]--> Root cause analysis
+  Root cause analysis --[uses]--> Android logcat
+  VoNR --[part_of]--> 5G
+  Satellite connectivity --[related_to]--> Android OS
+  Telephony framework --[manages]--> VoLTE
+  Telephony framework --[manages]--> VoNR
+  Connectivity framework --[manages]--> Cellular Networks
+  Battery drain analysis --[depends_on]--> Log analysis
+  LLM knowledge evaluation --[tests]--> Telecom standards
+  SGP.02 --[defines]--> M2M profile
+  SGP.22 --[defines]--> Consumer profile
+  SGP.32 --[specifies]--> Profile download flow
+  eUICC HAL --[implements]--> EuiccService
+  EuiccService --[uses]--> EuiccConnector
+  IEuiccService --[defines_interface]--> eUICC HAL
+  APDU commands --[part_of]--> SGP.22
+  Profile download flow --[involves]--> LPA
+  Profile download flow --[involves]--> SM-DP+
+  ES interfaces --[specified_by]--> SGP.22
+  Qualcomm modem --[implements]--> L2/L3/L4 protocols
+  Qualcomm logs --[enables]--> Root cause analysis
+  Android logcat --[correlates_with]--> Qualcomm logs
+  eUICC error codes --[indicates]--> Profile download flow
+  Shell project --[part_of]--> CS-252
+  Part 2.1: Ctrl-C Signal Handling --[part_of]--> Shell project
+  Part 2.2: Zombie Elimination --[part_of]--> Shell project
+  Part 2.3: Exit command --[part_of]--> Shell project
+  Part 2.4: Quotes --[part_of]--> Shell project
+  Part 2.5: Escaping --[part_of]--> Shell project
+  Part 2.6: Builtin Functions --[part_of]--> Shell project
+  Part 2.7: Creating a Default Source File --[part_of]--> Shell project
+  SIGINT signal --[related_to]--> Part 2.1: Ctrl-C Signal Handling
+  SIGCHLD signal --[related_to]--> Part 2.2: Zombie Elimination
+  write() function --[used_in]--> SIGINT signal
+  Zombie process --[problem_solved_by]--> Part 2.2: Zombie Elimination
+  printenv builtin --[part_of]--> Part 2.6: Builtin Functions
+  setenv builtin --[part_of]--> Part 2.6: Builtin Functions
+  unsetenv builtin --[part_of]--> Part 2.6: Builtin Functions
+  cd builtin --[part_of]--> Part 2.6: Builtin Functions
+  source builtin --[part_of]--> Part 2.6: Builtin Functions
+  source builtin --[depends_on]--> yy_create_buffer
+  source builtin --[depends_on]--> yy_switch_to_buffer
+  Macro Trading Dashboard --[built_with]--> Flask
+  Macro Trading Dashboard --[built_with]--> Python
+  Macro Trading Dashboard --[depends_on]--> yfinance
+  Macro Trading Dashboard --[depends_on]--> FRED API
+  Macro Trading Dashboard --[uses]--> GridStack.js
+  Macro Trading Dashboard --[displays]--> Market breadth metrics
+  Macro Trading Dashboard --[displays]--> Economic calendar
+  Macro Trading Dashboard --[displays]--> Breaking news feed
+  Macro Trading Dashboard --[displays]--> Sector rotation
+  Macro Trading Dashboard --[displays]--> Macro regime
+  Market breadth metrics --[depends_on]--> NYSE
+  Market breadth metrics --[depends_on]--> NASDAQ
+  Macro Trading Dashboard --[generates]--> Bullish/bearish signals
+  Market breadth metrics --[includes]--> Weinstein stage analysis
+  Macro Trading Dashboard --[experienced]--> jinja2.exceptions.TemplateNotFound
+  jinja2.exceptions.TemplateNotFound --[solved_by]--> Template folder structure fix
+  Macro Trading Dashboard --[blocked_by]--> Ticker data fetching issue
+  Macro Trading Dashboard --[blocked_by]--> GridStack drag functionality issue
+  Screen capture automation application --[uses]--> pytesseract
+  Screen capture automation application --[uses]--> Pillow
+  Screen capture automation application --[uses]--> reportlab
+  Screen capture automation application --[uses]--> pynput
+  Screen capture automation application --[automates]--> Kindle for PC
+  Screen capture automation application --[implements]--> Image similarity detection
+  Screen capture automation application --[uses]--> Spacebar key injection
+  Screen capture automation application --[depends_on]--> Foreground window activation
+  Screen capture automation application --[uses]--> Debug logging system
+  pytesseract --[depends_on]--> Tesseract OCR binary
+  Image similarity detection --[uses]--> Pillow
+  Image similarity detection --[solves]--> Duplicate screenshot issue
+  Spacebar key injection --[enabled_by]--> pynput
+  Spacebar key injection --[solves]--> Mouse click reliability issue
+  Window handle staling --[caused_by]--> Kindle for PC
+  Foreground window activation --[depends_on]--> Windows API
+  PDF image compression --[uses]--> Pillow
+  PDF image compression --[solves]--> Large PDF file size problem
+  Debug logging system --[uses]--> File I/O
+  Screenshot comparison loop --[implements]--> Screen capture automation application
+  Mohan --[worked_on]--> Sweet 16 Invitation Website
+  Sweet 16 Invitation Website --[created_for]--> Amukta Duggi
+  Sreepriya Duggi --[related_to]--> Amukta Duggi
+  Sweet 16 Invitation Website --[designed_on]--> Wix
+  Sweet 16 Invitation Website --[deployed_on]--> Netlify
+  Sweet 16 Invitation Website --[uses]--> Google Sheets
+  Sweet 16 Invitation Website --[uses]--> Google Apps Script
+  Sweet 16 Invitation Website --[includes]--> Calendar integration
+  Sweet 16 Invitation Website --[includes]--> RSVP system
+  Sweet 16 Invitation Website --[inspired_by]--> Evite
+  Calendar integration --[supports]--> Google Calendar
+  Calendar integration --[supports]--> Apple Calendar
+  RSVP system --[stores_to]--> Google Sheets
+  Sweet 16 Invitation Website --[generated_as]--> index.html
+  Olde Mill Inn --[venue_for]--> Amukta Duggi
+  Google Apps Script --[writes_to]--> Google Sheets
+  The Beats --[rejected]--> Cold War
+  Allen Ginsberg --[member_of]--> The Beats
+  Ella Baker --[founded]--> SNCC
+  Robert Moses --[worked_on]--> SNCC
+  SNCC --[part_of]--> Civil Rights Movement
+  SCLC --[led_by]--> Martin Luther King Jr.
+  SCLC --[part_of]--> Civil Rights Movement
+  CORE --[organized]--> Freedom Rides
+  Sit-ins --[tactic_of]--> Civil Rights Movement
+  Freedom Rides --[part_of]--> Civil Rights Movement
+  Civil Rights Movement --[major_topic_in]--> APUSH
+  New Left --[inspired_by]--> Civil Rights Movement
+  New Left --[rejected]--> Old Left
+  New Left --[related_to]--> Counterculture
+  Counterculture --[opposed]--> Vietnam War
+  Stagflation --[preceded]--> Reagan Revolution
+  Deindustrialization --[related_to]--> Stagflation
+  Proposition 13 --[fueled]--> Reagan Revolution
+  Sagebrush Rebellion --[contributed_to]--> Reagan Revolution
+  Ronald Reagan --[leader_of]--> Reagan Revolution
+  George H.W. Bush --[ordered]--> Panama invasion
+  George H.W. Bush --[ordered]--> Gulf War
+  Saddam Hussein --[caused]--> Gulf War
+  Operation Desert Storm --[part_of]--> Gulf War
+  Bill Clinton --[won]--> Election of 1992
+  Bill Clinton --[implemented]--> Welfare reform
+  Ross Perot --[participated_in]--> Election of 1992
+  APUSH --[assessed_by]--> MCQ tests
+  Post-Cold War World --[major_topic_in]--> APUSH
