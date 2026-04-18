@@ -1,6 +1,6 @@
 {
   "session_id": "08c0add1-5e4c-4c0c-9fb2-b5fcb9d018a8",
-  "transcript_path": "/home/mohan/.claude/projects/-mnt-d-work-req-agent/08c0add1-5e4c-4c0c-9fb2-b5fcb9d018a8.jsonl",
+  "transcript_path": "/home/mohan/.claude/projects/-home-mohan-work-req-agent/08c0add1-5e4c-4c0c-9fb2-b5fcb9d018a8.jsonl",
   "sessions_index_path": null,
   "sesslog_dir": "/home/mohan/.claude/sesslogs/req-agent__08c0add1-5e4c-4c0c-9fb2-b5fcb9d018a8_mohan",
   "original_cwd": "/home/mohan/work/req-agent",
