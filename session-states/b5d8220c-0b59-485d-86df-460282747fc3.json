@@ -3,8 +3,8 @@
   "transcript_path": "/home/mohan/.claude/projects/-mnt-d-work-general/b5d8220c-0b59-485d-86df-460282747fc3.jsonl",
   "sessions_index_path": null,
   "sesslog_dir": "/home/mohan/.claude/sesslogs/general__b5d8220c-0b59-485d-86df-460282747fc3_mohan",
-  "original_cwd": "/mnt/d/work/general",
-  "cwd": "/mnt/d/work/general",
+  "original_cwd": "/home/mohan/work/general",
+  "cwd": "/home/mohan/work/general",
   "current_name": "general",
   "updated_at": "2026-04-17T20:27:52.203005Z"
 }

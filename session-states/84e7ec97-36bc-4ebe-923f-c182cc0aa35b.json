@@ -3,8 +3,8 @@
   "transcript_path": "/home/mohan/.claude/projects/-mnt-d-work-prompts/84e7ec97-36bc-4ebe-923f-c182cc0aa35b.jsonl",
   "sessions_index_path": null,
   "sesslog_dir": "/home/mohan/.claude/sesslogs/prompts__84e7ec97-36bc-4ebe-923f-c182cc0aa35b_mohan",
-  "original_cwd": "/mnt/d/work/prompts",
-  "cwd": "/mnt/d/work/prompts",
+  "original_cwd": "/home/mohan/work/prompts",
+  "cwd": "/home/mohan/work/prompts",
   "current_name": "prompts",
   "updated_at": "2026-04-16T22:03:13.462399Z"
 }

@@ -3,8 +3,8 @@
   "transcript_path": "/home/mohan/.claude/projects/-mnt-d--claude/6bf23bab-de14-461a-9547-039413130227.jsonl",
   "sessions_index_path": null,
   "sesslog_dir": "/home/mohan/.claude/sesslogs/claude__6bf23bab-de14-461a-9547-039413130227_mohan",
-  "original_cwd": "/mnt/d/.claude",
-  "cwd": "/mnt/d/.claude",
+  "original_cwd": "/home/mohan/.claude",
+  "cwd": "/home/mohan/.claude",
   "current_name": "claude",
   "updated_at": "2026-04-17T23:35:40.482409Z"
 }
