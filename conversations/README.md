@@ -2,10 +2,12 @@
 
 Readable archive of Claude Code sessions, auto-generated on session end.
 
-**Total conversations:** 59
+**Total conversations:** 61
 
 | Date | Conversation |
 |------|-------------|
+| 2026-04-18 | [continue](2026-04-18_0052_continue.md) |
+| 2026-04-18 | [WHat is cwd?](2026-04-18_0028_what-is-cwd.md) |
 | 2026-04-18 | [WHat is cwd?](2026-04-18_0003_what-is-cwd.md) |
 | 2026-04-17 | [WHat is your cwd?](2026-04-17_2329_what-is-your-cwd.md) |
 | 2026-04-17 | [How do I enable Claude to track everything I'm doing as memories, so that I c...](2026-04-17_2319_how-do-i-enable-claude-to-track-everything-im-doing-as-memor.md) |
