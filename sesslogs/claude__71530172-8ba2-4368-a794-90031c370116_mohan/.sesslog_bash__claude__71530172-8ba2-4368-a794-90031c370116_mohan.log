@@ -1,8 +1,0 @@
-════════════════════════════════════════════════════════════════════════════════
-═══ SESSION START  •  2026-04-17 19:38:46  •  Run #1  •  claude
-════════════════════════════════════════════════════════════════════════════════
-[[2026-04-17 19:38:46]] {Read: "/home/mohan/.claude/knowledge-graph/tmp35wkiw60.txt" }
-[[2026-04-17 19:38:46]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" }
-[[2026-04-17 19:38:46]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" }
-[[2026-04-17 19:38:50]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (50L) }
-[[2026-04-17 19:38:51]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" (50L) }

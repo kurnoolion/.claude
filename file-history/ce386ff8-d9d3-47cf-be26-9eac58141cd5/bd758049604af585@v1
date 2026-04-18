@@ -1,5 +1,0 @@
-# Tradier API Token (Brokerage or Sandbox)
-TRADIER_API_TOKEN=your_token_here
-
-# Optional: Use sandbox endpoint for testing
-# TRADIER_BASE_URL=https://sandbox.tradier.com/v1

@@ -1,5 +1,0 @@
-- [User Role](user_role.md) — AI solution architect, telecom domain expert, wants collaborative design partner
-- [Telecom AI System Project](project_telecom_ai_system.md) — KG+RAG system for MNO requirement Q&A/compliance, TDD complete, PoC next
-- [Design Decisions](design_decisions.md) — 8 key architectural decisions with rationale (why Option C, why hybrid graph+RAG, etc.)
-- [VZW Document Structure](vzw_document_structure.md) — VZ_REQ ID format, section hierarchy, document zones — spec for parser
-- [Collaboration Style](feedback_collaboration.md) — Checkpoint-based, align on design before code, surface tradeoffs, be precise

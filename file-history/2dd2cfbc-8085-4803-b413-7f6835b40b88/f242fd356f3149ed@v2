@@ -1,4 +1,0 @@
-- [User Profile](user_profile.md) — AI solution architect with deep telecom domain expertise (3GPP, GSMA, US MNO)
-- [Collaboration Style](feedback_collaboration.md) — Structured decomposition, checkpoint progress, push back when needed
-- [DocumentProfiler Decision](design_documentprofiler.md) — Standalone LLM-free profiler replaces per-MNO parsers; profile-driven generic parser
-- [Collaboration Protocol](project_collab_protocol.md) — Multi-env pipeline workflow: dev PC + work laptop + team members; compact reports, QC/FIX templates, error codes

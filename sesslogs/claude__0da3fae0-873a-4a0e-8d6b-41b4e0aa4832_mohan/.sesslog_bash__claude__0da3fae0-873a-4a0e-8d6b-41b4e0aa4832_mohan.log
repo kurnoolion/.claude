@@ -1,8 +1,0 @@
-════════════════════════════════════════════════════════════════════════════════
-═══ SESSION START  •  2026-04-17 19:37:40  •  Run #1  •  claude
-════════════════════════════════════════════════════════════════════════════════
-[[2026-04-17 19:37:40]] {Read: "/home/mohan/.claude/knowledge-graph/tmppa4cvale.txt" }
-[[2026-04-17 19:37:40]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" }
-[[2026-04-17 19:37:42]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (1L) }
-[[2026-04-17 19:37:43]] {Read: "/home/mohan/.claude/knowledge-graph/entities.jsonl" (100L) }
-[[2026-04-17 19:37:46]] {Read: "/home/mohan/.claude/knowledge-graph/relationships.jsonl" }
