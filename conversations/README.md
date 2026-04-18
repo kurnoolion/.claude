@@ -2,10 +2,11 @@
 
 Readable archive of Claude Code sessions, auto-generated on session end.
 
-**Total conversations:** 57
+**Total conversations:** 58
 
 | Date | Conversation |
 |------|-------------|
+| 2026-04-17 | [WHat is your cwd?](2026-04-17_2329_what-is-your-cwd.md) |
 | 2026-04-17 | [How do I enable Claude to track everything I'm doing as memories, so that I c...](2026-04-17_2319_how-do-i-enable-claude-to-track-everything-im-doing-as-memor.md) |
 | 2026-04-17 | [How do I enable Claude to track everything I'm doing as memories, so that I c...](2026-04-17_2224_how-do-i-enable-claude-to-track-everything-im-doing-as-memor.md) |
 | 2026-04-17 | [You are a knowledge graph extraction agent. Read the conversation transcript ...](2026-04-17_1942_you-are-a-knowledge-graph-extraction-agent-read-the-conversa.md) |
